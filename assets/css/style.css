@@ -6,23 +6,40 @@
 */
 
 body {
-  background : url(img/bg_pre.png) no-repeat center top;
-  background-color: #f2f2f2;
+  background : url(img/bg_pre.png) no-repeat center center fixed; 
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   font-family: "Lato";
   font-weight: 300;
   font-size: 16px;
-  color: #555;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
-  margin-top: 70px;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+}
+
+.contenedor{
+  margin-top: 30px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.subcontenedor{
+    width: 400px;
+    /* border: 2px solid red; */
+}
+
+.contenedorForm{
+    margin-top: 60px;
+    /* width: 100%; */
+    height: auto;
+    border-radius: 22px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 30px;
+}
+
+.contenedorInputs{
+    margin-top: 60px;
 }
 
 /* Titles */
@@ -100,6 +117,11 @@ hr {
   letter-spacing: 1px;
 }
 
+.inputData{
+    width: 60%;
+    height: 30px;
+    margin-top: 5px;
+}
 /*TILT*/
 
 .tilt {
@@ -140,31 +162,6 @@ hr {
   -o-background-size: cover;
   background-size: cover;
 }
-.slide {
-  /* layout */
-  height: 100vh;
-  min-width: 100vh;
-  flex: 1;
-  display: flex;
-  /* content styling OPTIONAL*/
-  align-items: center;
-  justify-content: center;
-  padding: 10vh;
-  /* background styling */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.child {
-  width: 80%;  /* Or whatever */
-  height: 100px; /* Or whatever */
-  margin: auto;  /* Magic! */
-}
-.preregister {
-  background-image: url(img/bg_form.png);
-  object-fit: cover;
-  object-position: center center;
-}
 label {
 	font-size:10px;
 }
@@ -194,7 +191,7 @@ a:link {
   font-weight: bold
 }
 h1 {
-	margin-top: 50px;
+	margin-top: 2px;
   color: white;
   font-size: 15px;
   font-weight: 300;
@@ -210,10 +207,8 @@ h5 {
 }
 .bgwt {
   margin-top: 20px;
-  background-image:url(img/bg_wht.png); 
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;  
+    border-radius: 22px;
+    background-color: rgba(255, 255, 255, 0.5);
   text-align: center;
 }
 input:required:invalid, input:focus:invalid {
