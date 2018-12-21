@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+	<script>
+	alert('<?=$mj?>');
+  </script>
 <head>
   <meta charset="utf-8">
   <title>Microprestamos123</title>
@@ -21,8 +25,7 @@
 </head>
 
 <body>
-
-  <!-- Fixed navbar -->
+-- Fixed navbar -->
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -38,8 +41,8 @@
 		<h1 class="bgwt col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-12">
 		<br><br>Prestamos hasta $2,000.00 Rápido, fácil y simple.<br>Lanzamiento 19 de Marzo del 2019<br><br><br></h1>
 
-		<div style="margin-top:30px;" class="slide preregister" >
-			<div style="padding-top:30px" class="child " >
+		<div id="preregister"  style="margin-top:30px;" class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12" >
+			<div style="padding-top:30px" class="panel-body " >
 					<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                     <form id="loginform" class="form-horizontal" role="form" style="margin-top:90px"
 					action="<?= base_url() ?>index.php/Welcome/cadastrar" method="post">
@@ -121,7 +124,7 @@
 			Próximamente descarga nuestra APP solo para ususarios.<br></h5>
 		<div style="margin-bottom:50px;margin-top:20px" class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-8 col-xs-offset-2">
 			<img class="col-xs-12 " src="<?= base_url() ?>assets/css/img/applestore.png" alt="Apple Store">
-			<img class="col-xs-12 " src="<?= base_url() ?>assets/css/img/playstore.png" alt="Play Store">
+			<img <div class="slide a">class="col-xs-12 " src="<?= base_url() ?>assets/css/img/playstore.png" alt="Play Store">
 		</div>
 		<div style="margin-bottom:50px" class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
 			<img  style="height:90px;" src="<?= base_url() ?>assets/css/img/p1.png" alt="Registro">

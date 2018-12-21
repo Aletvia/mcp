@@ -2,24 +2,58 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+		public $keycrypt;
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('consultas_model');
+		$this->load->helper('url');
+		$this->load->database('default');
+		$this->keycrypt = $this->config->item("aes_encryption_key");
+	}
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data['mj'] = "";
+		$data['estados'] = $this->consultas_model->get_e();
+		$data['municipios'] = $this->consultas_model->get_m();
+		$this->load->view('welcome_message',$data);
 	}
+	public function registro($msj=null)
+	{
+		$data['mj'] = $msj;
+		$data['estados'] = $this->consultas_model->get_e();
+		$data['municipios'] = $this->consultas_model->get_m();
+		$this->load->view('welcome_message',$data);
+	}
+	
+     public function cadastrar()
+     {
+		 $cur=$this->input->post('c');
+		 $count = $this->consultas_model->consulta_count_where("clientes",$cur,"curp");
+		 if($count==0){
+            $dat['correo'] = $this->input->post('e');
+            $dat['tipo'] = "cliente";
+            $dat['status'] = "activo";
+            $dat['nombre_completo'] = $this->input->post('n');
+            $dat['fecha_registro'] = date("Y-m-d");
+			$pass = $this->input->post('p');
+			$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+ 
+            $id= $this->consultas_model->insert_r('usuarios',$dat);
+							$dato['curp'] = $cur;
+				$dato['fecha_nacimiento'] = $this->input->post('b');
+				$dato['municipios_id_municipio'] = $this->input->post('m');
+				$id= $this->db->insert_id();
+				$dato['usuarios_id_usuarios'] = $id;
+				$this->db->insert('clientes',$dato);
+            $data['mj'] = "Su registro se ha realizado con éxito.";
+		 }else{   
+			$data['mj'] ="Ya contamos con un registro con el CURP ingresado. ";
+		}
+		$data['estados'] = $this->consultas_model->get_e();
+		$data['municipios'] = $this->consultas_model->get_m();
+		
+		
+		$this->load->view('registro',$data);
+     }
 }
