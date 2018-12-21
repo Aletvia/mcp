@@ -38,44 +38,43 @@
 		<h1 class="bgwt col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-12">
 		<br><br>Prestamos hasta $2,000.00 Rápido, fácil y simple.<br>Lanzamiento 19 de Marzo del 2019<br><br><br></h1>
 
-		<div style="margin-top:30px;" class="slide preregister" >
-			<div style="padding-top:30px" class="child " >
-					<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form id="loginform" class="form-horizontal" role="form" style="margin-top:90px"
+		<div style="margin-top:30px;" class="slide preregister col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+			<div style="padding-top:30px" >
+					<form id="loginform" class="form-horizontal" role="form" style="margin-top:90px"
 					action="<?= base_url() ?>index.php/Welcome/cadastrar" method="post">
                                     
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <input id="n" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">                                        
                             </div>
                                 
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
                                         <input pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$" id="c" type="text" class="form-control input-sm" name="c" required  placeholder="CURP">                                        
                             </div>
 									
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                         <input id="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" name="e" required  placeholder="Correo">                                        
                             </div>
 									
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="p" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="p" required  placeholder="Contraseña">
                             </div>
                                     
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="pc" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="pc" required  placeholder="Confirmar contraseña">
                             </div>
 						
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         <input id="b" type="date" class="form-control input-sm" name="b" min="1940-04-01" required >
 										<span class="validity"></span>
                             </div>
 							
-                            <!--div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-md-6 col-md-offset-3">
+                            <!--div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
                                         <select id="es" name="es" class="form-control input-sm" required >
 										<option value="">Estado</option>
@@ -86,7 +85,7 @@
 										</select>
                             </div-->
 							
-                            <div style="margin-bottom: 25px" class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                                         <select id="m" name="m" class="form-control input-sm" required >
 										<option value="">Municipio</option>
@@ -97,7 +96,7 @@
 										</select>
                             </div>
                                 
-                            <div class="input-group col-sm-offset-2 col-sm-8 col-xs-12 col-md-6 col-md-offset-3">
+                            <div class="input-group">
                                       <div class="checkbox">
                                         <label>
                                           <input id="acept_t_p" type="checkbox" title="ffifififif" required name="acept_t_p" value="1"> <label for="checkbox">Acepto<a href="#">Términos de servicio</a> y <a href="#">Políticas de privacidad</a></label>
@@ -108,20 +107,20 @@
 
                             <div style="margin-top:10px" class="form-group">
 							<!-- Button -->
-								<div class="col-sm-10 col-sm-offset-1  col-xs-12 col-md-6 col-md-offset-3 controls text-center">
+								<div class="controls text-center">
 								<button  onclick="validar()" type="button" id="registrar" style="width:100%" class="button registrar">Pre-registro</button>
 								</div>
                             </div>
 							    
                     </form>               
-				</div>  
+			</div>  
 		</div>
       <!-- preregister -->
 	  <h5 class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-12">
 			Próximamente descarga nuestra APP solo para ususarios.<br></h5>
 		<div style="margin-bottom:50px;margin-top:20px" class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-8 col-xs-offset-2">
-			<img class="col-xs-12 " src="<?= base_url() ?>assets/css/img/applestore.png" alt="Apple Store">
-			<img class="col-xs-12 " src="<?= base_url() ?>assets/css/img/playstore.png" alt="Play Store">
+			<img style="height:60px;" src="<?= base_url() ?>assets/css/img/applestore.png" alt="Apple Store">
+			<img style="height:60px;" src="<?= base_url() ?>assets/css/img/playstore.png" alt="Play Store">
 		</div>
 		<div style="margin-bottom:50px" class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
 			<img  style="height:90px;" src="<?= base_url() ?>assets/css/img/p1.png" alt="Registro">

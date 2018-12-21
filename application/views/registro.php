@@ -43,7 +43,6 @@
 
 		<div id="preregister"  style="margin-top:30px;" class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12" >
 			<div style="padding-top:30px" class="panel-body " >
-					<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                     <form id="loginform" class="form-horizontal" role="form" style="margin-top:90px"
 					action="<?= base_url() ?>index.php/Welcome/cadastrar" method="post">
                                     
@@ -116,8 +115,7 @@
 								</div>
                             </div>
 							    
-                    </form>               
-				</div>  
+                    </form>    
 		</div>
       <!-- preregister -->
 	  <h5 class="centered col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1  col-xs-12">
