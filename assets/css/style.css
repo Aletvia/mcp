@@ -39,6 +39,9 @@ body {
 }
 
 .contenedorInputs{
+	-webkit-align-content: center;
+	align-content: center;
+    width: 100%;
     margin-top: 60px;
 }
 
@@ -118,9 +121,7 @@ hr {
 }
 
 .inputData{
-    width: 60%;
-    height: 30px;
-    margin-top: 5px;
+    width: 80%;
 }
 /*TILT*/
 

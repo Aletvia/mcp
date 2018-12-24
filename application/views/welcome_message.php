@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
   <!-- Fixed navbar -->
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -44,13 +43,14 @@
 			<div class="contenedorForm " style="margin-top:-70px">
 				
 				<div class="contenedorInputs d-flex justify-content-center flex-wrap">
-					<form id="loginform" action="<?= base_url() ?>index.php/Welcome/cadastrar" method="post">
+					<form id="loginform" class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
+					action="<?= base_url() ?>index.php/Welcome/registro" method="post">
                                     
                             <div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <span class="input-group-prepend">
 											<div class="input-group-text bg-white border-right-0"><i class="fa fa-user"></i></div>
 										</span>										
-                                        <input id="n" pattern="^[A-Za-z]" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">                                        
+                                        <input id="n" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">                                        
                             </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -105,7 +105,7 @@
 											<div class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i></div>
 										</span>										
                                         <select id="m" name="m" class="form-control input-sm" required >
-										<option value=""><i class="glyphicon glyphicon-map-marker"></i> Municipio</option>
+										<option value="1"><i class="glyphicon glyphicon-map-marker"></i> Municipio</option>
 										<?php
 											foreach ($municipios as $m) { ?>
 											<option value="<?= $m->id_municipio ?>"> <?= $m->municipio; ?></option>

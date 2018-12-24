@@ -81,15 +81,68 @@ class Consultas_model extends CI_Model
 	//obtenemos las entradas de las tablas, dependiendo
     // si le pasamos le id como argument o no
 
-	public function get_u()
+	public function get_u($id = false)
 	{
-		$query = $this->db->select("contrasenia as contrasenia")
-		->from("usuarios")
-		->get();
-		if($query->num_rows() > 0)
+		if($id === false)
 		{
-			return $query->result();
+            $this->db->select('u.id_usuarios,u.nombre_completo,u.tipo,u.correo,u.fecha_registro');
+            $this->db->from('usuarios u');
+            $this->db->where('u.status','activo');
+			$this->db->order_by("u.nombre_completo", "asc");
+		}else{
+            $this->db->select('u.id_usuarios,u.nombre_completo,u.tipo,u.correo,u.fecha_registro');
+            $this->db->from('usuarios u');
+			$this->db->where('u.id_usuarios',$id);
 		}
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+	}
+	public function get_l($nick = false,$contraseña = false)
+	{
+            $this->db->select('u.id_usuarios,u.nombre_completo,u.tipo,u.correo');
+            $this->db->from('usuarios u');
+			$this->db->where('u.correo',$nick);
+			$this->db->where('u.contrasenia',$contraseña);
+			$this->db->where('u.status','activo');
+		
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+	}
+	public function get_c($id = false)
+	{
+        if($id === false)
+        {
+            $this->db->select('u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
+			c.telefono1,c.telefono2,u.correo,
+			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
+			c.lab_anios_experiencia,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
+			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
+			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
+			c.his_desc_cal,c.credencial,c.foto');
+            $this->db->from('usuarios u');
+            $this->db->join('clientes c', 'c.usuarios_id_usuarios = u.id_usuarios');
+            $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
+            $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+        }else{
+            $this->db->select('u.id_cliente,u.nombre_completo,c.curp,u.correo,m.municipio,e.estado,u.fecha_registro');
+            $this->db->from('usuarios u');
+            $this->db->join('clientes c', 'u.usuarios_id_usuarios = c.id_usuarios');
+            $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
+            $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+            $this->db->where('m.estados_id_estado',$id);
+			$this->db->order_by("u.nombre_completo", "asc");
+        }
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
 	}
 	
     public function get_m($id = false)
@@ -98,25 +151,26 @@ class Consultas_model extends CI_Model
         {
             $this->db->select('m.id_municipio,m.municipio');
             $this->db->from('municipios m');
+			$this->db->order_by("municipio", "asc");
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
         }else{
             $this->db->select('m.id_municipio,m.municipio');
             $this->db->from('municipios m');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+			$this->db->order_by("municipio", "asc");
             $this->db->where('m.estados_id_estado',$id);
         }
         $query = $this->db->get();
         if($query->num_rows() > 0 )
         {
             return $query->result();
-        }else{
-			return null;
-		}
+        }
     }
 	public function get_e()
     {
 		$this->db->select('e.id_estado,e.estado');
 		$this->db->from('estados e');
+		$this->db->order_by("e.estado", "asc");
         $query = $this->db->get();
         if($query->num_rows() > 0 )
         {
@@ -146,9 +200,7 @@ class Consultas_model extends CI_Model
         if($query->num_rows() > 0 )
         {
             return $query->result();
-        }else{
-			return null;
-		}
+        }
     }
 }
 /*

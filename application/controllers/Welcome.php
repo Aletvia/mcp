@@ -18,21 +18,14 @@ class Welcome extends CI_Controller {
 		$data['municipios'] = $this->consultas_model->get_m();
 		$this->load->view('welcome_message',$data);
 	}
-	public function registro($msj=null)
-	{
-		$data['mj'] = $msj;
-		$data['estados'] = $this->consultas_model->get_e();
-		$data['municipios'] = $this->consultas_model->get_m();
-		$this->load->view('welcome_message',$data);
-	}
 	
-     public function cadastrar()
+     public function registro()
      {
 		 $cur=$this->input->post('c');
 		 $count = $this->consultas_model->consulta_count_where("clientes",$cur,"curp");
 		 if($count==0){
             $dat['correo'] = $this->input->post('e');
-            $dat['tipo'] = "cliente";
+            $dat['tipo'] = "Cliente";
             $dat['status'] = "activo";
             $dat['nombre_completo'] = $this->input->post('n');
             $dat['fecha_registro'] = date("Y-m-d");
@@ -56,4 +49,5 @@ class Welcome extends CI_Controller {
 		
 		$this->load->view('registro',$data);
      }
+	 
 }
