@@ -6,51 +6,57 @@
 			</div>
 		</div>
 		<div>
-				<div style="margin-bottom: 25px" class="input-group row center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<span class="input-group-prepend">
-						<div class="input-group-text bg-white border-right-0"><i class="fa fa-user"></i></div>
-					</span>				
-					<input id="n" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">             
+			<form id="loginform" 
+				action="<?= base_url() ?>index.php/Microprestamos/agregar_u" method="post">
+				<div class="row">
+					<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-user"></i>&nbspNombre&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>				
+						<input id="n" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">             
+					</div>
 				</div>
-				
-				<div style="margin-bottom: 25px" class="input-group row center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<span class="input-group-prepend">
-								<div class="input-group-text bg-white border-right-0"><i class="fa fa-envelope"></i></div>
-							</span>										
-							<input id="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" name="e" required  placeholder="Correo">                                        
+				<div class="row">
+					<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<span class="input-group-prepend">
+									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-envelope"></i>&nbspCorreo&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+								</span>										
+								<input id="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" name="e" required  placeholder="Correo">                                        
+					</div>
 				</div>
 				
 				<div class="row">
-				<div style="margin-bottom: 25px" class="input-group center col-lg-5 col-md-5 col-sm-5 col-xs-12">
-							<span class="input-group-prepend">
-								<div class="input-group-text bg-white border-right-0"><i class="fa fa-key"></i></div>
-							</span>										
-							<input id="p" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="p" required  placeholder="Contraseña">
-				</div>
-						
-				<div style="margin-bottom: 25px" class="input-group center col-lg-5 col-md-5 col-sm-5 col-xs-12">
-							<span class="input-group-prepend">
-								<div class="input-group-text bg-white border-right-0"><i class="fa fa-key"></i></div>
-							</span>										
-							<input id="pc" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="pc" required  placeholder="Confirmar contraseña">
-				</div>
+					<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<span class="input-group-prepend">
+									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-key"></i>&nbspContraseña&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+								</span>										
+								<input id="p" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="p" required  placeholder="Contraseña">
+					</div>
+							
+					<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<span class="input-group-prepend">
+									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-key"></i>&nbspRepite contraseña</div>
+								</span>										
+								<input id="pc" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="pc" required  placeholder="Confirmar contraseña">
+					</div>
 				</div>
 						
 				<div class="row">
-				<div style="margin-bottom: 25px" class="input-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+					<div style="margin-bottom: 25px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 							<span class="input-group-prepend">
-								<div class="input-group-text bg-white border-right-0"><i class="fa fa-users"></i></div>
+								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-users"></i>&nbspTipo&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 							</span>										
-							<select id="m" name="m" class="form-control input-sm" required >
+							<select id="t" name="t" class="form-control input-sm" required >
 								<option value="Administrador">Administrador</option>
 								<option value="Agente">Agente</option>
-								<option value="Cliente">Cliente</option>
+								<!--option value="Cliente">Cliente</option-->
 							</select>
+					</div>
+				<div style="margin-bottom: 25px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<button  onclick="validar()" type="button" id="registrar" style="width:100%" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</button>
 				</div>
-				<div style="margin-bottom: 25px" class="input-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
-					<button  onclick="validar()" style="font-weight:bold" type="button" id="agregar" class="btn btn-success col"><i class="fa fa-plus"></i> Agregar</button>
 				</div>
-				</div>
+			</form>
 		</div>
     </div>
 <script>

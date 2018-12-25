@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="e">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <title>Microprestamos123</title>
@@ -44,9 +44,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/clientes">Clientes</a>
         </li>
-        <li class="nav-item">
+        <!--li class="nav-item">
           <a class="nav-link" href="#">Solicitudes</a>
-        </li>
+        </li-->
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/log_out">Cerrar sesión</a>
         </li>

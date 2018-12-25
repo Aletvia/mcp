@@ -24,23 +24,29 @@ class Welcome extends CI_Controller {
 		 $cur=$this->input->post('c');
 		 $count = $this->consultas_model->consulta_count_where("clientes",$cur,"curp");
 		 if($count==0){
-            $dat['correo'] = $this->input->post('e');
-            $dat['tipo'] = "Cliente";
-            $dat['status'] = "activo";
-            $dat['nombre_completo'] = $this->input->post('n');
-            $dat['fecha_registro'] = date("Y-m-d");
-			$pass = $this->input->post('p');
-			$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
- 
-            $id= $this->consultas_model->insert_r('usuarios',$dat);
-							$dato['curp'] = $cur;
-				$dato['fecha_nacimiento'] = $this->input->post('b');
-				$dato['municipios_id_municipio'] = $this->input->post('m');
-				$id= $this->db->insert_id();
-				$dato['usuarios_id_usuarios'] = $id;
-				$this->db->insert('clientes',$dato);
-            $data['mj'] = "Su registro se ha realizado con éxito.";
-		 }else{   
+			 $correo=$this->input->post('e');
+			 $count = $this->consultas_model->consulta_count_where("usuarios",$correo,"correo");
+			 if($count==0){
+				$dat['correo'] = $correo;
+				$dat['tipo'] = "Cliente";
+				$dat['status'] = "activo";
+				$dat['nombre_completo'] = $this->input->post('n');
+				$dat['fecha_registro'] = date("Y-m-d");
+				$pass = $this->input->post('p');
+				$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+	 
+				$id= $this->consultas_model->insert_r('usuarios',$dat);
+								$dato['curp'] = $cur;
+					$dato['fecha_nacimiento'] = $this->input->post('b');
+					$dato['municipios_id_municipio'] = $this->input->post('m');
+					$id= $this->db->insert_id();
+					$dato['usuarios_id_usuarios'] = $id;
+					$this->db->insert('clientes',$dato);
+				$data['mj'] = "Su registro se ha realizado con éxito.";
+			 }else{   
+				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
+			 }
+		}else{   
 			$data['mj'] ="Ya contamos con un registro con el CURP ingresado. ";
 		}
 		$data['estados'] = $this->consultas_model->get_e();
