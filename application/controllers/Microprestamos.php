@@ -30,10 +30,34 @@ class Microprestamos extends CI_Controller {
 	public function clientes()
 	{
 		$this->verificar_sesion();
-		$data['clientes'] = $this->consultas_model->get_c();
-		$data['count'] = count($data['clientes']);
-        $this->load->view('microprestamos/header_a');
-		$this->load->view('microprestamos/clientes',$data);
+		
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			$data['clientes'] = $this->consultas_model->get_c();
+			$data['count'] = count($data['clientes']);
+			if($tipo=='Administrador'){
+				$this->load->view('microprestamos/header_a');
+			}else if($tipo=='Agente'){
+					$this->load->view('microprestamos/header');
+			}
+			$this->load->view('microprestamos/clientes',$data);
+		}
+	}
+	public function ver_cliente()
+	{		
+		$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			$data['cli'] = $this->consultas_model->get_c($this->input->post('us'));
+			if($tipo=='Administrador'){
+				$this->load->view('microprestamos/header_a');
+			}else if($tipo=='Agente'){
+					$this->load->view('microprestamos/header');
+			}
+			$this->load->view('microprestamos/ver_cliente',$data);
+		}
 	}
 	public function usuarios()
 	{		
@@ -47,17 +71,6 @@ class Microprestamos extends CI_Controller {
 			$this->load->view('microprestamos/usuarios',$data);
 		}else{
 			redirect('Microprestamos/clientes');
-		}
-	}
-	public function ver_cliente()
-	{		
-		$this->verificar_sesion();
-		$var = $this->session->userdata;
-		$tipo=$var['tipo'];
-		if($tipo=='Administrador'){
-			$data['cli'] = $this->consultas_model->get_c($this->input->post('us'));
-			$this->load->view('microprestamos/header_a');
-			$this->load->view('microprestamos/ver_cliente',$data);
 		}
 	}
 	public function ver_usuario()
@@ -93,27 +106,21 @@ class Microprestamos extends CI_Controller {
 		$tipo=$var['tipo'];
 		if($tipo=='Administrador'){
 			$e=$this->input->post('e');
-			$count = $this->consultas_model->consulta_count_where("usuarios",$c,"correo");
-			if($count==0){
-				$c = $this->consultas_model->consulta_get_where("usuarios",$this->input->post('us'),"id_usuarios");
-				$dat['correo'] = $e;
-				$dat['tipo'] = $this->input->post('t');
-				$dat['status'] = $c->satus;
-				$dat['nombre_completo'] = $this->input->post('n');
-				$dat['fecha_registro'] = $c->id_usuarios;
-				$dat['contrasenia'] = $this->input->post('e');
-				$dat['id_usuarios'] = $c->id_usuarios;
-	 
-				$this->consultas_model->update_r('usuarios',$this->input->post('us'),$dat,'id_usuarios');
-				$msj = "El registro se ha eliminado con éxito.";
-				redirect('Microprestamos/usuarios');
-				$data['mj'] = "La edición se ha realizado con éxito.";
-			$this->load->view('microprestamos/header_a');
-			$this->load->view('microprestamos/editar_usuario',$data);
+			$c = $this->consultas_model->consulta_get_where("usuarios",$this->input->post('us'),"id_usuarios");
+			$dat['correo'] = $e;
+			$dat['tipo'] = $this->input->post('t');
+			$dat['status'] = "activo";
+			$dat['nombre_completo'] = $this->input->post('n');
+			$dat['fecha_registro'] = $c->fecha_registro;
+			$dat['id_usuarios'] = $c->id_usuarios;
+			$pass = $this->input->post('p');
+			if($pass==""){
+				$dat['contrasenia'] = $c->contrasenia;
 			}else{
-				$data['mj'] ="El correo ingresado ya existe. ";
-				
-			}
+				$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+			} 
+			$this->consultas_model->update_r('usuarios',$c->id_usuarios,$dat,'id_usuarios');
+			redirect('Microprestamos/usuarios');
 		}else{
 			redirect('Microprestamos/clientes');
 		}
@@ -137,9 +144,7 @@ class Microprestamos extends CI_Controller {
 		$tipo=$var['tipo'];
 		if($tipo=='Administrador'){
 			$c=$this->input->post('e');
-			$count = $this->consultas_model->consulta_get("usuarios",$c,"correo");
-			if($count==0){
-				$dat['correo'] = $c;
+			$dat['correo'] = $c;
 				$dat['tipo'] = $this->input->post('t');
 				$dat['status'] = "activo";
 				$dat['nombre_completo'] = $this->input->post('n');
@@ -149,10 +154,27 @@ class Microprestamos extends CI_Controller {
 	 
 				$this->consultas_model->insert_r('usuarios',$dat);
 				$msj ="El registro se ha realizado con éxito.";
+				redirect('Microprestamos/usuarios');
+				echo "<script type=\"text/javascript\">alert(\"".$msj."\");</script>";  
+		}else{
+			redirect('Microprestamos/clientes');
+		}
+	}
+	public function verificare()
+	{
+		$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo=='Administrador'){
+			$c=$this->input->post('e');
+			$count = $this->consultas_model->consulta_get("usuarios",$c,"correo");
+			if($count==null){
+				$msj ="";
+				echo $msj;  
 			}else{
 				$msj ="El correo ingresado ya existe. ";
+				echo $msj;  
 			} 
-			redirect('Microprestamos/usuarios');
 		}else{
 			redirect('Microprestamos/clientes');
 		}

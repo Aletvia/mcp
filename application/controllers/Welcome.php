@@ -15,10 +15,14 @@ class Welcome extends CI_Controller {
 	{
 		$data['mj'] = "";
 		$data['estados'] = $this->consultas_model->get_e();
-		$data['municipios'] = $this->consultas_model->get_m();
+		//$data['municipios'] = $this->consultas_model->get_m();
 		$this->load->view('welcome_message',$data);
 	}
-	
+	public function municipios(){
+		$estado=$this->input->post('es');
+		header('Content-Type: application/x-json; charset=utf-8');
+		echo(json_encode($this->consultas_model->get_m($estado)));
+	}
      public function registro()
      {
 		 $cur=$this->input->post('c');

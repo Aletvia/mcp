@@ -17,6 +17,11 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
 .contenedor{
   margin-top: 30px;
     width: 100%;

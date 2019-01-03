@@ -28,7 +28,7 @@
 			  <td><?= $c->tipo ?></td>
 			  <td>
 				  <button onclick="ver(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-				  <!--button onclick="editar(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button-->
+				  <button onclick="editar(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 				  <button onclick="eliminar(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
 			  </td>
 			</tr>

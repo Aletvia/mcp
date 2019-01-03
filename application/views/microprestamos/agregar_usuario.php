@@ -59,10 +59,12 @@
 			</form>
 		</div>
     </div>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script>
     function validar() {
         var p = document.getElementById("p").value
         var p2 = document.getElementById("pc").value
+        var e = document.getElementById("e").value
 		var form = document.getElementById("loginform")
       if (p != p2){
         alert("Las contraseñas son diferentes.")
@@ -77,9 +79,21 @@
 			if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++} 
 			if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++} 
 		} 
-		if ( nMay>0 && nMin>0 && nNum>0 && p.length>7) 
-			form.submit();
-		else 
+		if ( nMay>0 && nMin>0 && nNum>0 && p.length>7) {
+			$.ajax({
+				url:'<?= base_url() ?>index.php/Microprestamos/verificare',
+				type : 'POST',
+				data : { 'e' : e },
+				success: function(data) 
+				{
+					if(data==""){
+						form.submit();
+					}else{
+						alert(data);
+					}
+				}
+			});
+	  }else 
 		{ alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
       }
     }

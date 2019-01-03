@@ -128,7 +128,7 @@ class Consultas_model extends CI_Model
 			$this->db->order_by("u.nombre_completo", "asc");
         }else{
             $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
-			c.telefono1,c.telefono2,u.correo,
+			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,
 			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
 			c.lab_anios_experiencia,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
@@ -152,22 +152,21 @@ class Consultas_model extends CI_Model
     {
         if($id === false)
         {
-            $this->db->select('m.id_municipio,m.municipio');
+            $this->db->select('m.id_municipio,e.estado, m.municipio');
             $this->db->from('municipios m');
-			$this->db->order_by("municipio", "asc");
+			$this->db->order_by("estado", "asc");
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
         }else{
-            $this->db->select('m.id_municipio,m.municipio');
+            $this->db->select('m.id_municipio AS id,m.municipio AS mun');
             $this->db->from('municipios m');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
 			$this->db->order_by("municipio", "asc");
             $this->db->where('m.estados_id_estado',$id);
         }
-        $query = $this->db->get();
-        if($query->num_rows() > 0 )
-        {
-            return $query->result();
-        }
+		$query = $this->db->get();
+		if($query->result()){
+			return $query->result();
+		}
     }
 	public function get_e()
     {
