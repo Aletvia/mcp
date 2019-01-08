@@ -130,7 +130,7 @@ class Consultas_model extends CI_Model
             $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
 			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,
 			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
-			c.lab_anios_experiencia,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
+			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
 			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
 			c.his_desc_cal,c.credencial,c.foto');
