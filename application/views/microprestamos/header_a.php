@@ -15,14 +15,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <link href="<?= base_url() ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  
+
   <link href="<?= base_url() ?>assets/css/style_in.css" rel="stylesheet">
-  
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">  
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">
           <img src="<?= base_url() ?>assets/css/img/apple-touch-icon.png" alt="">
         </a>
@@ -37,6 +37,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/clientes">Clientes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/solicitudes">Solicitudes</a>
+        </li>
         <!--li class="nav-item">
           <a class="nav-link" href="#">Solicitudes</a>
         </li-->
@@ -44,7 +47,7 @@
           <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/log_out">Cerrar sesión</a>
         </li>
     </ul>
-  </div>  
+  </div>
 </nav>
 
 

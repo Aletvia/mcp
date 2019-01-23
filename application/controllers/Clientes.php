@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Microprestamos extends CI_Controller {
+class Clientes extends CI_Controller {
 		public $keycrypt;
 	public function __construct()
 	{
@@ -27,7 +27,6 @@ class Microprestamos extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
-	//--------------------CLIENTES
 	public function clientes()
 	{
 		$this->verificar_sesion();
@@ -36,10 +35,7 @@ class Microprestamos extends CI_Controller {
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
 			$data['clientes'] = $this->consultas_model->get_c();
-			if($data['clientes']!=null)
-				$data['count'] = count($data['clientes']);
-			else
-				$data['count'] =0;
+			$data['count'] = count($data['clientes']);
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
@@ -63,7 +59,6 @@ class Microprestamos extends CI_Controller {
 			$this->load->view('microprestamos/ver_cliente',$data);
 		}
 	}
-	//-----------------------USUARIOS
 	public function usuarios()
 	{
 		$this->verificar_sesion();
@@ -226,19 +221,4 @@ class Microprestamos extends CI_Controller {
                redirect('Microprestamos/login');
         }
      }
-
-	 	public function solicitudes()
-	 	{
-	 		$this->verificar_sesion();
-	 		$var = $this->session->userdata;
-	 		$tipo=$var['tipo'];
-	 		if($tipo=='Administrador'){
-	 			$data['usr'] = $this->consultas_model->get_u();
-	 			$data['count'] = count($data['usr']);
-	 			$this->load->view('microprestamos/header_a');
-	 			$this->load->view('microprestamos/solicitudes',$data);
-	 		}else{
-	 			redirect('Microprestamos/clientes');
-	 		}
-	 	}
 }
