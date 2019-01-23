@@ -35,68 +35,96 @@
   </div>
   
     <div class="contenedor d-flex justify-content-center" >
-		<div class="subcontenedor">
-			<h1 class="col-lg-12 col-md-12 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+		<div class="col-lg-10 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ">
+			<h1 class=" col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
 			Realiza tu Pre registro y disfruta de sus beneficios así como la tasa de interés más baja durante todo el 2019 exclusivamente para nuestros usuarios en etapa de pre registro.</h1>
 
-			<div class="col-lg-12 col-md-12 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-				<h1 class="bgwt col-lg-12 col-md-12 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+			<div class="centered col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
+				<h1 class="bgwt col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
 				<br>Prestamos hasta $2,000.00 Rápido, fácil y simple.<br>Lanzamiento 19 de Marzo del 2019<br><br></h1>
 			</div>
 			<div class="centered">
 				<img  style="width:150px;margin-top:30px"  class="centered" src="<?= base_url() ?>assets/css/img/logobg.png" alt="Microprestamos123">
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+			<div class="centered col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
 				<div class="contenedorForm" style="margin-top:-70px">
 					
 					<div class="contenedorInputs d-flex justify-content-center flex-wrap">
-						<form id="loginform" class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
+						<form id="loginform" class="col-lg-11 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
 						action="<?= base_url() ?>index.php/Welcome/registro" method="post">
-										
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="row">		
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-user"></i>&nbsp</div>
 											</span>										
 											<input id="n" type="text" class="form-control input-sm" name="n" required  placeholder="Nombre completo">                                        
 								</div>
 									
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0"><i class="fa fa-id-card"></i></div>
 											</span>										
 											<input pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$" id="c" type="text" class="form-control input-sm" name="c" required  placeholder="CURP">                                        
 								</div>
-										
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<span class="input-group-prepend">
-												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-envelope"></i></div>
-											</span>										
-											<input id="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" name="e" required  placeholder="Correo">                                        
 								</div>
-										
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="row">
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-key"></i></div>
 											</span>										
 											<input id="p" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="p" required  placeholder="Contraseña">
 								</div>
-										
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-key"></i></div>
 											</span>										
 											<input id="pc" pattern="^([A-Za-z0-9]{8,})$" type="password" class="form-control input-sm" name="pc" required  placeholder="Confirmar contraseña">
 								</div>
 							
-								<div style="margin-bottom: 25px" class="input-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								</div>
+								<div class="row">
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
+											<span class="input-group-prepend">
+												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-envelope"></i></div>
+											</span>										
+											<input id="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" name="e" required  placeholder="Correo">                                        
+								</div>
+								<div style="margin-bottom: 25px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-birthday-cake"></i></div>
-											</span>										
-											<input id="b" type="date" class="form-control input-sm" name="b" min="1940-04-01" required >
-											<span class="validity"></span>
+											</span>									
+											<input id="y" name="y" type="number" min="1950" class="form-control input-sm" required  placeholder="Año">                                        
+											<label style="font-size:25px;">&nbsp/&nbsp</label>
+											<select id="mt" name="mt" class="form-control input-sm" required onchange="municipios()" 
+											style="height:45px">
+												<option value="">Mes</option>
+												<option value="1">Enero</option>
+												<option value="2">Febrero</option>
+												<option value="3">Marzo</option>
+												<option value="4">Abril</option>
+												<option value="5">Mayo</option>
+												<option value="6">Junio</option>
+												<option value="7">Julio</option>
+												<option value="8">Agosto</option>
+												<option value="9">Septiembre</option>
+												<option value="10">Octubre</option>
+												<option value="11">Noviembre</option>
+												<option value="12">Diciembre</option>
+											</select>
+											<label style="font-size:25px;">&nbsp/&nbsp</label>
+											<select style="height:45px" id="d" name="d" class="form-control input-sm" required onchange="municipios()" >
+												<option value="">Día</option>
+												<?php
+												for ($j=1;$j<32;$j++){ 
+												?>
+												<option value="<?= $j ?>"> <?= $j ?></option>
+												<?php }?>
+											</select>
 								</div>
-								
-								<div style="margin-bottom: 25px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										
+								</div>
+								<div class="row">
+								<div style="margin-bottom: 25px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i>&nbsp</div>
 											</span>	
@@ -111,7 +139,7 @@
 											</select>
 								</div>
 								
-								<div style="margin-bottom: 25px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div style="margin-bottom: 25px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-10">
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-map-marker"></i>&nbsp</div>
 											</span>										
@@ -120,6 +148,7 @@
 											
 											</select>
 								</div>
+								</div>
 									
 								<div class="input-group" style="display: flex;justify-content: center;">
 									<input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1"> 
@@ -127,23 +156,38 @@
 								</div>
 
 
-								<div style="margin-top:10px;" class="form-group center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div style="margin-top:10px;" class="form-group center" style="width:400px" >
 								<!-- Button -->
-									<div class="controls text-center">
-										<button  onclick="validar()" type="button" id="registrar" style="width:100%" class="button registrar">Pre-registro</button>
+									<div class="controls text-center " >
+										<button onclick="validar()" type="button" id="registrar" style="width:250px" class="button registrar">Pre-registro</button>
 									</div>
 								</div>
 									
 						</form>    
 					</div>
-				</div>
+				</div
 			</div>
-			<h5 class="center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div style="margin-top:20px;" class="centered">
+				<button class = "btn_redes" 
+				class="btn btn-link" 
+				onclick="window.open('https://www.youtube.com/channel/UCyoo7W_cJYXIUKF1gPj5Ajw','_blank');">
+					<i class="fa fa-youtube" style="font-size:20px"></i>
+				</button>
+				<button class = "btn_redes" 
+				onclick="window.open('https://www.instagram.com/microprestamos123/?hl=es-la','_blank');">
+					<i class="fa fa-instagram" style="font-size:22px"></i>
+				</button>
+				<button class = "btn_redes"  
+				onclick="window.open('https://www.facebook.com/microprestamo123/?modal=admin_todo_tour','_blank');">
+					<i class="fa fa-facebook" style="font-size:21px"></i>
+				</button>
+			</div> 
+			<h5 class="center col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
 			Próximamente descarga nuestra APP solo para ususarios.<br>
 			</h5>
 			<div id="store" style="margin-bottom:50px;margin-top:20px;" 
-			class="centered col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img class="img-fluid" src="<?= base_url() ?>assets/css/img/stores.png" alt="Apple Store">
+			class="centered" >
+				<img style="width:400px;" class="img-fluid" src="<?= base_url() ?>assets/css/img/stores.png" alt="Apple Store">
 			</div>
 			<div style="margin-bottom:50px" class="centered">
 				<img  style="height:90px;" src="<?= base_url() ?>assets/css/img/p1.png" alt="Registro">
@@ -163,6 +207,9 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script>
     function validar() {
+        var y = document.getElementById("y").value
+        var d = document.getElementById("d").value
+        var m = document.getElementById("mt").value
         var p = document.getElementById("p").value
         var p2 = document.getElementById("pc").value
 		var form = document.getElementById("loginform")
@@ -181,11 +228,19 @@
 			if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++} 
 		} 
 		if ( nMay>0 && nMin>0 && nNum>0 && p.length>7) 
-			if(ch.checked){
-				form.submit()
+		{
+			 date = new Date(`${y}-${m}-${d}`)
+			const isValidDate = (Boolean(+date) && date.getDate() == d)
+			if(isValidDate && y>1949){
+				if(ch.checked){
+					form.submit()
+				}else{
+					alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;
+				}
 			}else{
-				alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;
+				alert("Verifica la fecha de nacimiento"); form.y.focus(); return;
 			}
+		}
 		else 
 		{ alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
       }

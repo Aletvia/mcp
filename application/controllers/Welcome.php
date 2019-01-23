@@ -11,6 +11,10 @@ class Welcome extends CI_Controller {
 		$this->load->database('default');
 		$this->keycrypt = $this->config->item("aes_encryption_key");
 	}
+	public function inicio()
+	{
+		$this->load->view('inicio');
+	}
 	public function index()
 	{
 		$data['mj'] = "";

@@ -29,15 +29,38 @@
 			</ul>
 			<div class="tab-content" id="myTabContent" style="margin-top: 15px">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<div class="d-flex flex-row">
-						<div class="p-2">
-						<img src="<?= base_url() ?>assets/css/img/user.png" 
-						style="height:90px; cursor:pointer" 
-						onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" 
-						class="rounded float-right" alt="Foto de usuario">
-						</div>
-						<div class="d-flex p-2">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<img src="<?= base_url() ?>assets/css/img/user.png" 
+							style="height:90px; cursor:pointer" 
+							onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" 
+							class="rounded float-right" alt="Foto de usuario">
+						
 							<div style="margin-bottom: 15px" class="input-group row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<button type="button" class="btn btn-light" 
+								style="height:70px"
+								onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >
+								Descargar Foto
+								</button>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<img src="<?= base_url() ?>assets/css/img/user.png" 
+							style="height:90px; cursor:pointer" 
+							onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" 
+							class="rounded float-right" alt="Foto de usuario">
+							
+							<div style="margin-bottom: 15px" class="input-group row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<button type="button" class="btn btn-light" 
+								style="height:70px"
+								onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >
+								Descargar Foto
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-calendar"></i>&nbspRegistrado </div>
 								</span>										
@@ -45,13 +68,12 @@
 									<option value=""><?= $u->fecha_registro ?></option>
 								</select>
 							</div>
-							<div style="margin-bottom: 15px" class="input-group row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-user"></i>&nbspNombre&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>				
 								<input value="<?= $u->nombre_completo ?>" id="n" type="text" class="form-control input-sm" name="n" disabled  placeholder="Nombre completo">             
-							</div>
-						</div>
+							</div>	
 					</div>
 					<div class="row">
 						<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -104,6 +126,20 @@
 							<select id="m" name="m" class="form-control input-sm" disabled>
 								<option value=""><?= $anios  ?></option>
 							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<button type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Foto</button>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<button type="button" class="btn btn-light">Descargar Foto</button>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<button type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Credencial</button>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<button type="button" class="btn btn-light">Descargar Credencial</button>
 						</div>
 					</div>
 				</div>

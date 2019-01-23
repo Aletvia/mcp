@@ -89,8 +89,33 @@
 											<span class="input-group-prepend">
 												<div class="input-group-text bg-white border-right-0">&nbsp<i class="fa fa-birthday-cake"></i></div>
 											</span>										
-											<input id="b" type="date" class="form-control input-sm" name="b" min="1940-04-01" required >
-											<span class="validity"></span>
+											<input id="y" name="y" type="number" min="1950" class="form-control input-sm" required  placeholder="Año">                                        
+											<label style="font-size:25px;">&nbsp/&nbsp</label>
+											<select id="mt" name="mt" class="form-control input-sm" required onchange="municipios()" 
+											style="height:45px">
+												<option value="">Mes</option>
+												<option value="1">Enero</option>
+												<option value="2">Febrero</option>
+												<option value="3">Marzo</option>
+												<option value="4">Abril</option>
+												<option value="5">Mayo</option>
+												<option value="6">Junio</option>
+												<option value="7">Julio</option>
+												<option value="8">Agosto</option>
+												<option value="9">Septiembre</option>
+												<option value="10">Octubre</option>
+												<option value="11">Noviembre</option>
+												<option value="12">Diciembre</option>
+											</select>
+											<label style="font-size:25px;">&nbsp/&nbsp</label>
+											<select style="height:45px" id="d" name="d" class="form-control input-sm" required onchange="municipios()" >
+												<option value="">Día</option>
+												<?php
+												for ($j=1;$j<32;$j++){ 
+												?>
+												<option value="<?= $j ?>"> <?= $j ?></option>
+												<?php }?>
+											</select>
 								</div>
 										
 								</div>
@@ -138,6 +163,21 @@
 					</div>
 				</div
 			</div>
+			<div style="margin-top:20px;" class="centered">
+				<button class = "btn_redes" 
+				class="btn btn-link" 
+				onclick="window.open('https://www.youtube.com/channel/UCyoo7W_cJYXIUKF1gPj5Ajw','_blank');">
+					<i class="fa fa-youtube" style="font-size:20px"></i>
+				</button>
+				<button class = "btn_redes" 
+				onclick="window.open('https://www.instagram.com/microprestamos123/?hl=es-la','_blank');">
+					<i class="fa fa-instagram" style="font-size:22px"></i>
+				</button>
+				<button class = "btn_redes"  
+				onclick="window.open('https://www.facebook.com/microprestamo123/?modal=admin_todo_tour','_blank');">
+					<i class="fa fa-facebook" style="font-size:21px"></i>
+				</button>
+			</div> 
 			<h5 class="center col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
 			Próximamente descarga nuestra APP solo para ususarios.<br>
 			</h5>
@@ -163,6 +203,9 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script>
     function validar() {
+        var y = document.getElementById("y").value
+        var d = document.getElementById("d").value
+        var m = document.getElementById("mt").value
         var p = document.getElementById("p").value
         var p2 = document.getElementById("pc").value
 		var form = document.getElementById("loginform")
@@ -181,11 +224,19 @@
 			if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++} 
 		} 
 		if ( nMay>0 && nMin>0 && nNum>0 && p.length>7) 
-			if(ch.checked){
-				form.submit()
+		{
+			 date = new Date(`${y}-${m}-${d}`)
+			const isValidDate = (Boolean(+date) && date.getDate() == d)
+			if(isValidDate && y>1949){
+				if(ch.checked){
+					form.submit()
+				}else{
+					alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;
+				}
 			}else{
-				alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;
+				alert("Verifica la fecha de nacimiento"); form.y.focus(); return;
 			}
+		}
 		else 
 		{ alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
       }

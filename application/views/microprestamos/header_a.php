@@ -46,7 +46,31 @@
     </ul>
   </div>  
 </nav>
+
+
+  <!--div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="https://microprestamos123.com/">
+			<img src="<?= base_url() ?>assets/css/img/apple-touch-icon.png" alt="Microprestamos123" >
+		</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="<?= base_url() ?>index.php/Microprestamos/usuarios">Usuarios</a></li>
+          <li><a href="<?= base_url() ?>index.php/Microprestamos/clientes">Clientes</a></li>
+          <li><a href="<?= base_url() ?>index.php/Microprestamos/clientes">Solicitudes</a></li>
+          <li><a href="<?= base_url() ?>index.php/Microprestamos/log_out">Cerrar sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </div-->
 <br>
 
     <!-- container -->
-    <div class="container " >
+    <div class="container w" >
