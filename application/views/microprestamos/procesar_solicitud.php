@@ -1,21 +1,21 @@
     <!-- container -->
 		<div style="margin-top:15px;margin-bottom:15px"  class="row">
-			<h1 class="h2 ">Detalle del Cliente</h1>
+			<h1 class="h2 ">Procesar la solicitud</h1>
 			<div class="col">
 			<!--button onclick="editar()" class="btn btn-success d-inline float-right" style="color:white;font-weight:bold"><i class="fa fa-pencil"></i> Editar</button-->
-			<a class="btn btn-light d-inline float-right" style="font-weight:bold"   href="<?= base_url() ?>index.php/Microprestamos/clientes"><i class="fa fa-arrow-left"></i> Regresar al catálogo</a>
+			<a class="btn btn-light d-inline float-right" style="font-weight:bold"   href="<?= base_url() ?>index.php/Microprestamos/solicitudes"><i class="fa fa-arrow-left"></i> Regresar al catálogo</a>
 			</div>
 		</div>
 		<div>
 			<?php
-			foreach ($cli as $u) {
-			$fecha = strtotime($u->fecha_nacimiento);
-			$anios = $fecha / (60*60*24*365);
-			$anios = floor($anios);
+			foreach ($solicitud as $u) {
 			?>
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal</a>
+					<a class="nav-link active" id="sol-tab" data-toggle="tab" href="#sol" role="tab" aria-controls="sol" aria-selected="true">Solicitud</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Cliente</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="direct-tab" data-toggle="tab" href="#direct" role="tab" aria-controls="profile" aria-selected="false">Contacto</a>
@@ -28,37 +28,8 @@
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent" style="margin-top: 15px">
-				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<!--div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<img src="<?= base_url() ?>assets/css/img/user.png"
-							style="height:90px; cursor:pointer"
-							onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
-							class="rounded float-right" alt="Foto de usuario">
-
-							<div style="margin-bottom: 15px" class="input-group row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<button type="button" class="btn btn-light"
-								style="height:70px"
-								onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >
-								Descargar Foto
-								</button>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<img src="<?= base_url() ?>assets/css/img/user.png"
-							style="height:90px; cursor:pointer"
-							onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
-							class="rounded float-right" alt="Foto de usuario">
-
-							<div style="margin-bottom: 15px" class="input-group row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<button type="button" class="btn btn-light"
-								style="height:70px"
-								onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >
-								Descargar Foto
-								</button>
-							</div>
-						</div>
-					</div-->
+				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+					
 					<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<span class="input-group-prepend">
@@ -98,15 +69,7 @@
 								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i>&nbspEstado&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 							</span>
 							<select id="m" name="m" class="form-control input-sm" disabled>
-								<option value=""><?= $u->estado ?></option>
-							</select>
-						</div>
-						<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<span class="input-group-prepend">
-								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspMunicipio&nbsp&nbsp&nbsp</div>
-							</span>
-							<select id="m" name="m" class="form-control input-sm" disabled>
-								<option value=""><?= $u->municipio ?></option>
+								<option value=""><?= $u->nacimiento_estado ?></option>
 							</select>
 						</div>
 					</div>
@@ -130,16 +93,16 @@
 					</div>
 					<div class="row">
 						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-							<button type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Foto</button>
+							<button style="width:100%" type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Foto</button>
 						</div>
 						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-							<button type="button" class="btn btn-light">Descargar Foto</button>
+							<button style="width:100%" type="button" class="btn btn-light">Descargar Foto</button>
 						</div>
 						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-							<button type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Credencial</button>
+							<button style="width:100%" type="button" class="btn btn-light" onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')" >Ver Credencial</button>
 						</div>
 						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-							<button type="button" class="btn btn-light">Descargar Credencial</button>
+							<button style="width:100%" type="button" class="btn btn-light">Descargar Credencial</button>
 						</div>
 					</div>
 				</div>
@@ -185,7 +148,7 @@
 								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspMunicipio&nbsp</div>
 							</span>
 							<select id="m" name="m" class="form-control input-sm" disabled>
-								<option value=""><?= $u->nacimiento_municipios_id_municipio ?></option>
+								<option value=""><?= $u->municipio ?></option>
 							</select>
 						</div>
 					</div>
@@ -222,29 +185,29 @@
 				</div>
 				<!--////////////////////////////////////////////////////////////////////////////-->
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" >
-				<div class="row">
-					<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
-						<span class="input-group-prepend">
-							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspDependientes</div>
-						</span>
-						<input value="<?= $u->dependientes ?>" id="n" type="number" class="form-control input-sm" name="n" disabled  placeholder="">
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
+							<span class="input-group-prepend">
+								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspDependientes</div>
+							</span>
+							<input value="<?= $u->dependientes ?>" id="n" type="number" class="form-control input-sm" name="n" disabled  placeholder="">
+						</div>
+						<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
+							<span class="input-group-prepend">
+								<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-money"></i>&nbspSalario&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+							</span>
+							<input value="<?= $u->lab_salario_mensual ?>" id="n" type="number" class="form-control input-sm" name="n" disabled  placeholder="">
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="input-group" style="display: flex;justify-content: center;" >
+							<label for="checkbox">Labora actualmente&nbsp
+								<input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1">
+							</label>
+						</div>
+						</div>
 					</div>
-					<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
-						<span class="input-group-prepend">
-							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-money"></i>&nbspSalario&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-						</span>
-						<input value="<?= $u->lab_salario_mensual ?>" id="n" type="number" class="form-control input-sm" name="n" disabled  placeholder="">
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-					<div class="input-group" style="display: flex;justify-content: center;" >
-						<label for="checkbox">Labora actualmente&nbsp
-							<input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1">
-						</label>
-					</div>
-					</div>
-				</div>
 					<h5>Datos de la empresa:</h5>
-				 <div class="row">
+					<div class="row">
 						<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<span class="input-group-prepend">
 								<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nombre de la empresa</div>
@@ -290,6 +253,7 @@
 						</div>
 					</div>
 				</div>
+				<!--////////////////////////////////////////////////////////////////////////////-->
 				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
 						<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -313,11 +277,65 @@
 					<div class="row">
 						<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Como consideras que se encuentre tu historial crediticio.
-								<input value="<?= $u->correo ?>" min="1" max="10" id="e" type="number" class="form-control input-sm" name="e" disabled  placeholder="">
+								<textarea id="m" name="m" class="form-control input-sm" disabled>
+									<?= $u->lab_descripcion_empleo  ?>
+								</textarea>
 							</label>
 						</div>
 						<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
+								<textarea id="m" name="m" class="form-control input-sm" disabled>
+									<?= $u->lab_descripcion_empleo  ?>
+								</textarea>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!--////////////////////////////////////////////////////////////////////////////-->
+				<div class="tab-pane fade show active" id="sol" role="tabpanel" aria-labelledby="sol-tab">
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group  col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<span class="input-group-prepend">
+								<div style="" class=" border-right-0">Estatus de la solicitud.&nbsp</div>
+							</span>
+							<input value="<?= $u->lab_anios_experiencia ?>"  id="c" type="number" class="form-control input-sm" name="c" disabled  placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							<label for="checkbox" class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">Monto del préstamo.
+							</label>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							<label for="checkbox" class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">Interés generado.
+							</label>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Total.
+							</label>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tiempo del préstamo.
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+								<input value="<?= $u->lab_anios_experiencia ?>"  id="c" type="number" class="form-control input-sm" name="c" disabled  placeholder="">
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+								<input value="<?= $u->lab_anios_experiencia ?>"  id="c" type="number" class="form-control input-sm" name="c" disabled  placeholder="">
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+								<input value="<?= $u->lab_anios_experiencia ?>"  id="c" type="number" class="form-control input-sm" name="c" disabled  placeholder="">
+						</div>
+						<div style="margin-bottom: 15px" class="input-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+								<input value="<?= $u->lab_anios_experiencia ?>"  id="c" type="number" class="form-control input-sm" name="c" disabled  placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe como utilizaras tu préstamo.
 								<textarea id="m" name="m" class="form-control input-sm" disabled>
 									<?= $u->lab_descripcion_empleo  ?>
 								</textarea>

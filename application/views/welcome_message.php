@@ -116,6 +116,7 @@
 												<option value="<?= $j ?>"> <?= $j ?></option>
 												<?php }?>
 											</select>
+										<input type="hidden" id="b" name="b" value="">
 								</div>
 										
 								</div>
@@ -208,6 +209,7 @@
         var m = document.getElementById("mt").value
         var p = document.getElementById("p").value
         var p2 = document.getElementById("pc").value
+        var fn = document.getElementById("b")
 		var form = document.getElementById("loginform")
 		var ch = document.getElementById("acept_t_p")
       if (p != p2){
@@ -229,6 +231,7 @@
 			const isValidDate = (Boolean(+date) && date.getDate() == d)
 			if(isValidDate && y>1949){
 				if(ch.checked){
+					fn.value=y+"/"+m+"/"+d;
 					form.submit()
 				}else{
 					alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;

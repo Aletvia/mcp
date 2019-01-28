@@ -12,41 +12,24 @@
 			</tr>
 		  </thead>
 		  <tbody>
-			<!--?php/*
+			<?php
 			if($count>0){
 			$i=1;
-			foreach ($clientes as $c) {
-			$fecha = strtotime($c->fecha_nacimiento);
-			$anios = $fecha / (60*60*24*365);
-			$anios = floor($anios);
+			foreach ($solicitudes as $c) {
 			?>
 				<tr>
-					<th scope="row"><?= $i++?></th>
+					<th scope="row">111111</th>
 					<td><?= $c->nombre_completo ?></td>
-					<td><?= $anios ?></td>
 					<td><?= $c->correo ?></td>
-					<td><?= $c->municipio ?></td>
-					<td><?= $c->estado ?></td>
+					<td>Pre-solicitud en espera</td>
+					<td>$1500</td>
 					<td>
 						<button onclick="ver(<?= $c->id_cliente ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-						<button class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
+						<button onclick="procesar(<?= $c->id_usuarios?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 						<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
 					</td>
 				</tr>
-			< ?p hp } }*/? -->
-
-			<tr>
-				<th scope="row">111111</th>
-				<td>Cliente Demo</td>
-				<td>demo@correo.com</td>
-				<td>Pre-solicitud en espera</td>
-				<td>$1500</td>
-				<td>
-					<button class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-					<button class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
-					<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
-				</td>
-			</tr>
+			<?php } }?>
 		  </tbody>
 		</table>
 		<form id="act" method="post">
@@ -58,7 +41,14 @@
 		var form = document.getElementById("act");
 		var u = document.getElementById("us");
 		u.value=us;
-		form.action = "<?= base_url() ?>index.php/Microprestamos/ver_cliente"
+		form.action = "<?= base_url() ?>index.php/Microprestamos/ver_solicitud"
+		form.submit()
+    }
+    function procesar(us) {
+		var form = document.getElementById("act");
+		var u = document.getElementById("us");
+		u.value=us;
+		form.action = "<?= base_url() ?>index.php/Microprestamos/procesar_solicitud"
 		form.submit()
     }
 </script>

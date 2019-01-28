@@ -229,16 +229,52 @@ class Microprestamos extends CI_Controller {
 
 	 	public function solicitudes()
 	 	{
-	 		$this->verificar_sesion();
-	 		$var = $this->session->userdata;
-	 		$tipo=$var['tipo'];
-	 		if($tipo=='Administrador'){
-	 			$data['usr'] = $this->consultas_model->get_u();
-	 			$data['count'] = count($data['usr']);
-	 			$this->load->view('microprestamos/header_a');
-	 			$this->load->view('microprestamos/solicitudes',$data);
-	 		}else{
-	 			redirect('Microprestamos/clientes');
-	 		}
+			$this->verificar_sesion();
+
+			$var = $this->session->userdata;
+			$tipo=$var['tipo'];
+			if($tipo!='Cliente'){
+				$data['solicitudes'] = $this->consultas_model->get_c();
+				if($data['solicitudes']!=null)
+					$data['count'] = count($data['solicitudes']);
+				else
+					$data['count'] =0;
+				if($tipo=='Administrador'){
+					$this->load->view('microprestamos/header_a');
+				}else if($tipo=='Agente'){
+						$this->load->view('microprestamos/header');
+				}
+				$this->load->view('microprestamos/solicitudes',$data);
+			}
 	 	}
+	public function ver_solicitud()
+	{
+		$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			$data['solicitud'] = $this->consultas_model->get_c($this->input->post('us'));
+			if($tipo=='Administrador'){
+				$this->load->view('microprestamos/header_a');
+			}else if($tipo=='Agente'){
+					$this->load->view('microprestamos/header');
+			}
+			$this->load->view('microprestamos/ver_solicitud',$data);
+		}
+	}
+	public function procesar_solicitud()
+	{
+		$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			$data['solicitud'] = $this->consultas_model->get_c($this->input->post('us'));
+			if($tipo=='Administrador'){
+				$this->load->view('microprestamos/header_a');
+			}else if($tipo=='Agente'){
+					$this->load->view('microprestamos/header');
+			}
+			$this->load->view('microprestamos/procesar_solicitud',$data);
+		}
+	}
 }
