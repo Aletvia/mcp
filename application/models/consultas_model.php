@@ -12,7 +12,7 @@ class Consultas_model extends CI_Model
     {
         return $this->db->count_all_results($table);
     }
- 
+
     //obtenemos un registro  dependiendo del id y tabla que le pasemos
     public function consulta_get_where($table,$id,$name)
     {
@@ -32,7 +32,7 @@ class Consultas_model extends CI_Model
             return $query->num_rows();
         }
     }
-	
+
     //obtenemos los registros dependiendo de la tabla que le pasemos
     public function consulta_get($table,$id,$name)
     {
@@ -45,7 +45,7 @@ class Consultas_model extends CI_Model
 			return null;
 		}
     }
-    
+
     //insertamos un nuevo registro en la tabla
     public function insert_r($table,$data)
     {
@@ -58,14 +58,14 @@ class Consultas_model extends CI_Model
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
     }
-   
+
     //eliminamos el registro con el id #
     public function delete_r($table,$data,$name)
     {
         $this->db->delete($table, array($name => $data));
     }
- 
-    //actualizamos los datos del usuario con id 
+
+    //actualizamos los datos del usuario con id
     public function update_r($table,$id,$data,$name)
     {
         /*$data = array(
@@ -76,8 +76,8 @@ class Consultas_model extends CI_Model
         $this->db->where($name, $id);
         $this->db->update($table, $data);
     }
-	
-	
+
+
 	//obtenemos las entradas de las tablas, dependiendo
     // si le pasamos le id como argument o no
 
@@ -107,7 +107,7 @@ class Consultas_model extends CI_Model
 			$this->db->where('u.correo',$nick);
 			$this->db->where('u.contrasenia',$contraseña);
 			$this->db->where('u.status','activo');
-		
+
         $query = $this->db->get();
         if($query->num_rows() > 0 )
         {
@@ -128,10 +128,12 @@ class Consultas_model extends CI_Model
 			$this->db->order_by("u.nombre_completo", "asc");
         }else{
             $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
-			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,
+			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,c.nacionalidad,
 			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
 			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
+      c.lab_ocupacion,c.nivel_estudios,c.trabaja,
+      c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
 			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
 			c.his_desc_cal,c.credencial,c.foto');
             $this->db->from('usuarios u');
@@ -185,7 +187,7 @@ class Consultas_model extends CI_Model
             return $query->result();
         }
 	}
-	
+
     public function get_m($id = false)
     {
         if($id === false)
