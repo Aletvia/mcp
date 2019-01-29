@@ -38,7 +38,7 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="index.html">Inicio</a></li>	
-          <li><a data-toggle="modal" data-target="#myModal" href="#myModal">Registro</a></li>
+          <li><a data-toggle="modal" data-target="#Register" href="#Register">Registro</a></li>
           <li><a data-toggle="modal" data-target="#myModal" href="#myModal">Iniciar sesión</a></li>
         </ul>
       </div>
@@ -233,40 +233,25 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">contact us</h4>
+          <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel" style="color:white">Inicia Sesión</h4>
         </div>
         <div class="modal-body">
           <div class="row centered">
-            <p>We are available 24/7, so don't hesitate to contact us.</p>
-            <p>
-              Somestreet Ave, 987<br/> London, UK.<br/> +44 8948-4343<br/> contact@example.com
-            </p>
 
             <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
 
               <div class="form-group">
-                <label for="contact-name">Your Name</label>
-                <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <label for="contact-email">Your Email</label>
+                <label for="contact-email">Correo electrónico</label>
                 <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <label for="contact-subject">Subject</label>
-                <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <label for="contact-subject">Contraseña</label>
+                <input type="password" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
                 <div class="validate"></div>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-message">Your Message</label>
-                <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
-                <div class="validate"></div>
-              </div>
-
+			  </div>
+			  
               <div class="loading"></div>
               <div class="error-message"></div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
@@ -284,6 +269,63 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  <!-- REGISTER FOR CONTACT -->
+  <!-- Register -->
+  <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel" style="color:white">¡Regístrate!</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row centered">
+
+            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+
+              <div class="form-group">
+                <label for="contact-email">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" >
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="contact-subject">CURP</label>
+                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <div class="validate"></div>
+			  </div>
+              <div class="form-group">
+                <label for="contact-email">Correo electrónico</label>
+                <input type="email" name="email" id="contact-email" class="form-control" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="contact-subject">Contraseña</label>
+                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <div class="validate"></div>
+			  </div>
+              <div class="form-group">
+                <label for="contact-subject">Contraseña</label>
+                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <div class="validate"></div>
+              </div>
+
+              <div class="loading"></div>
+              <div class="error-message">La información es incorrecta.</div>
+              <div class="sent-message"></div>
+
+              <div class="form-send">
+                <button type="button" class="btn btn-success">Iniciar sesión</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.Register-content -->
+    </div>
+    <!-- /.Register-dialog -->
+  </div>
+  <!-- /.Register -->
 
   <div id="copyrights">
     <div class="container">
