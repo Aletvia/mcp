@@ -132,8 +132,8 @@ class Consultas_model extends CI_Model
 			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
 			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
-      c.lab_ocupacion,c.nivel_estudios,c.trabaja,
-      c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
+			c.lab_ocupacion,c.nivel_estudios,c.trabaja,
+			c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
 			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
 			c.his_desc_cal,c.credencial,c.foto');
             $this->db->from('usuarios u');
@@ -143,6 +143,32 @@ class Consultas_model extends CI_Model
             $this->db->where('c.id_cliente',$id);
 			$this->db->order_by("u.nombre_completo", "asc");
         }
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+	}
+	public function get_su($id)
+	{
+            $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
+			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,c.nacionalidad,
+			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
+			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
+			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
+			c.lab_ocupacion,c.nivel_estudios,c.trabaja,
+			c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
+			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
+			c.his_desc_cal,c.credencial,c.foto
+			s.id_solicitud,s.status,s.fecha_solicitud,s.monto,s.tiempo,s.desc_uso,
+			s.tipo_deposito,s.referencia,s.banco,s.tiempo_estimado,s.calendarios.comprobante');
+            $this->db->from('solicitudes s');
+            $this->db->join('clientes c', 'c.id_cliente = s.clientes_id_cliente');
+            $this->db->join('usuarios u', 'u.id_usuarios = s.clientes_usuarios_id_usuarios');
+            $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
+            $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+            $this->db->where('s.id_solicitud',$id);
+			$this->db->order_by("u.nombre_completo", "asc");
         $query = $this->db->get();
         if($query->num_rows() > 0 )
         {
@@ -161,25 +187,18 @@ class Consultas_model extends CI_Model
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
             $this->db->where('u.status','activo');
-            $this->db->where('u.tipo','Cliente');
 			$this->db->order_by("u.nombre_completo", "asc");
         }else{
-            $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
-			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,
-			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
-			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
-			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
-			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
-			c.his_desc_cal,c.credencial,c.foto,
-			s.id_solicitud,s.status,s.fecha_solicitud,s.monto,s.tiempo,s.desc_uso,
-			s.tipo_deposito,s.referencia,s.banco,s.tiempo_estimado,s.calendarios.comprobante');
+            $this->db->select('c.id_cliente,u.id_usuarios,s.id_solicitud,
+			u.nombre_completo,u.correo,s.status,s.fecha_solicitud,s.monto');
             $this->db->from('solicitudes s');
             $this->db->join('clientes c', 'c.id_cliente = s.clientes_id_cliente');
             $this->db->join('usuarios u', 'u.id_usuarios = s.clientes_usuarios_id_usuarios');
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+            $this->db->where('u.status','activo');
             $this->db->where('c.id_cliente',$id);
-			$this->db->order_by("u.nombre_completo", "asc");
+			$this->db->order_by("s.fecha_solicitud", "asc");
         }
         $query = $this->db->get();
         if($query->num_rows() > 0 )

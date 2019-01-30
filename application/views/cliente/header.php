@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <title>Microprestamos123</title>
@@ -10,45 +10,41 @@
   <link href="<?= base_url() ?>assets/css/img/favicon.png" rel="icon">
   <link href="<?= base_url() ?>assets/css/img/apple-touch-icon.png" rel="microprestamos123">
 
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Raleway:400,300,700,900" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link href="<?= base_url() ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
   <link href="<?= base_url() ?>assets/css/style_in.css" rel="stylesheet">
 
 </head>
 
 <body>
-	<!-- Fixed navbar     <img src="<?= base_url() ?>assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="30" height="30" class="d-inline-block align-top" alt=""></a>-->
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">
           <img src="<?= base_url() ?>assets/css/img/apple-touch-icon.png" alt="">
         </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <!--li class="nav-item active">
-          <a class="nav-link" href="#">Inicio
-                <span class="sr-only">(current)</span>
-              </a>
-        </li-->
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Usuarios</a>
+          <a class="nav-link" href="<?= base_url() ?>index.php/Clientes/editar_cliente">Mi perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Clientes</a>
+          <a class="nav-link" href="<?= base_url() ?>index.php/Clientes/solicitudes">Solicitudes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Solicitudes</a>
+          <a class="nav-link" href="<?= base_url() ?>index.php/Microprestamos/log_out">Cerrar sesión</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Cerrar sesión</a>
-        </li>
-      </ul>
-    </div>
+    </ul>
   </div>
 </nav>
+
+<br>
+
+    <!-- container -->
+    <div class="container w" >

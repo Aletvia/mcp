@@ -1,5 +1,10 @@
 
-		<h1  style="margin-top:15px;margin-bottom:15px" class="h2">Solicitudes 1</h1>
+		<div style="margin-top:15px;margin-bottom:15px"  class="row">
+			<h1 class="h2 ">Solicitudes <?= $count ?></h1>
+			<div class="col">
+			<a style="color:white;font-weight:bold" href="<?= base_url() ?>index.php/Microprestamos/agregar_solicitud" class="btn btn-success d-inline float-right" ><i class="fa fa-user-plus"></i> Agregar solicitud</a>
+			</div>
+		</div>
 		<table class="table table-sm">
 		  <thead>
 			<tr>

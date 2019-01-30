@@ -239,25 +239,25 @@
         <div class="modal-body">
           <div class="row centered">
 
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+            <form class="contact-form " action="<?= base_url() ?>index.php/Welcome/enviar" method="POST">
 
               <div class="form-group">
                 <label for="contact-email">Correo electrónico</label>
-                <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                <input type="email" name="em" class="form-control" id="em" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
                 <div class="validate"></div>
               </div>
               <div class="form-group">
                 <label for="contact-subject">Contraseña</label>
-                <input type="password" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="password" name="pw" class="form-control" id="pw" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
                 <div class="validate"></div>
 			  </div>
 			  
               <div class="loading"></div>
-              <div class="error-message"></div>
+              <div class="error-message">La información es incorrecta</div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
 
               <div class="form-send">
-                <button type="submit" class="btn btn-large">Send Message</button>
+                <button type="submit" class="btn btn-large">Entrar</button>
               </div>
 
             </form>
@@ -281,40 +281,44 @@
         <div class="modal-body">
           <div class="row centered">
 
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+            <form id="regform" class="contact-form php-mail-form" action="<?= base_url() ?>index.php/Welcome/reg" method="POST">
 
               <div class="form-group">
                 <label for="contact-email">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" >
+                <input type="text" name="n" id="n" class="form-control" >
                 <div class="validate"></div>
               </div>
               <div class="form-group">
                 <label for="contact-subject">CURP</label>
-                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="password" name="c" id="contact-subject" class="form-control" >
                 <div class="validate"></div>
 			  </div>
               <div class="form-group">
                 <label for="contact-email">Correo electrónico</label>
-                <input type="email" name="email" id="contact-email" class="form-control" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                <input type="email" name="email" id="email" class="form-control" >
                 <div class="validate"></div>
               </div>
               <div class="form-group">
                 <label for="contact-subject">Contraseña</label>
-                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="password" name="p" id="p" class="form-control" >
                 <div class="validate"></div>
 			  </div>
               <div class="form-group">
                 <label for="contact-subject">Contraseña</label>
-                <input type="password" name="subject" id="contact-subject" class="form-control" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="password" name="pr" id="pr" class="form-control" >
                 <div class="validate"></div>
               </div>
+								<div class="input-group" style="display: flex;justify-content: center;">
+									<input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1"> 
+									<label for="checkbox">Acepto<a href="#">Términos de servicio</a> y <a href="#">Políticas de privacidad</a></label>
+								</div>
 
               <div class="loading"></div>
               <div class="error-message">La información es incorrecta.</div>
-              <div class="sent-message"></div>
+              <div class="sent-message">Entrando</div>
 
               <div class="form-send">
-                <button type="button" class="btn btn-success">Iniciar sesión</button>
+                <button onclick="validar()"  type="button" class="btn btn-success">Enviar</button>
               </div>
 
             </form>
@@ -342,14 +346,43 @@
     </div>
   </div>
 
-  <!-- JavaScript Libraries -->
   <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
   <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
   <script src="<?= base_url() ?>assets/chart/chart.js"></script>
-
-  <!-- Template Main Javascript File -->
   <script src="<?= base_url() ?>assets/js/main.js"></script>
-
+<script>
+    function validar() {
+        var p = document.getElementById("p").value
+        var p2 = document.getElementById("pc").value
+		var form = document.getElementById("regform")
+		var ch = document.getElementById("acept_t_p")
+      if (p != p2){
+        alert("Las contraseñas son diferentes.")
+        return false
+      }else {
+	var nMay = 0, nMin = 0, nNum = 0 
+	var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+	var t2 = "abcdefghijklmnopqrstuvwxyz" 
+	var t3 = "0123456789" 
+		for (i=0;i<p.length;i++) { 
+			if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++} 
+			if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++} 
+			if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++} 
+		} 
+		if ( nMay>0 && nMin>0 && nNum>0 && p.length>7) 
+		{
+				if(ch.checked){
+					fn.value=y+"/"+m+"/"+d;
+					form.submit()
+				}else{
+					alert("Debe aceptar los Términos y Políticas"); form.ch.focus(); return;
+				}
+		}
+		else 
+		{ alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
+      }
+    }
+  </script>
 </body>
 </html>

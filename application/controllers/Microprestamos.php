@@ -15,8 +15,8 @@ class Microprestamos extends CI_Controller {
           if($this->session->userdata('logueado')==false){
                redirect('Microprestamos/login');
           }
-     }
-	 function log_out()
+    }
+	function log_out()
 	{
 		$this->session->sess_destroy();
 		// null the session (just in case):
@@ -27,6 +27,24 @@ class Microprestamos extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+    public function enviar()
+    {
+        $nick=$this->input->post('e');
+		$pass = $this->input->post('p');
+        $contraseña=openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+		$data['usr'] = $this->consultas_model->get_l($nick,$contraseña);
+		if(count($data['usr'])==1){
+               $this->session->set_userdata('nombre',$data['usr'][0]->nombre_completo);
+               $this->session->set_userdata('tipo',$data['usr'][0]->tipo);
+               $this->session->set_userdata('correo',$data['usr'][0]->correo);
+               $this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
+               $this->session->set_userdata('logueado',true);
+               $this->session->set_userdata($datos);
+               redirect('Microprestamos/usuarios');
+		}else{
+               redirect('Microprestamos/login');
+        }
+    }
 	//--------------------CLIENTES
 	public function clientes()
 	{
@@ -208,25 +226,8 @@ class Microprestamos extends CI_Controller {
 			redirect('Microprestamos/clientes');
 		}
 	}
-     public function enviar()
-     {
-        $nick=$this->input->post('e');
-		$pass = $this->input->post('p');
-        $contraseña=openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
-		$data['usr'] = $this->consultas_model->get_l($nick,$contraseña);
-		if(count($data['usr'])==1){
-               $this->session->set_userdata('nombre',$data['usr'][0]->nombre_completo);
-               $this->session->set_userdata('tipo',$data['usr'][0]->tipo);
-               $this->session->set_userdata('correo',$data['usr'][0]->correo);
-               $this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
-               $this->session->set_userdata('logueado',true);
-               $this->session->set_userdata($datos);
-               redirect('Microprestamos/usuarios');
-		}else{
-               redirect('Microprestamos/login');
-        }
-     }
 
+	//-----------------------SOLICITUDES
 	 	public function solicitudes()
 	 	{
 			$this->verificar_sesion();

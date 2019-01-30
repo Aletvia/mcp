@@ -44,7 +44,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-calendar"></i>&nbspRegistrado </div>
 								</span>
-								<select id="d_reg" name="d_reg" class="form-control input-sm" disabled>
+								<select id="d_reg" name="d_reg" class="form-control input-sm" required>
 									<option value=""><?= $u->fecha_registro ?></option>
 								</select>
 							</div>
@@ -52,7 +52,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-user"></i>&nbspNombre&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<input value="<?= $u->nombre_completo ?>" id="n" name="n" type="text" class="form-control input-sm" disabled  placeholder="Nombre completo">
+								<input value="<?= $u->nombre_completo ?>" id="n" name="n" type="text" class="form-control input-sm" required  placeholder="Nombre completo">
 							</div>
 						</div>
 						<div class="row">
@@ -60,13 +60,13 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-id-card"></i>&nbspCURP&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<input value="<?= $u->curp ?>" id="c" name="c" type="text" class="form-control input-sm" pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$" disabled  placeholder="CURP">
+								<input value="<?= $u->curp ?>" id="c" name="c" type="text" class="form-control input-sm" pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$" required  placeholder="CURP">
 							</div>
 							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-genderless"></i>&nbspGénero&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<select id="gender" name="gender" class="form-control input-sm" disabled>
+								<select id="gender" name="gender" class="form-control input-sm" required>
 									<option value=""><?= $u->genero ?></option>
 									<option value="Mujer">Mujer</option>
 									<option value="Hombre">Hombre</option>
@@ -79,7 +79,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-calendar"></i>&nbspFecha&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<select id="b" name="b" class="form-control input-sm" disabled>
+								<select id="b" name="b" class="form-control input-sm" required>
 									<option value=""><?= $u->fecha_nacimiento  ?></option>
 								</select>
 							</div>
@@ -87,7 +87,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-birthday-cake"></i>&nbspEdad&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<input value="<?= $anios->y ?>" id="age" name="age" type="text" class="form-control input-sm" disabled  >
+								<input value="<?= $anios->y ?>" id="age" name="age" type="text" class="form-control input-sm" required  >
 							</div>
 						</div>
 						<div class="row">
@@ -95,7 +95,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspEstado&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 								</span>
-								<select id="state_b" name="state_b" class="form-control input-sm" disabled>
+								<select id="state_b" name="state_b" class="form-control input-sm" required>
 									<option value=""><?= $u->nacimiento_estado ?></option>
 								</select>
 							</div>
@@ -103,7 +103,7 @@
 								<span class="input-group-prepend">
 									<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nacionalidad&nbsp</div>
 								</span>
-								<select id="nationality" name="nationality" class="form-control input-sm" disabled>
+								<select id="nationality" name="nationality" class="form-control input-sm" required>
 									<option value=""><?= $u->nacionalidad?></option>
 									<option value="Mexicano">Mexicano</option>
 									<option value="Otro">Extranjero viviendo en México</option>
@@ -154,7 +154,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspAños en el domicilio</div>
 												</span>
-												<input value="<?= $u->anios_domicilio ?>" id="home_y" name="home_y" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->anios_domicilio ?>" id="home_y" name="home_y" type="text" class="form-control input-sm" required  >
 											</div>
 										</div>
 										<div class="row">
@@ -162,19 +162,19 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-road"></i>&nbspCalle&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->calle ?>" id="street" name="street" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->calle ?>" id="street" name="street" type="text" class="form-control input-sm" required  >
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspInterior&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->no_interior ?>" id="inside_n" name="inside_n" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->no_interior ?>" id="inside_n" name="inside_n" type="text" class="form-control input-sm" required  >
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspExterior&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->no_exterior ?>" id="outside_n" name="outside_n" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->no_exterior ?>" id="outside_n" name="outside_n" type="text" class="form-control input-sm" required  >
 											</div>
 										</div>
 										<div class="row">
@@ -182,13 +182,13 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-building"></i>&nbspColonia&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->colonia ?>" id="colony" name="colony" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->colonia ?>" id="colony" name="colony" type="text" class="form-control input-sm" required  >
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspMunicipio&nbsp</div>
 												</span>
-												<select id="m" name="m" class="form-control input-sm" disabled>
+												<select id="m" name="m" class="form-control input-sm" required>
 													<option value=""><?= $u->municipio ?></option>
 												</select>
 											</div>
@@ -198,7 +198,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i>&nbspEstado&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<select id="state_a" name="state_a" class="form-control input-sm" disabled>
+												<select id="state_a" name="state_a" class="form-control input-sm" required>
 													<option value=""><?= $u->estado ?></option>
 												</select>
 											</div>
@@ -206,7 +206,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-envelope"></i>&nbspCorreo&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->correo ?>" id="email" name="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" disabled  placeholder="Correo">
+												<input value="<?= $u->correo ?>" id="email" name="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" required  placeholder="Correo">
 											</div>
 										</div>
 										<div class="row">
@@ -214,13 +214,13 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 1</div>
 												</span>
-												<input value="<?= $u->telefono1 ?>" id="phone1" name="phone1" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->telefono1 ?>" id="phone1" name="phone1" type="text" class="form-control input-sm" required  >
 											</div>
 											<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 2</div>
 												</span>
-												<input value="<?= $u->telefono2 ?>" id="phone2" name="phone2" type="text" class="form-control input-sm" disabled  >
+												<input value="<?= $u->telefono2 ?>" id="phone2" name="phone2" type="text" class="form-control input-sm" required  >
 											</div>
 										</div>
 									</div>
@@ -231,7 +231,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspDependientes</div>
 												</span>
-												<select id="dependents" name="dependents" class="form-control input-sm" disabled>
+												<select id="dependents" name="dependents" class="form-control input-sm" required>
 													<option value=""><?= $u->dependientes ?></option>
 													<option value="1 niño">1 niño</option>
 													<option value="2 niños">2 niños</option>
@@ -247,7 +247,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-money"></i>&nbspSalario&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<select id="salary" name="salary" class="form-control input-sm" disabled>
+												<select id="salary" name="salary" class="form-control input-sm" required>
 													<option value=""><?= $u->lab_salario_mensual ?></option>
 													<option value="3000.00">3000.00</option>
 													<option value="4000.00">4000.00</option>
@@ -280,7 +280,7 @@
 												$u->lab_ocupacion!="Estudiante" &&
 												$u->lab_ocupacion!="Comerciante" &&
 												$u->lab_ocupacion!="Empleado"){ ?>
-												<select id="occupation" name="occupation" class="form-control input-sm" disabled>
+												<select id="occupation" name="occupation" class="form-control input-sm" required>
 													<option value="Otro">Otro</option>
 													<option value="Profesionista">Profesionista</option>
 													<option value="Estudiante">Estudiante</option>
@@ -290,10 +290,10 @@
 												</select>
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-												<input value="<?= $u->lab_ocupacion ?>" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->lab_ocupacion ?>" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" required  placeholder="">
 											</div>
 										<?php }else{ ?>
-										<select id="occupation" name="occupation" class="form-control input-sm" disabled>
+										<select id="occupation" name="occupation" class="form-control input-sm" required>
 											<option value="<?= $u->lab_ocupacion ?>"><?= $u->lab_ocupacion ?></option>
 											<option value="Profesionista">Profesionista</option>
 											<option value="Estudiante">Estudiante</option>
@@ -303,7 +303,7 @@
 										</select>
 									</div>
 									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-										<input value="" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
+										<input value="" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" required  placeholder="">
 									</div>
 									<?php } ?>
 										</div>
@@ -312,7 +312,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Educación&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<select id="study_l" name="study_l" class="form-control input-sm" disabled>
+												<select id="study_l" name="study_l" class="form-control input-sm" required>
 													<option value=""><?= $u->nivel_estudios ?></option>
 													<option value="Primaria">Primaria</option>
 													<option value="Secundaria">Secundaria</option>
@@ -330,13 +330,13 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nombre de la empresa</div>
 												</span>
-												<input value="<?= $u->lab_nombre_empresa ?>" id="company" name="company" type="text" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->lab_nombre_empresa ?>" id="company" name="company" type="text" class="form-control input-sm" required  placeholder="">
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Tipo de industria&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->lab_industria ?>" id="industry" name="industry" type="text" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->lab_industria ?>" id="industry" name="industry" type="text" class="form-control input-sm" required  placeholder="">
 											</div>
 										</div>
 										<div class="row">
@@ -344,13 +344,13 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Puesto que ocupa&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->lab_puesto ?>" id="job" name="job" type="text" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->lab_puesto ?>" id="job" name="job" type="text" class="form-control input-sm" required  placeholder="">
 											</div>
 											<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Años de experiencia&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 												</span>
-												<input value="<?= $u->lab_anios_experiencia ?>"  id="experience" name="experience" type="number" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->lab_anios_experiencia ?>"  id="experience" name="experience" type="number" class="form-control input-sm" required  placeholder="">
 											</div>
 										</div>
 										<div class="row">
@@ -365,7 +365,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Descripción del puesto</div>
 												</span>
-												<textarea id="description_w" name="description_w" class="form-control input-sm" disabled>
+												<textarea id="description_w" name="description_w" class="form-control input-sm" required>
 													<?= $u->lab_descripcion_empleo  ?>
 												</textarea>
 											</div>
@@ -380,7 +380,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<select id="question_1" name="question_1" class="form-control input-sm" disabled>
+														<select id="question_1" name="question_1" class="form-control input-sm" required>
 															<option value=""><?= $u->pregunta_1 ?></option>
 															<option value="por horas">por horas</option>
 															<option value="por días">por días</option>
@@ -398,7 +398,7 @@
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-														<select id="question_2" name="question_2" class="form-control input-sm" disabled>
+														<select id="question_2" name="question_2" class="form-control input-sm" required>
 															<option value=""><?= $u->pregunta_2 ?></option>
 															<option value="rojo">rojo</option>
 															<option value="azul">azul</option>
@@ -416,7 +416,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<select id="question_3" name="question_3" class="form-control input-sm" disabled>
+														<select id="question_3" name="question_3" class="form-control input-sm" required>
 															<option value=""><?= $u->pregunta_3 ?></option>
 															<option value="Si">Si</option>
 															<option value="No">No</option>
@@ -433,7 +433,7 @@
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-														<select id="question_4" name="question_4" class="form-control input-sm" disabled>
+														<select id="question_4" name="question_4" class="form-control input-sm" required>
 															<option value=""><?= $u->pregunta_4 ?></option>
 															<option value="Dinero">Dinero</option>
 															<option value="Familia">Familia</option>
@@ -468,12 +468,12 @@
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
 												<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Califica como consideres que se encuentre tu historial crediticio.
-													<input value="<?= $u->his_cal_his_cred ?>" id="y" name="y" type="number" min="1" max="10" class="form-control input-sm" disabled  placeholder="">
+													<input value="<?= $u->his_cal_his_cred ?>" id="y" name="y" type="number" min="1" max="10" class="form-control input-sm" required  placeholder="">
 												</label>
 											</div>
 											<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
 												<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
-													<textarea id="m" name="m" class="form-control input-sm" disabled>
+													<textarea id="m" name="m" class="form-control input-sm" required>
 														<?= $u->his_desc_cal  ?>
 													</textarea>
 												</label>
@@ -489,7 +489,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<input value="<?= "1000.000" ?>"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" disabled  placeholder="">
+														<input value="<?= "1000.000" ?>"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" required  placeholder="">
 													</div>
 												</div>
 											</div>
@@ -500,7 +500,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<input value="<?= "18.88" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+														<input value="<?= "18.88" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" required  placeholder="">
 													</div>
 												</div>
 											</div>
@@ -510,7 +510,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<input value="<?= "1018.88" ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
+														<input value="<?= "1018.88" ?>"  id="total" name="total" type="number" class="form-control input-sm" required  placeholder="">
 													</div>
 												</div>
 											</div>
@@ -521,7 +521,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<select style="height:45px" id="time" name="time" class="form-control input-sm" disabled onchange="" >
+														<select style="height:45px" id="time" name="time" class="form-control input-sm" required onchange="" >
 															<option value="">1 día</option>
 															<?php
 															for ($j=2;$j<31;$j++){
@@ -541,7 +541,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<select id="benefits" name="benefits" class="form-control input-sm" disabled>
+														<select id="benefits" name="benefits" class="form-control input-sm" required>
 															<option value=""><?= "" ?></option>
 															<option value="Mayor crédito">Mayor crédito</option>
 															<option value="Que sume a mi buro de crédito a favor">Que sume a mi buro de crédito a favor</option>
@@ -556,7 +556,7 @@
 												</label>
 												<div class="row">
 													<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<select id="cause" name="cause" class="form-control input-sm" disabled>
+														<select id="cause" name="cause" class="form-control input-sm" required>
 															<option value=""><?= "" ?></option>
 															<option value="Flujo de efectivo">Flujo de efectivo</option>
 															<option value="Esperando pago de cliente">Esperando pago de cliente</option>
@@ -577,7 +577,7 @@
 										</div>
 										<div class="row">
 											<div style="margin-bottom: 25px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<textarea id="use" name="use" class="form-control input-sm" disabled>
+												<textarea id="use" name="use" class="form-control input-sm" required>
 													<?= ""  ?>
 												</textarea>
 											</div>
@@ -587,7 +587,7 @@
 												<span class="input-group-prepend">
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Estatus de la solicitud&nbsp</div>
 												</span>
-												<select id="status" name="status" class="form-control input-sm" disabled>
+												<select id="status" name="status" class="form-control input-sm" required>
 													<option value=""><?= "" ?></option>
 												</select>
 											</div>
@@ -602,7 +602,7 @@
 													<div style="font-weight:bold" class="input-group-text bg-white border-right-0">
 														¿Dónde te vamos a depositar?</div>
 													</span>
-													<select id="where" name="where" class="form-control input-sm" disabled>
+													<select id="where" name="where" class="form-control input-sm" required>
 														<option value="Tarjeta"><?= "Tarjeta de débito / nomina" ?></option>
 															<option value="Transferencia interbancaria"><?= "Transferencia interbancaria (18 dígitos)" ?></option>
 													</select>
@@ -612,7 +612,7 @@
 														<div style="font-weight:bold" class="input-group-text bg-white border-right-0">
 															Seleccione su banco</div>
 														</span>
-														<select id="bank" name="bank" class="form-control input-sm" disabled>
+														<select id="bank" name="bank" class="form-control input-sm" required>
 															<option value=""><?= "" ?></option>
 														</select>
 													</div>
@@ -623,14 +623,14 @@
 															<div style="font-weight:bold" class="input-group-text bg-white border-right-0">
 																Referencia&nbsp&nbsp&nbsp&nbsp</div>
 															</span>
-															<input value="<?= "" ?>" id="reference" name="reference" type="text" class="form-control input-sm" disabled  >
+															<input value="<?= "" ?>" id="reference" name="reference" type="text" class="form-control input-sm" required  >
 														</div>
 														<div style="margin-bottom: 15px" class="input-group  col-lg-5 col-md-5 col-sm-12 col-xs-12">
 															<span class="input-group-prepend">
 																<div style="font-weight:bold" class="input-group-text bg-white border-right-0">
 																	Tiempo estimado&nbsp&nbsp&nbsp&nbsp</div>
 																</span>
-																<input value="<?= "" ?>" id="estimated_t" name="estimated_t" type="text" class="form-control input-sm" disabled  >
+																<input value="<?= "" ?>" id="estimated_t" name="estimated_t" type="text" class="form-control input-sm" required  >
 															</div>
 														</div>
 														<div class="row">
