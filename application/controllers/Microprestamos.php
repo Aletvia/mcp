@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Microprestamos extends CI_Controller {
-		public $keycrypt;
+	public $keycrypt;
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,39 +12,39 @@ class Microprestamos extends CI_Controller {
 		$this->keycrypt = $this->config->item("aes_encryption_key");
 	}
 	public function verificar_sesion() {
-          if($this->session->userdata('logueado')==false){
-               redirect('Microprestamos/login');
-          }
-    }
+		if($this->session->userdata('logueado')==false){
+			redirect('Microprestamos/login');
+		}
+	}
 	function log_out()
 	{
 		$this->session->sess_destroy();
 		// null the session (just in case):
 		$this->session->set_userdata(array('nombre' => '', 'correo' => '', 'tipo' => '', 'id' => '', 'logueado' => false));
-		redirect('Microprestamos/login');
+		redirect('Welcome/inicio');
 	}
 	public function login()
 	{
 		$this->load->view('login');
 	}
-    public function enviar()
-    {
-        $nick=$this->input->post('e');
+	public function enviar()
+	{
+		$nick=$this->input->post('e');
 		$pass = $this->input->post('p');
-        $contraseña=openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+		$contraseña=openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
 		$data['usr'] = $this->consultas_model->get_l($nick,$contraseña);
 		if(count($data['usr'])==1){
-               $this->session->set_userdata('nombre',$data['usr'][0]->nombre_completo);
-               $this->session->set_userdata('tipo',$data['usr'][0]->tipo);
-               $this->session->set_userdata('correo',$data['usr'][0]->correo);
-               $this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
-               $this->session->set_userdata('logueado',true);
-               $this->session->set_userdata($datos);
-               redirect('Microprestamos/usuarios');
+			$this->session->set_userdata('nombre',$data['usr'][0]->nombre_completo);
+			$this->session->set_userdata('tipo',$data['usr'][0]->tipo);
+			$this->session->set_userdata('correo',$data['usr'][0]->correo);
+			$this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
+			$this->session->set_userdata('logueado',true);
+			$this->session->set_userdata($datos);
+			redirect('Microprestamos/usuarios');
 		}else{
-               redirect('Microprestamos/login');
-        }
-    }
+			redirect('Microprestamos/login');
+		}
+	}
 	//--------------------CLIENTES
 	public function clientes()
 	{
@@ -55,13 +55,13 @@ class Microprestamos extends CI_Controller {
 		if($tipo!='Cliente'){
 			$data['clientes'] = $this->consultas_model->get_c();
 			if($data['clientes']!=null)
-				$data['count'] = count($data['clientes']);
+			$data['count'] = count($data['clientes']);
 			else
-				$data['count'] =0;
+			$data['count'] =0;
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
-					$this->load->view('microprestamos/header');
+				$this->load->view('microprestamos/header');
 			}
 			$this->load->view('microprestamos/clientes',$data);
 		}
@@ -76,7 +76,7 @@ class Microprestamos extends CI_Controller {
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
-					$this->load->view('microprestamos/header');
+				$this->load->view('microprestamos/header');
 			}
 			$this->load->view('microprestamos/ver_cliente',$data);
 		}
@@ -154,8 +154,8 @@ class Microprestamos extends CI_Controller {
 		$var = $this->session->userdata;
 		$tipo=$var['tipo'];
 		if($tipo=='Administrador'){
-				$this->load->view('microprestamos/header_a');
-				$this->load->view('microprestamos/agregar_usuario');
+			$this->load->view('microprestamos/header_a');
+			$this->load->view('microprestamos/agregar_usuario');
 		}else{
 			redirect('Microprestamos/clientes');
 		}
@@ -168,17 +168,17 @@ class Microprestamos extends CI_Controller {
 		if($tipo=='Administrador'){
 			$c=$this->input->post('e');
 			$dat['correo'] = $c;
-				$dat['tipo'] = $this->input->post('t');
-				$dat['status'] = "activo";
-				$dat['nombre_completo'] = $this->input->post('n');
-				$dat['fecha_registro'] = date("Y-m-d");
-				$pass = $this->input->post('p');
-				$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
+			$dat['tipo'] = $this->input->post('t');
+			$dat['status'] = "activo";
+			$dat['nombre_completo'] = $this->input->post('n');
+			$dat['fecha_registro'] = date("Y-m-d");
+			$pass = $this->input->post('p');
+			$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
 
-				$this->consultas_model->insert_r('usuarios',$dat);
-				$msj ="El registro se ha realizado con éxito.";
-				redirect('Microprestamos/usuarios');
-				echo "<script type=\"text/javascript\">alert(\"".$msj."\");</script>";
+			$this->consultas_model->insert_r('usuarios',$dat);
+			$msj ="El registro se ha realizado con éxito.";
+			redirect('Microprestamos/usuarios');
+			echo "<script type=\"text/javascript\">alert(\"".$msj."\");</script>";
 		}else{
 			redirect('Microprestamos/clientes');
 		}
@@ -228,26 +228,26 @@ class Microprestamos extends CI_Controller {
 	}
 
 	//-----------------------SOLICITUDES
-	 	public function solicitudes()
-	 	{
-			$this->verificar_sesion();
+	public function solicitudes()
+	{
+		$this->verificar_sesion();
 
-			$var = $this->session->userdata;
-			$tipo=$var['tipo'];
-			if($tipo!='Cliente'){
-				$data['solicitudes'] = $this->consultas_model->get_c();
-				if($data['solicitudes']!=null)
-					$data['count'] = count($data['solicitudes']);
-				else
-					$data['count'] =0;
-				if($tipo=='Administrador'){
-					$this->load->view('microprestamos/header_a');
-				}else if($tipo=='Agente'){
-						$this->load->view('microprestamos/header');
-				}
-				$this->load->view('microprestamos/solicitudes',$data);
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			$data['solicitudes'] = $this->consultas_model->get_c();
+			if($data['solicitudes']!=null)
+			$data['count'] = count($data['solicitudes']);
+			else
+			$data['count'] =0;
+			if($tipo=='Administrador'){
+				$this->load->view('microprestamos/header_a');
+			}else if($tipo=='Agente'){
+				$this->load->view('microprestamos/header');
 			}
-	 	}
+			$this->load->view('microprestamos/solicitudes',$data);
+		}
+	}
 	public function ver_solicitud()
 	{
 		$this->verificar_sesion();
@@ -258,7 +258,7 @@ class Microprestamos extends CI_Controller {
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
-					$this->load->view('microprestamos/header');
+				$this->load->view('microprestamos/header');
 			}
 			$this->load->view('microprestamos/ver_solicitud',$data);
 		}
@@ -273,7 +273,7 @@ class Microprestamos extends CI_Controller {
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
-					$this->load->view('microprestamos/header');
+				$this->load->view('microprestamos/header');
 			}
 			$this->load->view('microprestamos/procesar_solicitud',$data);
 		}

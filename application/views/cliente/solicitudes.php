@@ -2,7 +2,7 @@
 		<div style="margin-top:15px;margin-bottom:15px"  class="row">
 			<h1 class="h2 ">Solicitudes <?= $count ?></h1>
 			<div class="col">
-			<a style="color:white;font-weight:bold" href="<?= base_url() ?>index.php/Microprestamos/agregar_solicitud" class="btn btn-success d-inline float-right" ><i class="fa fa-user-plus"></i> Agregar solicitud</a>
+			<a style="color:white;font-weight:bold" href="<?= base_url() ?>index.php/Clientes/agregar_solicitud" class="btn btn-success d-inline float-right" ><i class="fa fa-user-plus"></i> Agregar solicitud</a>
 			</div>
 		</div>
 		<table class="table table-sm">
@@ -46,14 +46,14 @@
 		var form = document.getElementById("act");
 		var u = document.getElementById("us");
 		u.value=us;
-		form.action = "<?= base_url() ?>index.php/Microprestamos/ver_solicitud"
+		form.action = "<?= base_url() ?>index.php/Clientes/ver_solicitud"
 		form.submit()
     }
     function procesar(us) {
 		var form = document.getElementById("act");
 		var u = document.getElementById("us");
 		u.value=us;
-		form.action = "<?= base_url() ?>index.php/Microprestamos/procesar_solicitud"
+		form.action = "<?= base_url() ?>index.php/Clientes/procesar_solicitud"
 		form.submit()
     }
 </script>

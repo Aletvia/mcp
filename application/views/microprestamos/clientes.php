@@ -16,12 +16,12 @@
 			<?php
 			if($count>0){
 			$i=1;
-			foreach ($clientes as $c) { 
+			foreach ($clientes as $c) {
 			$fecha = strtotime($c->fecha_nacimiento);
 			$anios = $fecha / (60*60*24*365);
 			$anios = floor($anios);
-			?>	
-				<tr>									
+			?>
+				<tr>
 					<th scope="row"><?= $i++?></th>
 					<td><?= $c->nombre_completo ?></td>
 					<td><?= $anios ?></td>
@@ -29,7 +29,7 @@
 					<td><?= $c->municipio ?></td>
 					<td><?= $c->estado ?></td>
 					<td>
-						<button onclick="ver(<?= $c->id_cliente ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
+						<button onclick="ver(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
 						<!--button class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 						<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
 					</td>

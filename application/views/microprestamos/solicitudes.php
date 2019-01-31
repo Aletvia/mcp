@@ -24,7 +24,7 @@
 					<td>Pre-solicitud en espera</td>
 					<td>$1500</td>
 					<td>
-						<button onclick="ver(<?= $c->id_cliente ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
+						<button onclick="ver(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
 						<!--button onclick="procesar(<?= $c->id_usuarios?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 						<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
 					</td>

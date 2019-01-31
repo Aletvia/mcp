@@ -32,7 +32,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url() ?>index.php/Clientes/editar_cliente">Mi perfil</a>
+          <a class="nav-link" href="<?= base_url() ?>index.php/Clientes/datos_usuario">Mi perfil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url() ?>index.php/Clientes/solicitudes">Solicitudes</a>

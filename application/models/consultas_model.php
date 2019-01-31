@@ -118,7 +118,7 @@ class Consultas_model extends CI_Model
 	{
         if($id === false)
         {
-            $this->db->select('c.id_cliente,u.id_usuarios,u.nombre_completo,c.curp,u.correo,m.municipio,e.estado,u.fecha_registro,c.fecha_nacimiento');
+            $this->db->select('u.id_usuarios,u.nombre_completo,c.curp,u.correo,m.municipio,e.estado,u.fecha_registro,c.fecha_nacimiento');
             $this->db->from('usuarios u');
             $this->db->join('clientes c', 'c.usuarios_id_usuarios = u.id_usuarios');
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
@@ -127,9 +127,9 @@ class Consultas_model extends CI_Model
             $this->db->where('u.tipo','Cliente');
 			$this->db->order_by("u.nombre_completo", "asc");
         }else{
-            $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
+            $this->db->select('u.id_usuarios,c.id_cliente,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
 			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,c.nacionalidad,
-			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
+			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,e.id_estado,
 			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
 			c.lab_ocupacion,c.nivel_estudios,c.trabaja,
@@ -140,7 +140,7 @@ class Consultas_model extends CI_Model
             $this->db->join('clientes c', 'c.usuarios_id_usuarios = u.id_usuarios');
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
-            $this->db->where('c.id_cliente',$id);
+            $this->db->where('u.id_usuarios',$id);
 			$this->db->order_by("u.nombre_completo", "asc");
         }
         $query = $this->db->get();

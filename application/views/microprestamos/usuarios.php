@@ -19,9 +19,9 @@
 			<?php
 			if($count>0){
 			$i=1;
-			foreach ($usr as $c) { 
+			foreach ($usr as $c) {
 			?>
-			<tr>									
+			<tr>
 			  <th scope="row"><?= $i++?></th>
 			  <td><?= $c->nombre_completo ?></td>
 			  <td><?= $c->correo ?></td>
