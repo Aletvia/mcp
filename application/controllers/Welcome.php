@@ -55,7 +55,10 @@ class Welcome extends CI_Controller {
 		}else{
 			$data['mj'] ="Ya contamos con un registro con el CURP ingresado. ";
 		}
-		redirect('Welcome/inicio');
+		//$this->load->view('inicio',$data);
+		//redirect('Welcome/inicio');
+		header('Content-Type: application/x-json; charset=utf-8');
+		echo(json_encode($data['mj']));
 	}
 	public function confirmar_c()
 	{
@@ -82,30 +85,43 @@ class Welcome extends CI_Controller {
 		echo(json_encode($data['mj']));
 	}
 
+	public function entrar()
+	{$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!=""){
+			if($tipo=="Administrador"){
+				redirect('Microprestamos/usuarios');
+			}
+			if($tipo=="Agente"){
+				redirect('Microprestamos/solicitudes');
+			}
+			if($tipo=="Cliente"){
+				redirect('Clientes/solicitudes');
+			}
+		}else{
+			redirect('Welcome/inicio');
+		}
+	}
 	public function enviar()
 	{
 		$nick=$this->input->post('em');
 		$pass = $this->input->post('pw');
 		$contraseña=openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
 		$data['usr'] = $this->consultas_model->get_l($nick,$contraseña);
-		if(count($data['usr'])==1){
+		if($data['usr']!=null){
 			$this->session->set_userdata('nombre',$data['usr'][0]->nombre_completo);
 			$this->session->set_userdata('tipo',$data['usr'][0]->tipo);
 			$this->session->set_userdata('correo',$data['usr'][0]->correo);
 			$this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
 			$this->session->set_userdata('logueado',true);
 			$this->session->set_userdata($datos);
-			if($data['usr'][0]->tipo=="Administrador"){
-				redirect('Microprestamos/usuarios');
-			}
-			if($data['usr'][0]->tipo=="Agente"){
-				redirect('Microprestamos/solicitudes');
-			}
-			if($data['usr'][0]->tipo=="Cliente"){
-				redirect('Clientes/solicitudes');
-			}
+			$data['mj'] ="Aprobado";
 		}else{
-			redirect('Welcome/inicio');
+			$data['mj'] ="Los datos ingresados son incorrectos. ";
+			//redirect('Welcome/inicio',$data);
 		}
+		header('Content-Type: application/x-json; charset=utf-8');
+		echo(json_encode($data['mj']));
 	}
 }

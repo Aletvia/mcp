@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
   <!-- Fixed navbar -->
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -239,7 +238,7 @@
         <div class="modal-body">
           <div class="row centered">
 
-            <form class="contact-form " action="<?= base_url() ?>index.php/Welcome/enviar" method="POST">
+            <form id="form-sign" class="contact-form php-mail-form" action="<?= base_url() ?>index.php/Welcome/entrar" method="POST">
 
               <div class="form-group">
                 <label for="contact-email">Correo electrónico</label>
@@ -257,7 +256,7 @@
               <div class="sent-message">Your message has been sent. Thank you!</div>
 
               <div class="form-send">
-                <button type="submit" class="btn btn-large">Entrar</button>
+                <button onclick="confirmar()"  type="button" class="btn btn-large">Entrar</button>
               </div>
 
             </form>
@@ -346,12 +345,33 @@
     </div>
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
   <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
   <script src="<?= base_url() ?>assets/chart/chart.js"></script>
   <script src="<?= base_url() ?>assets/js/main.js"></script>
 <script>
+			function confirmar(){
+				var e = document.getElementById("em").value
+				var c = document.getElementById("pw").value
+				var form = document.getElementById("form-sign")
+				var frm=$( "#form-sign" );
+				var datos = frm.serialize();  //Serializamos sus datos
+				$.ajax({
+					url:'<?= base_url() ?>index.php/Welcome/enviar',
+					type : 'POST',
+					data : datos,
+					success: function(comp){
+						if(comp!='Aprobado'){
+							alert(comp);
+						}else{
+							alert(comp);
+							form.submit();
+						}
+					}
+				});
+			}
     function validar() {
         var p = document.getElementById("p").value
         var p2 = document.getElementById("pc").value
