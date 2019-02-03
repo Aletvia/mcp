@@ -6,7 +6,7 @@
 
 		<?php echo $error;?>
 
-		<?php echo form_open_multipart('Clientes/do_upload');?>
+		<?php echo form_open_multipart('Archivos/do_upload');?>
 
 		<input type="file" name="userfile" size="20" />
 

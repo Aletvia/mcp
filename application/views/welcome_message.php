@@ -31,13 +31,13 @@
   </div>
 
     <div class="contenedor d-flex justify-content-center" >
-		<div class="col-lg-10 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ">
+		<div class="j col-lg-10 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ">
 			<h1 class=" col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
 			Realiza tu Pre registro y disfruta de sus beneficios así como la tasa de interés más baja durante todo el 2019 exclusivamente para nuestros usuarios en etapa de pre registro.</h1>
 
 			<div class="centered col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
 				<h1 class="bgwt col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1">
-				<br>Prestamos hasta $2,000.00 Rápido, fácil y simple.<br>Lanzamiento 19 de Marzo del 2019<br><br></h1>
+				<br>Prestamos hasta $2,000.00 Rápido, fácil y simple. Lanzamiento 19 de Marzo del 2019<br><br></h1>
 			</div>
 			<div class="centered">
 				<img  style="width:150px;margin-top:30px"  class="centered" src="<?= base_url() ?>assets/css/img/logobg.png" alt="Microprestamos123">

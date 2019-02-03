@@ -212,6 +212,7 @@ h1 {
   font-weight: 300;
   letter-spacing: 3px;
   font-weight: bold
+  
 }
 h5 {
   margin-top: 30px;
@@ -220,11 +221,14 @@ h5 {
   letter-spacing: 3px;
   font-weight: bold
 }
+.j {
+  text-align: justify;
+}
 .bgwt {
   margin-top: 20px;
     border-radius: 22px;
-    background-color: rgba(255, 255, 255, 0.5);
-  text-align: center;
+    background-color: rgba(107, 167, 135, 0.5);
+  text-align: justify;
 }
 input:required:invalid, input:focus:invalid {
   /* insert your own styles for invalid form input */
@@ -624,4 +628,118 @@ input:required:invalid, input:focus:invalid {
 
 .credits {
   color: #999;
+}
+/*///////////////////////*/
+
+.slider-setvalue{
+  padding: 20px;
+}
+.slider-setvalue input[type="number"]{
+  padding: 0 5px;
+  width:50px;
+}
+.slider-container {
+	float: left;
+	width: 630px;
+	height: 50px;
+	background-color: #dbdbdb;
+	border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+}
+.slider-container .slider-tooltip {
+	display: block;
+	position: absolute;
+	top: -30px;
+	height: 30px;
+	width: 100px;
+	background-color: #1e3958;
+	border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
+	box-shadow: 0 5px 10px #333; -webkit-box-shadow: 0 5px 10px #333; -moz-box-shadow: 0 5px 10px #333; 
+}
+.slider-container .slider-tooltip:after {
+	content: '';
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	margin-left: -10px;
+	display: block;
+	border-left: solid 10px transparent;
+	border-right: solid 10px transparent;
+	border-top: solid 10px #1e3958;
+	z-index: 2;
+}
+.slider-container .slider-tooltip span{
+	display: block;
+	width: 100%;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFFFFF;
+}
+.slider-container .slider-bars {
+	height: 30px;
+	width: 590px;
+}
+.slider-container .slider-bars .slider-drag{
+	margin-top: 13px;
+	height: 5px;
+	width: 500px;
+	border: solid 1px rgba(207,65,60,0.1);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	cursor: pointer;
+}
+.slider-container .slider-bars .slider-value {
+	display: block;
+	height: 30px;
+	width: 50px;
+	float: right;
+	border-radius: 5px;
+	color: #FFFFFF; 
+	background: rgba(183,202,77,1);
+	line-height: 30px;
+	vertical-align: middle;
+	font-size: 16px;
+	text-align: center;
+}
+
+.slider-container .slider-submit-form {
+	position: absolute;
+	right: 0;
+	bottom: -50px;
+	height: 40px;
+
+}
+.slider-container .slider-submit-form .submit-button{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+	vertical-align: middle;
+	text-align: center;
+	background: rgba(183,202,77,1);
+	border: none;
+	border-radius: 5px;
+	color: #FFFFFF;
+}
+
+.slider-container .slider-bars .ui-slider-handle {
+  width:5px;
+  top: -0.5em;
+}
+
+.slider-container .slider-bars .ui-state-default, 
+.slider-container .slider-bars .ui-widget-content .ui-state-default, 
+.slider-container .slider-bars .ui-widget-header .ui-state-default,
+.slider-container .slider-bars .ui-state-default, 
+.slider-container .slider-bars .ui-widget-content .ui-state-default, 
+.slider-container .slider-bars .ui-widget-header .ui-state-default,
+.slider-container .slider-bars .ui-widget-header {
+	background: rgba(183,202,77,1);
+	cursor: pointer;
+}
+.slider-container .slider-bars .ui-widget-header {
+	background: rgba(110,194,194,1);
 }

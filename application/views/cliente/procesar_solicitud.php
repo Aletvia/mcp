@@ -8,10 +8,26 @@
 		</div>
 		<div>
 			<?php
-			foreach ($solicitud as $u) {
-				$cumpleanos = new DateTime($u->fecha_nacimiento);
-				$hoy = new DateTime();
-				$anios = $hoy->diff($cumpleanos);
+	$curp;
+	$email;
+	foreach ($solicitud as $u) {
+		$curp=$u->curp;
+		$email=$u->correo;
+		$cumpleanos = new DateTime($u->fecha_nacimiento);
+		$hoy = new DateTime();
+		$anios = $hoy->diff($cumpleanos);
+		$timestamp = strtotime($u->fecha_nacimiento);
+		$php_date = getdate($timestamp);
+		if($u->ft!=null && $u->ft!=""){
+			$foto = base_url()."uploads/fotos/".$u->ft;
+		}else{
+			$foto = base_url()."assets/css/img/user.png";
+		}
+		if($u->cr!=null && $u->cr!=""){
+			$credencial = base_url()."uploads/cdcls/".$u->cr;
+		}else{
+			$credencial = base_url()."assets/css/img/user.png";
+		}
 				?>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
@@ -117,7 +133,7 @@
 								</label>
 								<div class="row">
 									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+										<button   onclick="CargarFoto('<?= $foto ?>')"
 											type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 											<i class="fa fa-eye"></i>&nbspVer</button>
 										</div>
@@ -134,7 +150,7 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-												<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+												<button   onclick="CargarFoto('<?= $credencial ?>')"
 													type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 													<i class="fa fa-eye"></i>&nbspVer</button>
 												</div>

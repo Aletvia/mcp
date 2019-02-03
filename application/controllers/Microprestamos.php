@@ -40,7 +40,7 @@ class Microprestamos extends CI_Controller {
 			$this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
 			$this->session->set_userdata('logueado',true);
 			$this->session->set_userdata($datos);
-			redirect('Microprestamos/usuarios');
+			redirect('Welcome/entrar');
 		}else{
 			redirect('Microprestamos/login');
 		}
@@ -235,7 +235,7 @@ class Microprestamos extends CI_Controller {
 		$var = $this->session->userdata;
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
-			$data['solicitudes'] = $this->consultas_model->get_c();
+			$data['solicitudes'] = $this->consultas_model->get_s();
 			if($data['solicitudes']!=null)
 			$data['count'] = count($data['solicitudes']);
 			else
@@ -254,7 +254,9 @@ class Microprestamos extends CI_Controller {
 		$var = $this->session->userdata;
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
-			$data['solicitud'] = $this->consultas_model->get_c($this->input->post('us'));
+			$data['solicitud'] = $this->consultas_model->get_su($this->input->post('us'));
+			$data['estados'] = $this->consultas_model->get_e();
+			$data['municipios'] = $this->consultas_model->get_m($data['solicitud'][0]->id_estado);
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){
@@ -263,13 +265,33 @@ class Microprestamos extends CI_Controller {
 			$this->load->view('microprestamos/ver_solicitud',$data);
 		}
 	}
+	public function editar_s()
+	{
+		$this->verificar_sesion();
+		$var = $this->session->userdata;
+		$tipo=$var['tipo'];
+		if($tipo!='Cliente'){
+			////////////////////SOLICITUD
+			$datt['tiempo_estimado'] = $this->input->post('estimated_t');
+			if($this->input->post('status')!=""){
+					$datt['status'] = $this->input->post('status');
+			}
+				$this->consultas_model->update_r('solicitudes',$this->input->post('sl'),$datt,'id_solicitud');
+			
+			redirect('Microprestamos/solicitudes');
+		}else{
+			//
+		}
+	}
 	public function procesar_solicitud()
 	{
 		$this->verificar_sesion();
 		$var = $this->session->userdata;
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
-			$data['solicitud'] = $this->consultas_model->get_c($this->input->post('us'));
+			$data['solicitud'] = $this->consultas_model->get_su($this->input->post('us'));
+			$data['estados'] = $this->consultas_model->get_e();
+			$data['municipios'] = $this->consultas_model->get_m($data['solicitud'][0]->id_estado);
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
 			}else if($tipo=='Agente'){

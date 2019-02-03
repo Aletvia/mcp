@@ -5,7 +5,7 @@
 			<tr>
 			  <th scope="col">#</th>
 			  <th scope="col">Nombre</th>
-			  <th scope="col">Edad</th>
+			  <th scope="col">CURP</th>
 			  <th scope="col">Correo</th>
 			  <th scope="col">Municipio</th>
 			  <th scope="col">Estado</th>
@@ -17,14 +17,11 @@
 			if($count>0){
 			$i=1;
 			foreach ($clientes as $c) {
-			$fecha = strtotime($c->fecha_nacimiento);
-			$anios = $fecha / (60*60*24*365);
-			$anios = floor($anios);
 			?>
 				<tr>
 					<th scope="row"><?= $i++?></th>
 					<td><?= $c->nombre_completo ?></td>
-					<td><?= $anios ?></td>
+					<td><?= $c->curp ?></td>
 					<td><?= $c->correo ?></td>
 					<td><?= $c->municipio ?></td>
 					<td><?= $c->estado ?></td>

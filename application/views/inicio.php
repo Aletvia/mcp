@@ -20,6 +20,112 @@
 
 </head>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
+        <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
+        <script src="<?= base_url() ?>assets/chart/chart.js"></script>
+        <script src="<?= base_url() ?>assets/js/main.js"></script>
+        <script>
+        function confirm(){
+          var p = document.getElementById("em").value
+          var p2 = document.getElementById("pw").value
+          var form = document.getElementById("form-sign")
+          var frm=$( "#form-sign" );
+          var datos = frm.serialize();
+          datos = datos.replace("%40", "@");
+          $.ajax({
+            url:'<?= base_url() ?>index.php/Welcome/enviar',
+            type : 'POST',
+            data : datos,
+            success: function(comp){
+			console.log("1");
+              if(comp!='Aprobado'){
+                alert(comp);
+              }else{
+                form.submit();
+              }
+            }
+          });
+        }
+        function validar() {
+          var p = document.getElementById("p").value
+          var p2 = document.getElementById("pr").value
+          var form = document.getElementById("regform")
+          var frm=$( "#regform" );
+          var datos = frm.serialize();
+          datos = datos.replace("%40", "@");
+          var ch = document.getElementById("acept_t_p")
+          if (p != p2){
+            alert("Las contraseñas son diferentes.")
+            return false
+          }else {
+            var nMay = 0, nMin = 0, nNum = 0
+            var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            var t2 = "abcdefghijklmnopqrstuvwxyz"
+            var t3 = "0123456789"
+            for (i=0;i<p.length;i++) {
+              if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
+              if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
+              if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
+            }
+            if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
+            {
+              if(ch.checked){
+              $.ajax({
+                url:'<?= base_url() ?>index.php/Welcome/reg',
+                type : 'POST',
+                data : datos,
+                success: function(comp){
+                    alert(comp);
+                    if(comp="Su registro se ha realizado con éxito.")
+                      $('#Register').modal('hide');
+                }
+              });
+              }else{
+                alert("Debe aceptar los Términos y Políticas");
+                return;
+              }
+            }
+            else
+            { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
+          }
+        }$(function() {
+
+	(function(){
+		$('#slider_drag').slider({
+	      	range: 'min',
+	      	value: $('#slider_drag').attr('data-min-range')*100,
+	      	min: 0,
+	      	max: 1000,
+	      	slide: function(event, ui) {
+	      		var slideVal = ui.value/100,
+	      			slideMinVal = parseInt($('#slider_drag').attr('data-min-range'));
+	      		if(slideVal<=slideMinVal) { return false; }
+	        	$('#slider_value').text(slideVal);
+	        	$('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
+	      	},
+	      	change: function(event, ui) {
+	      		$('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
+	      	}
+	    });
+	    $('#slider_value').text($('#slider_drag').slider('value')/100);
+	    $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
+  
+    $('#set_minvalue').on('change',function(){
+      var minValue = $(this).val();
+      if(minValue<0||minValue>10){
+        $(this).val($('#slider_drag').slider('value')/100);
+        return false;
+      }
+      $('#slider_drag').attr('data-min-range',minValue).slider('value',minValue*100);
+      $('#slider_value').text(minValue);
+    });
+	})();
+
+});
+        </script>
+
 <body>
   <!-- Fixed navbar -->
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -50,6 +156,27 @@
       <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2">
 
+				<article id="slider_setvalue" class="center-container slider-setvalue">
+			<section id="slider_minimum" class="slider-minimum">
+				<span>
+					Set min value: 
+				</span>
+        <input id="set_minvalue" type="number" pattern="[0-9.]+" value="6"/>
+			</section>
+</article>
+  <article id="slider_container" class="middle-center-container slider-container">
+			<section id="slider_tooltip" class="slider-tooltip">
+				<span>
+					Drag me
+				</span>
+			</section>
+			<section id="slider_bars" class="middle-center-container slider-bars">
+				<div id="slider_drag" class="slider-drag" data-min-range="6">
+				</div>
+				<span id="slider_value" class="slider-value">
+				</span>
+			</section>
+		</article>
         </div>
       </div>
       <!-- row -->
@@ -242,12 +369,12 @@
 
                     <div class="form-group">
                       <label for="contact-email">Correo electrónico</label>
-                      <input type="email" name="em" class="form-control" id="em" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                      <input type="email" name="em" class="form-control" id="em" placeholder="" data-rule="email" data-msg="Please enter a valid email">
                       <div class="validate"></div>
                     </div>
                     <div class="form-group">
                       <label for="contact-subject">Contraseña</label>
-                      <input type="password" name="pw" class="form-control" id="pw" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                      <input type="password" name="pw" class="form-control" id="pw" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
                       <div class="validate"></div>
                     </div>
 
@@ -256,7 +383,7 @@
                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
                     <div class="form-send">
-                      <button onclick="confirmar()"  type="button" class="btn btn-large">Entrar</button>
+                      <button onclick="confirm()"  type="button" class="btn btn-large">Entrar</button>
                     </div>
 
                   </form>
@@ -346,75 +473,5 @@
             </p>
           </div>
         </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
-        <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
-        <script src="<?= base_url() ?>assets/chart/chart.js"></script>
-        <script src="<?= base_url() ?>assets/js/main.js"></script>
-        <script>
-        function confirmar(){
-          var form = document.getElementById("form-sign")
-          var frm=$( "#form-sign" );
-          var datos = frm.serialize();
-          datos = datos.replace("%40", "@");
-          $.ajax({
-            url:'<?= base_url() ?>index.php/Welcome/enviar',
-            type : 'POST',
-            data : datos,
-            success: function(comp){
-              if(comp!='Aprobado'){
-                alert(comp);
-              }else{
-                form.submit();
-              }
-            }
-          });
-        }
-        function validar() {
-          var p = document.getElementById("p").value
-          var p2 = document.getElementById("pr").value
-          var form = document.getElementById("regform")
-          var frm=$( "#regform" );
-          var datos = frm.serialize();
-          datos = datos.replace("%40", "@");
-          var ch = document.getElementById("acept_t_p")
-          if (p != p2){
-            alert("Las contraseñas son diferentes.")
-            return false
-          }else {
-            var nMay = 0, nMin = 0, nNum = 0
-            var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            var t2 = "abcdefghijklmnopqrstuvwxyz"
-            var t3 = "0123456789"
-            for (i=0;i<p.length;i++) {
-              if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
-              if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
-              if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
-            }
-            if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
-            {
-              if(ch.checked){
-              $.ajax({
-                url:'<?= base_url() ?>index.php/Welcome/reg',
-                type : 'POST',
-                data : datos,
-                success: function(comp){
-                    alert(comp);
-                    if(comp="Su registro se ha realizado con éxito.")
-                      $('#Register').modal('hide');
-                }
-              });
-              }else{
-                alert("Debe aceptar los Términos y Políticas");
-                return;
-              }
-            }
-            else
-            { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
-          }
-        }
-        </script>
       </body>
       </html>

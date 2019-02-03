@@ -18,15 +18,15 @@
 			foreach ($solicitudes as $c) {
 			?>
 				<tr>
-					<th scope="row">111111</th>
+					<th scope="row"><?=$c->id_solicitud?></th>
 					<td><?= $c->nombre_completo ?></td>
 					<td><?= $c->correo ?></td>
-					<td>Pre-solicitud en espera</td>
-					<td>$1500</td>
+					<td><?= $c->status ?></td>
+					<td>$<?= $c->monto ?></td>
 					<td>
-						<button onclick="ver(<?= $c->id_usuarios ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-						<!--button onclick="procesar(<?= $c->id_usuarios?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
-						<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
+						<button onclick="ver(<?= $c->id_solicitud ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
+						<button onclick="procesar(<?= $c->id_solicitud?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
+						<!--button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
 					</td>
 				</tr>
 			<?php } }?>

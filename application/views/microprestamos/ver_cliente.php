@@ -111,12 +111,16 @@
 						</label>
 						<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+								<button   <?php if($u->ft!=null && $u->ft!=""){?>
+										onclick="CargarFoto('<?= base_url()."uploads/fotos/".$u->ft ?>')"
+										<?php }else{?>disabled<?php }?>
 									type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 									<i class="fa fa-eye"></i>&nbspVer</button>
 								</div>
 								<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+									<button   <?php if($u->ft!=null && $u->ft!=""){?>
+										onclick="descargar('<?= base_url()."uploads/fotos/".$u->ft ?>')"
+										<?php }else{?>disabled<?php }?>
 										type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 										<i class="fa fa-download"></i>&nbspDescargar</button>
 									</div>
@@ -128,12 +132,16 @@
 								</label>
 								<div class="row">
 									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+										<button   <?php if($u->cr!=null && $u->cr!=""){?>
+										onclick="CargarFoto('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
+										<?php }else{?>disabled<?php }?>
 											type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 											<i class="fa fa-eye"></i>&nbspVer</button>
 										</div>
 										<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-											<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+											<button   <?php if($u->cr!=null && $u->cr!=""){?>
+										onclick="descargar('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
+										<?php }else{?>disabled<?php }?>
 												type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 												<i class="fa fa-download"></i>&nbspDescargar</button>
 											</div>
@@ -259,7 +267,7 @@
 									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 										<div class="input-group" style="display: flex;justify-content: center;" >
 											<label for="checkbox">Labora actualmente&nbsp
-												<input id="work" name="work" type="checkbox" required <?php if($u->trabaja==1){ ?>checked="true"<?php } ?> >
+												<input id="work" name="work" type="checkbox" disabled <?php if($u->trabaja==1){ ?>checked="true"<?php } ?> >
 											</label>
 										</div>
 									</div>
@@ -351,7 +359,7 @@
 								<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
 									<div class="input-group" style="display: flex;justify-content: center;" >
 										<label >Pago por banco&nbsp
-											<input id="pay_bank" name="pay_bank" type="checkbox" required <?php if($u->lab_pagos_x_banco==1){ ?>checked="true"<?php } ?> >
+											<input id="pay_bank" name="pay_bank" type="checkbox" disabled <?php if($u->lab_pagos_x_banco==1){ ?>checked="true"<?php } ?> >
 										</label>
 									</div>
 								</div>
@@ -359,9 +367,7 @@
 									<span class="input-group-prepend">
 										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Descripción del puesto</div>
 									</span>
-									<textarea id="description_w" name="description_w" class="form-control input-sm" disabled>
-										<?= $u->lab_descripcion_empleo  ?>
-									</textarea>
+									<textarea id="description_w" name="description_w" class="form-control input-sm" disabled><?= $u->lab_descripcion_empleo  ?></textarea>
 								</div>
 							</div>
 						</div>
@@ -443,19 +449,19 @@
 							<div class="row">
 								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste tarjeta de crédito&nbsp
-										<input id="acept_t_p" type="checkbox" required name="acept_t_p" <?php if($u->his_tarjeta_credito==1){ ?>checked="true"<?php } ?> >
+										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_tarjeta_credito==1){ ?>checked="true"<?php } ?> >
 									</label>
 								</div>
 								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste un crédito automotriz&nbsp
-										<input id="acept_t_p" type="checkbox" required name="acept_t_p" <?php if($u->his_credito_auto==1){ ?>checked="true"<?php } ?> >
+										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_auto==1){ ?>checked="true"<?php } ?> >
 									</label>
 								</div>
 							</div>
 							<div class="row">
 								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste crédito con una empresa telefónica&nbsp
-										<input id="acept_t_p" type="checkbox" required name="acept_t_p" <?php if($u->his_credito_tel==1){ ?>checked="true"<?php } ?> >
+										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_tel==1){ ?>checked="true"<?php } ?> >
 									</label>
 								</div>
 							</div>
@@ -467,9 +473,7 @@
 								</div>
 								<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
 									<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
-										<textarea id="m" name="m" class="form-control input-sm" disabled>
-											<?= $u->his_desc_cal  ?>
-										</textarea>
+										<textarea id="m" name="m" class="form-control input-sm" disabled><?= $u->his_desc_cal  ?></textarea>
 									</label>
 								</div>
 							</div>

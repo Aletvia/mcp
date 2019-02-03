@@ -135,7 +135,7 @@ class Consultas_model extends CI_Model
 			c.lab_ocupacion,c.nivel_estudios,c.trabaja,
 			c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
 			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
-			c.his_desc_cal,c.credencial,c.foto');
+			c.his_desc_cal,c.credencial,c.foto,c.ft,c.cr');
             $this->db->from('usuarios u');
             $this->db->join('clientes c', 'c.usuarios_id_usuarios = u.id_usuarios');
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
@@ -149,24 +149,62 @@ class Consultas_model extends CI_Model
             return $query->result();
         }
 	}
+	
+	public function foto_u($id, $imgdata) { 
+		$imgdatas = file_get_contents($imgdata['full_path']); 
+		//get the content of the image using its path 
+		$data = array('foto' => $imgdatas,'ft' => $imgdata['file_name'] ); 
+		$this->db->where('usuarios_id_usuarios', $id); 
+		$this->db->update('clientes', $data); 
+	} 
+	public function foto_cd($id, $imgdata) { 
+		$imgdatas = file_get_contents($imgdata['full_path']); 
+		//get the content of the image using its path 
+		$data = array('credencial' => $imgdatas,'cr' => $imgdata['file_name'] ); 
+		$this->db->where('usuarios_id_usuarios', $id); 
+		$this->db->update('clientes', $data); 
+	} 
+	public function foto_cm($id, $imgdata) { 
+		$imgdatas = file_get_contents($imgdata['full_path']); 
+		//get the content of the image using its path 
+		$data = array('comprobante' => $imgdatas,'cm' => $imgdata['file_name'] ); 
+		$this->db->where('clientes_usuarios_id_usuarios', $id); 
+		$this->db->update('solicitudes', $data); 
+	} 
+	public function foto_cl($id, $imgdata) { 
+		$imgdatas = file_get_contents($imgdata['full_path']); 
+		//get the content of the image using its path 
+		$data = array('calendario' => $imgdatas,'cl' => $imgdata['file_name'] ); 
+		$this->db->where('clientes_usuarios_id_usuarios', $id); 
+		$this->db->update('solicitudes', $data); 
+	} 
+	 public function get_image($id){ 
+		 $this->db->where('usuarios_id_usuarios', $id); 
+	 $result = $this->db->get('clientes'); 
+	 return $result;
+		 //header("Content-type: image/jpg"); 
+		 //echo $result['foto']; 
+	 }
 	public function get_su($id)
 	{
-            $this->db->select('c.id_cliente,u.id_usuarios,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
+            $this->db->select('u.id_usuarios,c.id_cliente,u.fecha_registro,u.nombre_completo,c.curp,c.genero,c.fecha_nacimiento,
 			c.telefono1,c.telefono2,u.correo,c.anios_domicilio,	c.nacimiento_estado,c.nacionalidad,
-			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,
+			c.calle,c.no_exterior,c.no_interior,c.colonia,m.municipio,e.estado,e.id_estado,
 			c.lab_anios_experiencia,c.dependientes,c.lab_pagos_x_banco,c.lab_descripcion_empleo,
 			c.lab_salario_mensual,c.lab_industria,c.lab_puesto,c.lab_nombre_empresa,
 			c.lab_ocupacion,c.nivel_estudios,c.trabaja,
 			c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
 			c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
-			c.his_desc_cal,c.credencial,c.foto
+			c.his_desc_cal,c.credencial,c.foto,c.ft,c.cr,
 			s.id_solicitud,s.status,s.fecha_solicitud,s.monto,s.tiempo,s.desc_uso,
-			s.tipo_deposito,s.referencia,s.banco,s.tiempo_estimado,s.calendarios.comprobante');
+			s.tipo_deposito,s.referencia,s.banco,s.tiempo_estimado,s.calendario,s.comprobante,
+			s.beneficios,s.ocasion,s.cl,s.cm');
             $this->db->from('solicitudes s');
             $this->db->join('clientes c', 'c.id_cliente = s.clientes_id_cliente');
             $this->db->join('usuarios u', 'u.id_usuarios = s.clientes_usuarios_id_usuarios');
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
+            $this->db->where('u.status','activo');
             $this->db->where('s.id_solicitud',$id);
 			$this->db->order_by("u.nombre_completo", "asc");
         $query = $this->db->get();
@@ -197,7 +235,7 @@ class Consultas_model extends CI_Model
             $this->db->join('municipios m', 'c.municipios_id_municipio = m.id_municipio');
             $this->db->join('estados e', 'm.estados_id_estado = e.id_estado');
             $this->db->where('u.status','activo');
-            $this->db->where('c.id_cliente',$id);
+            $this->db->where('s.clientes_usuarios_id_usuarios',$id);
 			$this->db->order_by("s.fecha_solicitud", "asc");
         }
         $query = $this->db->get();

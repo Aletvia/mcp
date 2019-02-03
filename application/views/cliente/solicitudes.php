@@ -8,29 +8,29 @@
 		<table class="table table-sm">
 		  <thead>
 			<tr>
-			  <th scope="col">No. solicitud</th>
-			  <th scope="col">Cliente</th>
+			  <th scope="col">No. </th>
+			  <th scope="col">Fecha </th>
 			  <th scope="col">Correo</th>
 			  <th scope="col">Estatus</th>
 			  <th scope="col">Monto</th>
 			  <th scope="col">Acciones</th>
 			</tr>
 		  </thead>
-		  <tbody>
+		  <tbody>	
 			<?php
 			if($count>0){
 			$i=1;
 			foreach ($solicitudes as $c) {
 			?>
 				<tr>
-					<th scope="row">111111</th>
-					<td><?= $c->nombre_completo ?></td>
+					<th scope="row"><?= $c->id_solicitud ?></th>
+					<td><?= $c->fecha_solicitud ?></td>
 					<td><?= $c->correo ?></td>
-					<td>Pre-solicitud en espera</td>
-					<td>$1500</td>
+					<td><?= $c->status ?></td>
+					<td>$<?= $c->monto ?></td>
 					<td>
-						<button onclick="ver(<?= $c->id_cliente ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-						<!--button onclick="procesar(<?= $c->id_usuarios?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
+						<button onclick="ver(<?= $c->id_solicitud ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
+						<!--button onclick="procesar(<?= $c->id_solicitud?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 						<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
 					</td>
 				</tr>

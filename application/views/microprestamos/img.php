@@ -21,20 +21,14 @@
 </head>
 
 <body>
-						<img src="<?= base_url() ?>assets/css/img/user.png" 
-						style="height:400px;" 
-						class="rounded float-right" alt="Foto de usuario">
-
-<br>
-
     <!-- container -->
-    <div class="container " >    </div><!--container-->
-	<script>
-		function editar() {
-			var form = document.getElementById("act");
-			form.submit()
-		}
-	</script>
+	<?php foreach ($imagen as $u) {
+		//echo($u->foto);?>
+	
+	 <img src="data:image/jpg;base64,<?php echo base64_encode($u->foto); ?>" />
+	 
+	<?php }?>
+	 
     <!-- container -->
 </body>
 </html>

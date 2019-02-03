@@ -18,16 +18,26 @@
 		$anios = $hoy->diff($cumpleanos);
 		$timestamp = strtotime($u->fecha_nacimiento);
 		$php_date = getdate($timestamp);
+		if($u->ft!=null && $u->ft!=""){
+			$foto = base_url()."uploads/fotos/".$u->ft;
+		}else{
+			$foto = base_url()."assets/css/img/user.png";
+		}
+		if($u->cr!=null && $u->cr!=""){
+			$credencial = base_url()."uploads/cdcls/".$u->cr;
+		}else{
+			$credencial = base_url()."assets/css/img/user.png";
+		}
 		?>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
 				<a class="nav-link active" id="sol-tab" data-toggle="tab" href="#sol" role="tab" aria-controls="sol" aria-selected="true">Solicitud</a>
 			</li>
-			<li class="nav-item">
+			<!--li class="nav-item">
 				<a class="nav-link " id="dep-tab" data-toggle="tab" href="#dep" role="tab" aria-controls="dep" aria-selected="false">Depósito</a>
-			</li>
+			</li-->
 			<li class="nav-item">
-				<a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Cliente</a>
+				<a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Personal</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" id="direct-tab" data-toggle="tab" href="#direct" role="tab" aria-controls="profile" aria-selected="false">Contacto</a>
@@ -42,6 +52,8 @@
 				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Historial</a>
 			</li>
 		</ul>
+		<form id="act" name="act"
+		action="<?= base_url() ?>index.php/Clientes/agregar_s" method="post">
 		<div class="tab-content" id="myTabContent" style="margin-top: 15px">
 			<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -113,7 +125,7 @@
 							<option value="<?= $j ?>" <?php if(date("d", $timestamp)==$j){?>selected<?php }?>> <?= $j ?></option>
 						<?php }?>
 					</select>
-					<input type="hidden" id="b" name="b" value="">
+					<input type="hidden" id="b" name="b" value="<?= $u->fecha_nacimiento?>">
 				</div>
 				<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<span class="input-group-prepend">
@@ -142,9 +154,8 @@
 							<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nacionalidad&nbsp</div>
 						</span>
 						<select id="nationality" name="nationality" class="form-control input-sm" required>
-							<option value=""><?= $u->nacionalidad?></option>
-							<option value="Mexicano">Mexicano</option>
-							<option value="Otro">Extranjero viviendo en México</option>
+							<option value="Mexicano" <?php if("Mexicano"==$u->nacionalidad){?>selected<?php }?>>Mexicano</option>
+							<option value="Extranjero viviendo en México" <?php if("Extranjero viviendo en México"==$u->nacionalidad){?>selected<?php }?>>Extranjero viviendo en México</option>
 						</select>
 					</div>
 				</div>
@@ -155,7 +166,7 @@
 						</label>
 						<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+								<button   onclick="CargarFoto('<?= $foto ?>')"
 									type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 									<i class="fa fa-eye"></i>&nbspVer</button>
 								</div>
@@ -172,7 +183,7 @@
 								</label>
 								<div class="row">
 									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<button   onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+										<button   onclick="CargarFoto('<?= $credencial ?>')"
 											type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 											<i class="fa fa-eye"></i>&nbspVer</button>
 										</div>
@@ -412,9 +423,7 @@
 										<span class="input-group-prepend">
 											<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Descripción del puesto</div>
 										</span>
-										<textarea id="description_w" name="description_w" class="form-control input-sm" required>
-											<?= $u->lab_descripcion_empleo  ?>
-										</textarea>
+										<textarea id="description_w" name="description_w" class="form-control input-sm" required><?= $u->lab_descripcion_empleo  ?></textarea>
 									</div>
 								</div>
 							</div>
@@ -520,9 +529,7 @@
 									</div>
 									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
 										<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
-											<textarea id="desc_h" name="desc_h" class="form-control input-sm" required>
-												<?= $u->his_desc_cal  ?>
-											</textarea>
+											<textarea id="desc_h" name="desc_h" class="form-control input-sm" required><?= $u->his_desc_cal  ?></textarea>
 										</label>
 									</div>
 								</div>
@@ -557,7 +564,7 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<input value="<?= "1018.88" ?>"  id="total" name="total" type="number" class="form-control input-sm" required  placeholder="">
+												<input value="<?= "1018.88" ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
 											</div>
 										</div>
 									</div>
@@ -589,7 +596,7 @@
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												<select id="benefits" name="benefits" class="form-control input-sm" required>
-													<option value=""><?= "" ?></option>
+													<option value="">Seleccione una opción</option>
 													<option value="Mayor crédito">Mayor crédito</option>
 													<option value="Que sume a mi buro de crédito a favor">Que sume a mi buro de crédito a favor</option>
 													<option value="Mayores servicios (menciónalos) y poner un cuadro para que escriban.">Mayores servicios (menciónalos) y poner un cuadro para que escriban.</option>
@@ -604,7 +611,7 @@
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												<select id="cause" name="cause" class="form-control input-sm" required>
-													<option value=""><?= "" ?></option>
+													<option value="">Seleccione una opción</option>
 													<option value="Flujo de efectivo">Flujo de efectivo</option>
 													<option value="Esperando pago de cliente">Esperando pago de cliente</option>
 													<option value="Esperando quincena">Esperando quincena</option>
@@ -624,23 +631,11 @@
 								</div>
 								<div class="row">
 									<div style="margin-bottom: 25px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<textarea id="use" name="use" class="form-control input-sm" required>
-											<?= ""  ?>
-										</textarea>
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group  col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Estatus de la solicitud&nbsp</div>
-										</span>
-										<select id="status" name="status" class="form-control input-sm" required>
-											<option value=""><?= "" ?></option>
-										</select>
+										<textarea id="use" name="use" class="form-control input-sm" required></textarea>
 									</div>
 								</div>
 							</div>
-							<!--DEPOSITO////////////////////////////////////////////////////////////////////////////-->
+							<!--DEPOSITO////////////////////////////////////////////////////////////////////////////>
 							<div class="tab-pane fade" id="dep" role="tabpanel" aria-labelledby="dep-tab">
 
 								<div class="row">
@@ -719,6 +714,7 @@
 															</div>
 															<!--////////////////////////////////////////////////////////////////////////////-->
 														</div>
+													</form>
 													<?php }?>
 												</div>
 											</div><!--container-->
@@ -745,25 +741,25 @@
 												var form = document.getElementById("act");
 												form.submit()
 											}
-											function CargarFoto(img){
-												derecha=(screen.width)/2;
-												arriba=(screen.height)/2;
-												string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
-												var w = window.open(img,"DescriptiveWindowName",string);
-												if(w.document){
-													w.document.title="dfdfdfg";
-												}
-												//w.document.write('<html><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"> <title>Credencial</title><link href="<?= base_url() ?>assets/css/img/favicon.png" rel="icon"></head><body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;cursor: zoom-in;max-width:100%;max-height:100%;" src="http://localhost/Microprestamos123/assets/css/img/user.png" ></body></html>');
-											}
+			function CargarFoto(img){
+				arriba=(screen.height)/2;
+				string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
+				var w = window.open(img,"DescriptiveWindowName",string);
+				
+				
+			}
+			function subir(tipo){
+				derecha=(screen.width)/2;
+				arriba=(screen.height)/2;
+				string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
+				var w = window.open("<?= base_url() ?>index.php/Archivos/"+tipo,"DescriptiveWindowName",string);
+			}
 											function calcular() {
-												console.log("u")
 												var y = document.getElementById("y").value
 												var d = document.getElementById("d").value
 												var m = document.getElementById("mt").value
 												var a = document.getElementById("age").value
 												date = new Date(`${y}-${m}-${d}`)
-												const isValidDate = (Boolean(+date) && date.getDate() == d)
-												if(isValidDate && y>1949){
 													var hoy=new Date();
 													var ageDifMs = hoy - date.getTime();
 													var ageDate = new Date(ageDifMs);
@@ -773,9 +769,6 @@
 													}
 													document.getElementById("age").value=edad;
 													document.getElementById("b").value=y+"/"+m+"/"+d;
-												}else{
-													alert("Verifica la fecha de nacimiento");
-												}
 											}
 											function confirmar_c(){
 												var c = document.getElementById("c").value

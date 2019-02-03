@@ -1,12 +1,12 @@
 <html>
 	<head>
-	<title>Actualizar foto</title>
+	<title>Actualizar comprobante</title>
 	</head>
 	<body>
 
 		<?php echo $error;?>
 
-		<?php echo form_open_multipart('Clientes/do_upload');?>
+		<?php echo form_open_multipart('Archivos/do_upload_comp');?>
 
 		<input type="file" name="userfile" size="20" />
 
