@@ -8,6 +8,8 @@
 
 		<?php echo form_open_multipart('Archivos/do_upload_cal');?>
 
+		<input type="hidden" id="u" name="u" value="<?php echo $u ?>">
+		<input type="hidden" id="s" name="s" value="<?php echo $s ?>">
 		<input type="file" name="userfile" size="20" />
 
 		<br /><br />

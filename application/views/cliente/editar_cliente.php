@@ -167,7 +167,7 @@
 									<i class="fa fa-eye"></i>&nbspVer</button>
 								</div>
 								<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<button onclick="subir('Foto')"  onclick="CargarFoto('<?= base_url() ?>assets/css/img/user.png')"
+									<button onclick="subir('Foto')"
 										type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
 										<i class="fa fa-upload"></i>&nbspSubir</button>
 									</div>
@@ -562,8 +562,8 @@
 				arriba=(screen.height)/2;
 				string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
 				var w = window.open(img,"DescriptiveWindowName",string);
-				
-				
+
+
 			}
 			function subir(tipo){
 				derecha=(screen.width)/2;

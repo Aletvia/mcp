@@ -111,7 +111,7 @@
 	    });
 	    $('#slider_value').text($('#slider_drag').slider('value')/100);
 	    $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
-  
+
     $('#set_minvalue').on('change',function(){
       var minValue = $(this).val();
       if(minValue<0||minValue>10){
@@ -156,27 +156,6 @@
       <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2">
 
-				<article id="slider_setvalue" class="center-container slider-setvalue">
-			<section id="slider_minimum" class="slider-minimum">
-				<span>
-					Set min value: 
-				</span>
-        <input id="set_minvalue" type="number" pattern="[0-9.]+" value="6"/>
-			</section>
-</article>
-  <article id="slider_container" class="middle-center-container slider-container">
-			<section id="slider_tooltip" class="slider-tooltip">
-				<span>
-					Drag me
-				</span>
-			</section>
-			<section id="slider_bars" class="middle-center-container slider-bars">
-				<div id="slider_drag" class="slider-drag" data-min-range="6">
-				</div>
-				<span id="slider_value" class="slider-value">
-				</span>
-			</section>
-		</article>
         </div>
       </div>
       <!-- row -->

@@ -112,392 +112,389 @@
 						<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<button   <?php if($u->ft!=null && $u->ft!=""){?>
-										onclick="CargarFoto('<?= base_url()."uploads/fotos/".$u->ft ?>')"
-										<?php }else{?>disabled<?php }?>
-									type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
-									<i class="fa fa-eye"></i>&nbspVer</button>
-								</div>
-								<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<button   <?php if($u->ft!=null && $u->ft!=""){?>
-										onclick="descargar('<?= base_url()."uploads/fotos/".$u->ft ?>')"
-										<?php }else{?>disabled<?php }?>
-										type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
-										<i class="fa fa-download"></i>&nbspDescargar</button>
-									</div>
-								</div>
+									onclick="CargarFoto('<?= base_url()."uploads/fotos/".$u->ft ?>')"
+								<?php }else{?>disabled<?php }?>
+								type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
+								<i class="fa fa-eye"></i>&nbspVer</button>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<label style="text-align: center;" class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
-									Credencial
-								</label>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<button   <?php if($u->cr!=null && $u->cr!=""){?>
-										onclick="CargarFoto('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
-										<?php }else{?>disabled<?php }?>
-											type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
-											<i class="fa fa-eye"></i>&nbspVer</button>
-										</div>
-										<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-											<button   <?php if($u->cr!=null && $u->cr!=""){?>
-										onclick="descargar('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
-										<?php }else{?>disabled<?php }?>
-												type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
-												<i class="fa fa-download"></i>&nbspDescargar</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--CONTACTO////////////////////////////////////////////////////////////////////////////-->
-							<div class="tab-pane fade" id="direct" role="tabpanel" aria-labelledby="direct-tab" >
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspAños en el domicilio</div>
-										</span>
-										<input value="<?= $u->anios_domicilio ?>" id="home_y" name="home_y" type="text" class="form-control input-sm" disabled  >
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-road"></i>&nbspCalle&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-										<input value="<?= $u->calle ?>" id="street" name="street" type="text" class="form-control input-sm" disabled  >
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspInterior&nbsp&nbsp&nbsp</div>
-										</span>
-										<input value="<?= $u->no_interior ?>" id="inside_n" name="inside_n" type="text" class="form-control input-sm" disabled  >
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspExterior&nbsp&nbsp</div>
-										</span>
-										<input value="<?= $u->no_exterior ?>" id="outside_n" name="outside_n" type="text" class="form-control input-sm" disabled  >
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-building"></i>&nbspColonia&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-										<input value="<?= $u->colonia ?>" id="colony" name="colony" type="text" class="form-control input-sm" disabled  >
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspMunicipio&nbsp</div>
-										</span>
-										<select id="m" name="m" class="form-control input-sm" disabled>
-											<option value=""><?= $u->municipio ?></option>
-										</select>
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i>&nbspEstado&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-										<select id="state_a" name="state_a" class="form-control input-sm" disabled>
-											<option value=""><?= $u->estado ?></option>
-										</select>
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-envelope"></i>&nbspCorreo&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-										<input value="<?= $u->correo ?>" id="email" name="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" disabled  placeholder="Correo">
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 1</div>
-										</span>
-										<input value="<?= $u->telefono1 ?>" id="phone1" name="phone1" type="text" class="form-control input-sm" disabled  >
-									</div>
-									<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 2</div>
-										</span>
-										<input value="<?= $u->telefono2 ?>" id="phone2" name="phone2" type="text" class="form-control input-sm" disabled  >
-									</div>
-								</div>
-							</div>
-							<!--EMPLEO////////////////////////////////////////////////////////////////////////////-->
-							<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" >
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspDependientes</div>
-										</span>
-										<select id="dependents" name="dependents" class="form-control input-sm" disabled>
-											<option value=""><?= $u->dependientes ?></option>
-											<option value="1 niño">1 niño</option>
-											<option value="2 niños">2 niños</option>
-											<option value="3 niños">3 niños</option>
-											<option value="4 o + niños">4 o + niños</option>
-											<option value="Padres">Padres</option>
-											<option value="Familiares">Familiares</option>
-											<option value="Cónyugue">Cónyugue</option>
-											<option value="Independiente">Independiente</option>
-										</select>
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-money"></i>&nbspSalario&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-										<select id="salary" name="salary" class="form-control input-sm" disabled>
-											<option value=""><?= $u->lab_salario_mensual ?></option>
-											<option value="3000.00">3000.00</option>
-											<option value="4000.00">4000.00</option>
-											<option value="5000.00">5000.00</option>
-											<option value="6000.00">6000.00</option>
-											<option value="7000.00">7000.00</option>
-											<option value="8000.00">8000.00</option>
-											<option value="9000.00">9000.00</option>
-											<option value="10000.00">10000.00</option>
-											<option value="15000.00">15000.00</option>
-											<option value="20000.00">20000.00</option>
-											<option value="25000.00">25000.00</option>
-										</select>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-										<div class="input-group" style="display: flex;justify-content: center;" >
-											<label for="checkbox">Labora actualmente&nbsp
-												<input id="work" name="work" type="checkbox" disabled <?php if($u->trabaja==1){ ?>checked="true"<?php } ?> >
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-										<span class="input-group-prepend">
-											<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Ocupación&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-										</span>
-
-										<?php if($u->lab_ocupacion!="Profesionista" &&
-										$u->lab_ocupacion!="Estudiante" &&
-										$u->lab_ocupacion!="Comerciante" &&
-										$u->lab_ocupacion!="Empleado"){ ?>
-											<select id="occupation" name="occupation" class="form-control input-sm" disabled>
-												<option value="Otro">Otro</option>
-												<option value="Profesionista">Profesionista</option>
-												<option value="Estudiante">Estudiante</option>
-												<option value="Comerciante">Comerciante</option>
-												<option value="Empleado">Empleado</option>
-												<option value="Otro">Otro</option>
-											</select>
-										</div>
-										<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<input value="<?= $u->lab_ocupacion ?>" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
-										</div>
-									<?php }else{ ?>
-										<select id="occupation" name="occupation" class="form-control input-sm" disabled>
-											<option value="<?= $u->lab_ocupacion ?>"><?= $u->lab_ocupacion ?></option>
-											<option value="Profesionista">Profesionista</option>
-											<option value="Estudiante">Estudiante</option>
-											<option value="Comerciante">Comerciante</option>
-											<option value="Empleado">Empleado</option>
-											<option value="Otro">Otro</option>
-										</select>
-									</div>
-									<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-										<input value="" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
-									</div>
-								<?php } ?>
-							</div>
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Educación&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-									</span>
-									<select id="study_l" name="study_l" class="form-control input-sm" disabled>
-										<option value=""><?= $u->nivel_estudios ?></option>
-										<option value="Primaria">Primaria</option>
-										<option value="Secundaria">Secundaria</option>
-										<option value="Preparatoria o Bachillerato">Preparatoria o Bachillerato</option>
-										<option value="Técnico">Técnico</option>
-										<option value="Licenciatura">Licenciatura</option>
-										<option value="Maestría">Maestría</option>
-										<option value="Doctorado">Doctorado</option>
-									</select>
-								</div>
-							</div>
-							<h5>Datos de la empresa:</h5>
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nombre de la empresa</div>
-									</span>
-									<input value="<?= $u->lab_nombre_empresa ?>" id="company" name="company" type="text" class="form-control input-sm" disabled  placeholder="">
-								</div>
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Tipo de industria&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-									</span>
-									<input value="<?= $u->lab_industria ?>" id="industry" name="industry" type="text" class="form-control input-sm" disabled  placeholder="">
-								</div>
-							</div>
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Puesto que ocupa&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-									</span>
-									<input value="<?= $u->lab_puesto ?>" id="job" name="job" type="text" class="form-control input-sm" disabled  placeholder="">
-								</div>
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Años de experiencia&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-									</span>
-									<input value="<?= $u->lab_anios_experiencia ?>"  id="experience" name="experience" type="number" class="form-control input-sm" disabled  placeholder="">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-									<div class="input-group" style="display: flex;justify-content: center;" >
-										<label >Pago por banco&nbsp
-											<input id="pay_bank" name="pay_bank" type="checkbox" disabled <?php if($u->lab_pagos_x_banco==1){ ?>checked="true"<?php } ?> >
-										</label>
-									</div>
-								</div>
-								<div style="margin-bottom: 15px" class="input-group col-lg-10 col-md-9 col-sm-12 col-xs-12">
-									<span class="input-group-prepend">
-										<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Descripción del puesto</div>
-									</span>
-									<textarea id="description_w" name="description_w" class="form-control input-sm" disabled><?= $u->lab_descripcion_empleo  ?></textarea>
-								</div>
-							</div>
-						</div>
-						<!--ADICIONALES////////////////////////////////////////////////////////////////////////////-->
-						<div class="tab-pane fade" id="add" role="tabpanel" aria-labelledby="add-tab" >
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
-										Como organizas tu vida
-									</label>
-									<div class="row">
-										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<select id="question_1" name="question_1" class="form-control input-sm" disabled>
-												<option value=""><?= $u->pregunta_1 ?></option>
-												<option value="por horas">por horas</option>
-												<option value="por días">por días</option>
-												<option value="por mes">por mes</option>
-												<option value="de acuerdo al trabajo">de acuerdo al trabajo</option>
-												<option value="como fluya el día">como fluya el día</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
-										Como consideras tu personalidad en colores
-									</label>
-									<div class="row">
-										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-											<select id="question_2" name="question_2" class="form-control input-sm" disabled>
-												<option value=""><?= $u->pregunta_2 ?></option>
-												<option value="rojo">rojo</option>
-												<option value="azul">azul</option>
-												<option value="blanco">blanco</option>
-												<option value="negro">negro</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
-										Realizas alguna actividad deportiva
-									</label>
-									<div class="row">
-										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<select id="question_3" name="question_3" class="form-control input-sm" disabled>
-												<option value=""><?= $u->pregunta_3 ?></option>
-												<option value="Si">Si</option>
-												<option value="No">No</option>
-												<option value="Camino">Camino</option>
-												<option value="Ninguno">Ninguno</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
-										Intereses
-									</label>
-									<div class="row">
-										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-											<select id="question_4" name="question_4" class="form-control input-sm" disabled>
-												<option value=""><?= $u->pregunta_4 ?></option>
-												<option value="Dinero">Dinero</option>
-												<option value="Familia">Familia</option>
-												<option value="Yo">Yo</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--HISTORIAL////////////////////////////////////////////////////////////////////////////-->
-						<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste tarjeta de crédito&nbsp
-										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_tarjeta_credito==1){ ?>checked="true"<?php } ?> >
-									</label>
-								</div>
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste un crédito automotriz&nbsp
-										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_auto==1){ ?>checked="true"<?php } ?> >
-									</label>
-								</div>
-							</div>
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste crédito con una empresa telefónica&nbsp
-										<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_tel==1){ ?>checked="true"<?php } ?> >
-									</label>
-								</div>
-							</div>
-							<div class="row">
-								<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Califica como consideres que se encuentre tu historial crediticio.
-										<input value="<?= $u->his_cal_his_cred ?>" id="y" name="y" type="number" min="1" max="10" class="form-control input-sm" disabled  placeholder="">
-									</label>
-								</div>
-								<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
-										<textarea id="m" name="m" class="form-control input-sm" disabled><?= $u->his_desc_cal  ?></textarea>
-									</label>
-								</div>
+							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<button   <?php if($u->ft!=null && $u->ft!=""){?>
+									onclick="descargar('<?= base_url()."uploads/fotos/".$u->ft ?>')"
+								<?php }else{?>disabled<?php }?>
+								type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
+								<i class="fa fa-download"></i>&nbspDescargar</button>
 							</div>
 						</div>
 					</div>
-				<?php }?>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<label style="text-align: center;" class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
+							Credencial
+						</label>
+						<div class="row">
+							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<button   <?php if($u->cr!=null && $u->cr!=""){?>
+									onclick="CargarFoto('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
+								<?php }else{?>disabled<?php }?>
+								type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
+								<i class="fa fa-eye"></i>&nbspVer</button>
+							</div>
+							<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<button   <?php if($u->cr!=null && $u->cr!=""){?>
+									onclick="descargar('<?= base_url()."uploads/cdcls/".$u->cr ?>')"
+								<?php }else{?>disabled<?php }?>
+								type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-secondary">
+								<i class="fa fa-download"></i>&nbspDescargar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div><!--container-->
-		<script>
-		function editar() {
-			var form = document.getElementById("act");
-			form.submit()
-		}
-		function CargarFoto(img){
-			derecha=(screen.width)/2;
-			arriba=(screen.height)/2;
-			string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
-			var w = window.open(img,"DescriptiveWindowName",string);
-			if(w.document){
-				w.document.title="dfdfdfg";
-			}
-			//w.document.write('<html><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"> <title>Credencial</title><link href="<?= base_url() ?>assets/css/img/favicon.png" rel="icon"></head><body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;cursor: zoom-in;max-width:100%;max-height:100%;" src="http://localhost/Microprestamos123/assets/css/img/user.png" ></body></html>');
-		}
-		</script>
-		<!-- container -->
-	</body>
-	</html>
+			<!--CONTACTO////////////////////////////////////////////////////////////////////////////-->
+			<div class="tab-pane fade" id="direct" role="tabpanel" aria-labelledby="direct-tab" >
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspAños en el domicilio</div>
+						</span>
+						<input value="<?= $u->anios_domicilio ?>" id="home_y" name="home_y" type="text" class="form-control input-sm" disabled  >
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-road"></i>&nbspCalle&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+						<input value="<?= $u->calle ?>" id="street" name="street" type="text" class="form-control input-sm" disabled  >
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspInterior&nbsp&nbsp&nbsp</div>
+						</span>
+						<input value="<?= $u->no_interior ?>" id="inside_n" name="inside_n" type="text" class="form-control input-sm" disabled  >
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-3 col-md-3 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspExterior&nbsp&nbsp</div>
+						</span>
+						<input value="<?= $u->no_exterior ?>" id="outside_n" name="outside_n" type="text" class="form-control input-sm" disabled  >
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-building"></i>&nbspColonia&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+						<input value="<?= $u->colonia ?>" id="colony" name="colony" type="text" class="form-control input-sm" disabled  >
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-map-marker"></i>&nbspMunicipio&nbsp</div>
+						</span>
+						<select id="m" name="m" class="form-control input-sm" disabled>
+							<option value=""><?= $u->municipio ?></option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-globe"></i>&nbspEstado&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+						<select id="state_a" name="state_a" class="form-control input-sm" disabled>
+							<option value=""><?= $u->estado ?></option>
+						</select>
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-envelope"></i>&nbspCorreo&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+						<input value="<?= $u->correo ?>" id="email" name="e" type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" disabled  placeholder="Correo">
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 1</div>
+						</span>
+						<input value="<?= $u->telefono1 ?>" id="phone1" name="phone1" type="text" class="form-control input-sm" disabled  >
+					</div>
+					<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-phone"></i>&nbspTeléfono 2</div>
+						</span>
+						<input value="<?= $u->telefono2 ?>" id="phone2" name="phone2" type="text" class="form-control input-sm" disabled  >
+					</div>
+				</div>
+			</div>
+			<!--EMPLEO////////////////////////////////////////////////////////////////////////////-->
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" >
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-hashtag"></i>&nbspDependientes</div>
+						</span>
+						<select id="dependents" name="dependents" class="form-control input-sm" disabled>
+							<option value=""><?= $u->dependientes ?></option>
+							<option value="1 niño">1 niño</option>
+							<option value="2 niños">2 niños</option>
+							<option value="3 niños">3 niños</option>
+							<option value="4 o + niños">4 o + niños</option>
+							<option value="Padres">Padres</option>
+							<option value="Familiares">Familiares</option>
+							<option value="Cónyugue">Cónyugue</option>
+							<option value="Independiente">Independiente</option>
+						</select>
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0"><i class="fa fa-money"></i>&nbspSalario&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+						<select id="salary" name="salary" class="form-control input-sm" disabled>
+							<option value=""><?= $u->lab_salario_mensual ?></option>
+							<option value="3000.00">3000.00</option>
+							<option value="4000.00">4000.00</option>
+							<option value="5000.00">5000.00</option>
+							<option value="6000.00">6000.00</option>
+							<option value="7000.00">7000.00</option>
+							<option value="8000.00">8000.00</option>
+							<option value="9000.00">9000.00</option>
+							<option value="10000.00">10000.00</option>
+							<option value="15000.00">15000.00</option>
+							<option value="20000.00">20000.00</option>
+							<option value="25000.00">25000.00</option>
+						</select>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="input-group" style="display: flex;justify-content: center;" >
+							<label for="checkbox">Labora actualmente&nbsp
+								<input id="work" name="work" type="checkbox" disabled <?php if($u->trabaja==1){ ?>checked="true"<?php } ?> >
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<span class="input-group-prepend">
+							<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Ocupación&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+						</span>
+
+						<?php if($u->lab_ocupacion!="Profesionista" &&
+						$u->lab_ocupacion!="Estudiante" &&
+						$u->lab_ocupacion!="Comerciante" &&
+						$u->lab_ocupacion!="Empleado"){ ?>
+							<select id="occupation" name="occupation" class="form-control input-sm" disabled>
+								<option value="Otro">Otro</option>
+								<option value="Profesionista">Profesionista</option>
+								<option value="Estudiante">Estudiante</option>
+								<option value="Comerciante">Comerciante</option>
+								<option value="Empleado">Empleado</option>
+								<option value="Otro">Otro</option>
+							</select>
+						</div>
+						<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+							<input value="<?= $u->lab_ocupacion ?>" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
+						</div>
+					<?php }else{ ?>
+						<select id="occupation" name="occupation" class="form-control input-sm" disabled>
+							<option value="<?= $u->lab_ocupacion ?>"><?= $u->lab_ocupacion ?></option>
+							<option value="Profesionista">Profesionista</option>
+							<option value="Estudiante">Estudiante</option>
+							<option value="Comerciante">Comerciante</option>
+							<option value="Empleado">Empleado</option>
+							<option value="Otro">Otro</option>
+						</select>
+					</div>
+					<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<input value="" id="occupation_1" name="occupation_1" type="text" class="form-control input-sm" disabled  placeholder="">
+					</div>
+				<?php } ?>
+			</div>
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Educación&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+					</span>
+					<select id="study_l" name="study_l" class="form-control input-sm" disabled>
+						<option value=""><?= $u->nivel_estudios ?></option>
+						<option value="Primaria">Primaria</option>
+						<option value="Secundaria">Secundaria</option>
+						<option value="Preparatoria o Bachillerato">Preparatoria o Bachillerato</option>
+						<option value="Técnico">Técnico</option>
+						<option value="Licenciatura">Licenciatura</option>
+						<option value="Maestría">Maestría</option>
+						<option value="Doctorado">Doctorado</option>
+					</select>
+				</div>
+			</div>
+			<h5>Datos de la empresa:</h5>
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Nombre de la empresa</div>
+					</span>
+					<input value="<?= $u->lab_nombre_empresa ?>" id="company" name="company" type="text" class="form-control input-sm" disabled  placeholder="">
+				</div>
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Tipo de industria&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+					</span>
+					<input value="<?= $u->lab_industria ?>" id="industry" name="industry" type="text" class="form-control input-sm" disabled  placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Puesto que ocupa&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+					</span>
+					<input value="<?= $u->lab_puesto ?>" id="job" name="job" type="text" class="form-control input-sm" disabled  placeholder="">
+				</div>
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Años de experiencia&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+					</span>
+					<input value="<?= $u->lab_anios_experiencia ?>"  id="experience" name="experience" type="number" class="form-control input-sm" disabled  placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+					<div class="input-group" style="display: flex;justify-content: center;" >
+						<label >Pago por banco&nbsp
+							<input id="pay_bank" name="pay_bank" type="checkbox" disabled <?php if($u->lab_pagos_x_banco==1){ ?>checked="true"<?php } ?> >
+						</label>
+					</div>
+				</div>
+				<div style="margin-bottom: 15px" class="input-group col-lg-10 col-md-9 col-sm-12 col-xs-12">
+					<span class="input-group-prepend">
+						<div style="font-weight:bold" class="input-group-text bg-white border-right-0">Descripción del puesto</div>
+					</span>
+					<textarea id="description_w" name="description_w" class="form-control input-sm" disabled><?= $u->lab_descripcion_empleo  ?></textarea>
+				</div>
+			</div>
+		</div>
+		<!--ADICIONALES////////////////////////////////////////////////////////////////////////////-->
+		<div class="tab-pane fade" id="add" role="tabpanel" aria-labelledby="add-tab" >
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
+						Como organizas tu vida
+					</label>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<select id="question_1" name="question_1" class="form-control input-sm" disabled>
+								<option value=""><?= $u->pregunta_1 ?></option>
+								<option value="por horas">por horas</option>
+								<option value="por días">por días</option>
+								<option value="por mes">por mes</option>
+								<option value="de acuerdo al trabajo">de acuerdo al trabajo</option>
+								<option value="como fluya el día">como fluya el día</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
+						Como consideras tu personalidad en colores
+					</label>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+							<select id="question_2" name="question_2" class="form-control input-sm" disabled>
+								<option value=""><?= $u->pregunta_2 ?></option>
+								<option value="rojo">rojo</option>
+								<option value="azul">azul</option>
+								<option value="blanco">blanco</option>
+								<option value="negro">negro</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
+						Realizas alguna actividad deportiva
+					</label>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<select id="question_3" name="question_3" class="form-control input-sm" disabled>
+								<option value=""><?= $u->pregunta_3 ?></option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
+								<option value="Camino">Camino</option>
+								<option value="Ninguno">Ninguno</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
+						Intereses
+					</label>
+					<div class="row">
+						<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+							<select id="question_4" name="question_4" class="form-control input-sm" disabled>
+								<option value=""><?= $u->pregunta_4 ?></option>
+								<option value="Dinero">Dinero</option>
+								<option value="Familia">Familia</option>
+								<option value="Yo">Yo</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--HISTORIAL////////////////////////////////////////////////////////////////////////////-->
+		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste tarjeta de crédito&nbsp
+						<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_tarjeta_credito==1){ ?>checked="true"<?php } ?> >
+					</label>
+				</div>
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste un crédito automotriz&nbsp
+						<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_auto==1){ ?>checked="true"<?php } ?> >
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<label for="checkbox" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Tienes o tuviste crédito con una empresa telefónica&nbsp
+						<input id="acept_t_p" type="checkbox" disabled name="acept_t_p" <?php if($u->his_credito_tel==1){ ?>checked="true"<?php } ?> >
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div style="margin-bottom: 15px" class="input-group center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Califica como consideres que se encuentre tu historial crediticio.
+						<input value="<?= $u->his_cal_his_cred ?>" id="y" name="y" type="number" min="1" max="10" class="form-control input-sm" disabled  placeholder="">
+					</label>
+				</div>
+				<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Describe porque.
+						<textarea id="m" name="m" class="form-control input-sm" disabled><?= $u->his_desc_cal  ?></textarea>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php }?>
+</div>
+</div><!--container-->
+<script>
+function editar() {
+	var form = document.getElementById("act");
+	form.submit()
+}
+function CargarFoto(img){
+	derecha=(screen.width)/2;
+	arriba=(screen.height)/2;
+	string="toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width="+(screen.width)/2+",height="+(screen.height)/2+",left=10,top=10";
+	var w = window.open(img,"DescriptiveWindowName",string);
+	//w.document.write('<html><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"> <title>Credencial</title><link href="<?= base_url() ?>assets/css/img/favicon.png" rel="icon"></head><body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;cursor: zoom-in;max-width:100%;max-height:100%;" src="http://localhost/Microprestamos123/assets/css/img/user.png" ></body></html>');
+}
+</script>
+<!-- container -->
+</body>
+</html>

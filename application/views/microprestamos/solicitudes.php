@@ -1,9 +1,10 @@
 
-		<h1  style="margin-top:15px;margin-bottom:15px" class="h2">Solicitudes 1</h1>
+		<h1  style="margin-top:15px;margin-bottom:15px" class="h2">Solicitudes <?= $count ?></h1>
 		<table class="table table-sm">
 		  <thead>
 			<tr>
-			  <th scope="col">No. solicitud</th>
+			  <th scope="col">No.</th>
+			  <th scope="col">Fecha </th>
 			  <th scope="col">Cliente</th>
 			  <th scope="col">Correo</th>
 			  <th scope="col">Estatus</th>
@@ -19,13 +20,22 @@
 			?>
 				<tr>
 					<th scope="row"><?=$c->id_solicitud?></th>
+					<td><?= $c->fecha_solicitud ?></td>
 					<td><?= $c->nombre_completo ?></td>
 					<td><?= $c->correo ?></td>
 					<td><?= $c->status ?></td>
 					<td>$<?= $c->monto ?></td>
 					<td>
-						<button onclick="ver(<?= $c->id_solicitud ?>)" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
-						<button onclick="procesar(<?= $c->id_solicitud?>)" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
+						<button onclick="ver(<?= $c->id_solicitud ?>)"
+							<?php
+							if($c->status=='Cancelada por cliente') {
+							?> disabled <?php }?>
+							class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> </button>
+						<button onclick="procesar(<?= $c->id_solicitud?>)"
+							<?php
+							if($c->status=='Cancelada por cliente') {
+							?> disabled <?php }?>
+							class="btn btn-sm btn-info"><i class="fa fa-pencil"></i> </button>
 						<!--button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button-->
 					</td>
 				</tr>

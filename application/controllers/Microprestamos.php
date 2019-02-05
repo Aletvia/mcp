@@ -13,7 +13,7 @@ class Microprestamos extends CI_Controller {
 	}
 	public function verificar_sesion() {
 		if($this->session->userdata('logueado')==false){
-			redirect('Microprestamos/login');
+			redirect('Welcome/inicio');
 		}
 	}
 	function log_out()
@@ -255,7 +255,11 @@ class Microprestamos extends CI_Controller {
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
 			$data['solicitud'] = $this->consultas_model->get_su($this->input->post('us'));
+			$data['solicitud'][0]->referencia = openssl_decrypt($data['solicitud'][0]->referencia,'AES-128-ECB',$this->keycrypt);
+			$data['solicitud'][0]->banco = openssl_decrypt($data['solicitud'][0]->banco,'AES-128-ECB',$this->keycrypt);
+			$data['solicitud'][0]->tipo_deposito = openssl_decrypt($data['solicitud'][0]->tipo_deposito,'AES-128-ECB',$this->keycrypt);
 			$data['estados'] = $this->consultas_model->get_e();
+			$data['bancos'] = $this->consultas_model->get_b();
 			$data['municipios'] = $this->consultas_model->get_m($data['solicitud'][0]->id_estado);
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
@@ -274,10 +278,10 @@ class Microprestamos extends CI_Controller {
 			////////////////////SOLICITUD
 			$datt['tiempo_estimado'] = $this->input->post('estimated_t');
 			if($this->input->post('status')!=""){
-					$datt['status'] = $this->input->post('status');
+				$datt['status'] = $this->input->post('status');
 			}
-				$this->consultas_model->update_r('solicitudes',$this->input->post('sl'),$datt,'id_solicitud');
-			
+			$this->consultas_model->update_r('solicitudes',$this->input->post('sl'),$datt,'id_solicitud');
+
 			redirect('Microprestamos/solicitudes');
 		}else{
 			//
@@ -290,7 +294,11 @@ class Microprestamos extends CI_Controller {
 		$tipo=$var['tipo'];
 		if($tipo!='Cliente'){
 			$data['solicitud'] = $this->consultas_model->get_su($this->input->post('us'));
+			$data['solicitud'][0]->referencia = openssl_decrypt($data['solicitud'][0]->referencia,'AES-128-ECB',$this->keycrypt);
+			$data['solicitud'][0]->banco = openssl_decrypt($data['solicitud'][0]->banco,'AES-128-ECB',$this->keycrypt);
+			$data['solicitud'][0]->tipo_deposito = openssl_decrypt($data['solicitud'][0]->tipo_deposito,'AES-128-ECB',$this->keycrypt);
 			$data['estados'] = $this->consultas_model->get_e();
+			$data['bancos'] = $this->consultas_model->get_b();
 			$data['municipios'] = $this->consultas_model->get_m($data['solicitud'][0]->id_estado);
 			if($tipo=='Administrador'){
 				$this->load->view('microprestamos/header_a');
