@@ -543,7 +543,7 @@
 									</label>
 									<div class="row">
 										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<input value="1000.000"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" required  placeholder="">
+											<input  onchange="calc()" value="1000.00"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" required  placeholder="">
 										</div>
 									</div>
 								</div>
@@ -554,7 +554,8 @@
 									</label>
 									<div class="row">
 										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<input value="<?= "18.88" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+											<input value="<?= "13.81" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+											<input value="<?= $u->interes ?>"  id="interes" name="interes" type="hidden" >
 										</div>
 									</div>
 								</div>
@@ -564,7 +565,7 @@
 									</label>
 									<div class="row">
 										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<input value="<?= "1018.88" ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
+											<input value="<?= "1013.81" ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
 										</div>
 									</div>
 								</div>
@@ -575,7 +576,7 @@
 									</label>
 									<div class="row">
 										<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<select style="height:45px" id="time" name="time" class="form-control input-sm" required onchange="" >
+											<select onchange="calc()" style="height:45px" id="time" name="time" class="form-control input-sm" required onchange="" >
 												<?php
 												for ($j=1;$j<31;$j++){
 													?>
@@ -719,6 +720,24 @@ type="button" id="registrar" style="font-weight:bold;width:100%" class="btn btn-
 </div><!--container-->
 <script>
 
+function calc() {
+	var r = document.getElementById("rode").value
+	var i1 = document.getElementById("interes")
+		var i = document.getElementById("interest")
+			var tt = document.getElementById("total")
+				var tm = document.getElementById("time").value
+				$.ajax({
+					url:'<?= base_url() ?>index.php/Welcome/int',
+					type : 'POST',
+					data : { 'r' : r,'tm':tm },
+					success: function(rres){
+						var arr = rres.split(",");
+						i1.value=arr[0];
+						i.value=arr[0];
+						tt.value=arr[1];
+					}
+				});
+}
 function municipios() {
 	var p = document.getElementById("state_a").value
 	var m = document.getElementById("m")

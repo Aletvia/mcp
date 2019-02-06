@@ -97,6 +97,16 @@ class Welcome extends CI_Controller {
 		header('Content-Type: application/x-json; charset=utf-8');
 		echo(json_encode($data['mj']));
 	}
+	public function int()
+	{
+		$tm=$this->input->post('tm');
+		$tm=str_replace(" días","",$tm);
+			$r=$this->input->post('r');
+			$interes=$r*(1.3805*$tm/100);
+			$t=$r+$interes;
+		header('Content-Type: application/x-json; charset=utf-8');
+		echo(json_encode(round($interes, 2).",".round($t, 2)));
+	}
 	public function municipios()
 	{
 		$estado=$this->input->post('es');

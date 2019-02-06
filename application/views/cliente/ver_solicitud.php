@@ -546,7 +546,8 @@
 						</label>
 						<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<input value="<?= "18.88" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+								<input value="<?= $u->interes ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+								<input value="<?= $u->interes ?>"  id="interes" name="interes" type="hidden" >
 							</div>
 						</div>
 					</div>
@@ -556,7 +557,7 @@
 						</label>
 						<div class="row">
 							<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<input value="<?= $u->monto+18.88 ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
+								<input value="<?= $u->monto+$u->interes ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
 							</div>
 						</div>
 					</div>

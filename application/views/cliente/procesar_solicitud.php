@@ -537,7 +537,7 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<input value="<?= $u->monto ?>"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" required  placeholder="">
+												<input onchange="calc()" value="<?= $u->monto ?>"  id="rode" name="rode" min="1000" max="2000" type="number" class="form-control input-sm" required  placeholder="">
 											</div>
 										</div>
 									</div>
@@ -548,7 +548,8 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<input value="<?= "18.88" ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->interes ?>"  id="interest" name="interest" type="number" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->interes ?>"  id="interes" name="interes" type="hidden" >
 											</div>
 										</div>
 									</div>
@@ -558,7 +559,7 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<input value="<?= $u->monto+18.88 ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
+												<input value="<?= $u->monto+$u->interes ?>"  id="total" name="total" type="number" class="form-control input-sm" disabled  placeholder="">
 											</div>
 										</div>
 									</div>
@@ -569,7 +570,7 @@
 										</label>
 										<div class="row">
 											<div style="margin-bottom: 15px" class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<select style="height:45px" id="time" name="time" class="form-control input-sm" required onchange="" >
+												<select onchange="calc()" style="height:45px" id="time" name="time" class="form-control input-sm" required onchange="" >
 													<?php
 													for ($j=1;$j<31;$j++){
 														$d=$j." días";
@@ -736,6 +737,24 @@
 								<script>
 								function descargar(img) {
 										window.open("<?= base_url() ?>index.php/Archivos/download?n="+img, '_blank');
+								}
+								function calc() {
+									var r = document.getElementById("rode").value
+									var i1 = document.getElementById("interes")
+										var i = document.getElementById("interest")
+											var tt = document.getElementById("total")
+												var tm = document.getElementById("time").value
+												$.ajax({
+													url:'<?= base_url() ?>index.php/Welcome/int',
+													type : 'POST',
+													data : { 'r' : r,'tm':tm },
+													success: function(rres){
+														var arr = rres.split(",");
+														i1.value=arr[0];
+														i.value=arr[0];
+														tt.value=arr[1];
+													}
+												});
 								}
 								function editar() {
 									var a = document.getElementById("benefits").value

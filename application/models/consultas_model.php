@@ -200,7 +200,7 @@ public function get_su($id)
   c.pregunta_4,c.pregunta_3,c.pregunta_2,pregunta_1,
   c.his_tarjeta_credito,c.his_credito_auto,c.his_credito_tel,c.his_cal_his_cred,
   c.his_desc_cal,c.credencial,c.foto,c.ft,c.cr,
-  s.id_solicitud,s.status,s.fecha_solicitud,s.monto,s.tiempo,s.desc_uso,
+  s.id_solicitud,s.status,s.fecha_solicitud,s.monto,s.tiempo,s.desc_uso,s.interes,
   s.tipo_deposito,s.referencia,s.banco,s.tiempo_estimado,s.calendario,s.comprobante,
   s.beneficios,s.ocasion,s.cl,s.cm');
   $this->db->from('solicitudes s');

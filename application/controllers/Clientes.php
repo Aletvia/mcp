@@ -258,6 +258,7 @@ public function agregar_s()
 		if($this->input->post('cause')=="Deuda")
 		$aprobada=0;
 		$datt['monto'] = $this->input->post('rode');
+		$datt['interes'] = $this->input->post('interes');
 		$datt['fecha_solicitud'] = date("Y-m-d");
 		$datt['tiempo'] = $this->input->post('time');
 		$datt['desc_uso'] = $this->input->post('use');
@@ -372,6 +373,7 @@ public function editar_s()
 		if($this->input->post('cause')=="Deuda")
 		$aprobada=0;
 		$datt['monto'] = $this->input->post('rode');
+		$datt['interes'] = $this->input->post('interes');
 		$datt['tiempo'] = $this->input->post('time');
 		$datt['desc_uso'] = $this->input->post('use');
 		if($aprobada==0){
