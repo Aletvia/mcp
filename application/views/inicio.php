@@ -90,40 +90,7 @@
             else
             { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
           }
-        }$(function() {
-
-	(function(){
-		$('#slider_drag').slider({
-	      	range: 'min',
-	      	value: $('#slider_drag').attr('data-min-range')*100,
-	      	min: 0,
-	      	max: 1000,
-	      	slide: function(event, ui) {
-	      		var slideVal = ui.value/100,
-	      			slideMinVal = parseInt($('#slider_drag').attr('data-min-range'));
-	      		if(slideVal<=slideMinVal) { return false; }
-	        	$('#slider_value').text(slideVal);
-	        	$('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
-	      	},
-	      	change: function(event, ui) {
-	      		$('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
-	      	}
-	    });
-	    $('#slider_value').text($('#slider_drag').slider('value')/100);
-	    $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-35+'px'});
-
-    $('#set_minvalue').on('change',function(){
-      var minValue = $(this).val();
-      if(minValue<0||minValue>10){
-        $(this).val($('#slider_drag').slider('value')/100);
-        return false;
-      }
-      $('#slider_drag').attr('data-min-range',minValue).slider('value',minValue*100);
-      $('#slider_value').text(minValue);
-    });
-	})();
-
-});
+        }
         </script>
 
 <body>
@@ -155,7 +122,58 @@
     <div class="container">
       <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2">
+          <div class="fl_l w_70 slider_personalloan">
+            <div class="slider-form">
+              <h3>Compara Ahora</h3>
+              <div class="row" id="personalloan_0_form">
+                <div class="step amount col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--MONTO------>
+                  <label class="fl_l_m_10"> Monto </label><div class="slider_cont">
+                    <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="minus_arrow">-</a>
+                    <span id="demo" class="fl_l_m_15 amount_display">10,000 $</span>
+                    <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="plus_arrow">+</a>
+                  </div>
+                  <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                  data-name="param_amount" data-display="amount_display" data-default-value="10000"
+                  style="opacity: 1;">
+                  <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                  style="width: 36.7347%;">
+                </div>
+                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                style="left: 36.7347%;">
+              </span>
+            </div>
 
+            <div class="""slidecontainer" style="margin-top:20px" >
+              <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            </div>
+          </div><!--MONTO------>
+          <script>
+          var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }
+          </script>
+          <div class="step stepPeriod col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--PLAZO------>
+            <label class="fl_l_m_10">Plazo </label>
+            <div class="slider_cont">
+              <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="minus_arrow">-</a>
+              <span class="fl_l_m_15 period_display">1 Año</span>
+              <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="plus_arrow">+</a>
+            </div>
+            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+            data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
+            <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
+            </div>
+            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
+            </span>
+          </div>
+        </div><!--PLAZO------>
+      </div>
+    </div>
+  </div>
         </div>
       </div>
       <!-- row -->

@@ -49,7 +49,7 @@ class Welcome extends CI_Controller {
 				$dato['municipios_id_municipio'] = $this->input->post('m');
 				$id= $this->db->insert_id();
 				$dato['usuarios_id_usuarios'] = $id;
-				$this->db->insert('clientes',$dato);
+				$this->consultas_model->insert_r('clientes',$dato);
 				$data['mj'] = "Su registro se ha realizado con éxito.";
 			}else{
 				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
@@ -73,7 +73,7 @@ class Welcome extends CI_Controller {
 			if($count==0){
 				$dat['correo'] = $correo;
 				$dat['tipo'] = "Cliente";
-				$dat['status'] = "activo";
+				$dat['status'] = "inactivo";
 				$dat['nombre_completo'] = $this->input->post('n');
 				$dat['fecha_registro'] = date("Y-m-d");
 				$pass = $this->input->post('p');
@@ -83,17 +83,48 @@ class Welcome extends CI_Controller {
 				$dato['curp'] = $cur;
 				$id= $this->db->insert_id();
 				$dato['usuarios_id_usuarios'] = $id;
-				$dato['municipios_id_municipio'] = 0;
-				$this->db->insert('clientes',$dato);
+				$dato['municipios_id_municipio'] = 1;
+				$this->consultas_model->insert_r('clientes',$dato);
+
+				//Enviar mensaje
+				$this->load->library('email');
+				$this->email->from('junkokimiko@gmail.com','Microprestamos123');
+				$this->email->to($correo);
+				$this->email->cc('aletvialecona@gmail.com');
+				//$this->email->bcc('aletvialecona@gmail.com');
+				$this->email->set_mailtype("html");
+				$this->email->subject('Validación de correo para Microprestamos123');
+				$this->email->message('<table style="height: 154px; width: 100%;">
+				<tbody>
+				<tr style="height: 43px;">
+				<td style="width: 72px; height: 43px;">&nbsp;</td>
+				<td style="width: 440px; height: 43px;"><a title="Microprestamos123" href="https://microprestamos123.com" target="_blank" rel="noopener"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://microprestamos123.com/assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="182" height="37" /></a></td>
+				<td style="width: 68px; height: 43px;">&nbsp;</td>
+				</tr>
+				<tr style="height: 64px;">
+				<td style="width: 72px; height: 64px;">&nbsp;</td>
+				<td style="width: 440px; height: 64px;">
+				<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola Aletvia</span>:</h2>
+				<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
+				<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c=" target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
+				</td>
+				<td style="width: 68px; height: 64px;">&nbsp;</td>
+				</tr>
+				</tbody>
+				</table>');
+
+				if($this->email->send())
+				$mj="Email sent successfully.";
+				else
+				$mj="Error in sending Email.";
 				$data['mj'] = "Su registro se ha realizado con éxito.";
+
 			}else{
 				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
 			}
 		}else{
 			$data['mj'] ="Ya contamos con un registro con el CURP ingresado. ";
 		}
-		//$this->load->view('inicio',$data);
-		//redirect('Welcome/inicio');
 		header('Content-Type: application/x-json; charset=utf-8');
 		echo(json_encode($data['mj']));
 	}
@@ -101,11 +132,61 @@ class Welcome extends CI_Controller {
 	{
 		$tm=$this->input->post('tm');
 		$tm=str_replace(" días","",$tm);
-			$r=$this->input->post('r');
-			$interes=$r*(1.3805*$tm/100);
-			$t=$r+$interes;
+		$r=$this->input->post('r');
+		$interes=$r*(1.3805*$tm/100);
+		$t=$r+$interes;
 		header('Content-Type: application/x-json; charset=utf-8');
 		echo(json_encode(round($interes, 2).",".round($t, 2)));
+	}
+	public function enviar_correo(){
+		//Enviar mensaje
+		$this->load->library('email');
+		$this->email->from('aletvialecona@gmail.com','Microprestamos123');
+		$this->email->to('a.anaid@hotmail.es');
+		//$this->email->to('yo.rana@hotmail.es');
+		$this->email->cc('junkokimiko@gmail.com');
+		//$this->email->bcc('aletvialecona@gmail.com');
+		$this->email->set_mailtype("html");
+		$this->email->subject('Validación de correo para Microprestamos123');
+		$this->email->message('<table style="height: 154px; width: 100%;">
+		<tbody>
+		<tr style="height: 43px;">
+		<td style="width: 72px; height: 43px;">&nbsp;</td>
+		<td style="width: 440px; height: 43px;"><a title="Microprestamos123" href="https://microprestamos123.com" target="_blank" rel="noopener"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://microprestamos123.com/assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="182" height="37" /></a></td>
+		<td style="width: 68px; height: 43px;">&nbsp;</td>
+		</tr>
+		<tr style="height: 64px;">
+		<td style="width: 72px; height: 64px;">&nbsp;</td>
+		<td style="width: 440px; height: 64px;">
+		<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola Aletvia</span>:</h2>
+		<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
+		<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c=" target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
+		</td>
+		<td style="width: 68px; height: 64px;">&nbsp;</td>
+		</tr>
+		</tbody>
+		</table>');
+
+		if($this->email->send())
+		$mj="Email sent successfully.";
+		else
+		$mj="Error in sending Email.";
+		var_dump($this->email->print_debugger());
+		echo "<script type='text/javascript'>alert('$mj') </script>";
+
+	}
+
+	public function validar_correo()
+	{
+		$correo=$this->input->get('c');
+		$count = $this->consultas_model->consulta_count_where("usuarios",$correo,"correo");
+		if($count==0){
+			$data['mj'] = "Aprobado";
+		}else{
+			$dat['status'] = "activo";
+			$this->consultas_model->update_r('usuarios',$count->id_usuarios,$dat,'id_usuarios');
+		}
+		$this->load->view('validar_correo');
 	}
 	public function municipios()
 	{

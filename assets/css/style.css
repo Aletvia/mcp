@@ -5,8 +5,78 @@
 * License: https://templatemag.com/license/
 */
 
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #56ab2f;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+//////
+.w_70 {
+    width: 94%;
+    padding: 3%;
+    display: inline-block;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,.3);
+    font-weight: 300;
+    background: rgba(255,255,255,1);
+    margin: 0 0 60px 0;
+    border-radius: 3px;
+}
+
+.w_70 {
+    width: 94%;
+    padding: 3%;
+    display: inline-block;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,.3);
+    font-weight: 300;
+    background: rgba(255,255,255,1);
+    margin: 0 0 60px;
+    border-radius: 3px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 body {
-  background : url(img/bg_pre.png) no-repeat center center fixed; 
+  background : url(img/bg_pre.png) no-repeat center center fixed;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -184,14 +254,14 @@ label {
 input[type=checkbox]:hover {
     box-shadow:0px 0px 0px #1300ff;
 }
-a:link { 
+a:link {
   color: blue;
 }
 .registrar {
-  background-image:url(img/btn_gr.png); 
+  background-image:url(img/btn_gr.png);
   background-repeat:no-repeat;
   background-size:contain;
-  background-position:center;  
+  background-position:center;
 }
 .button {
 	background-color: transparent;
@@ -212,7 +282,7 @@ h1 {
   font-weight: 300;
   letter-spacing: 3px;
   font-weight: bold
-  
+
 }
 h5 {
   margin-top: 30px;
@@ -232,7 +302,7 @@ h5 {
 }
 input:required:invalid, input:focus:invalid {
   /* insert your own styles for invalid form input */
-  border: 0.5px solid red; 
+  border: 0.5px solid red;
 }
 #headerwrap h1 {
   margin-top: 100px;
@@ -653,7 +723,7 @@ input:required:invalid, input:focus:invalid {
 	width: 100px;
 	background-color: #1e3958;
 	border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
-	box-shadow: 0 5px 10px #333; -webkit-box-shadow: 0 5px 10px #333; -moz-box-shadow: 0 5px 10px #333; 
+	box-shadow: 0 5px 10px #333; -webkit-box-shadow: 0 5px 10px #333; -moz-box-shadow: 0 5px 10px #333;
 }
 .slider-container .slider-tooltip:after {
 	content: '';
@@ -698,7 +768,7 @@ input:required:invalid, input:focus:invalid {
 	width: 50px;
 	float: right;
 	border-radius: 5px;
-	color: #FFFFFF; 
+	color: #FFFFFF;
 	background: rgba(183,202,77,1);
 	line-height: 30px;
 	vertical-align: middle;
@@ -730,11 +800,11 @@ input:required:invalid, input:focus:invalid {
   top: -0.5em;
 }
 
-.slider-container .slider-bars .ui-state-default, 
-.slider-container .slider-bars .ui-widget-content .ui-state-default, 
+.slider-container .slider-bars .ui-state-default,
+.slider-container .slider-bars .ui-widget-content .ui-state-default,
 .slider-container .slider-bars .ui-widget-header .ui-state-default,
-.slider-container .slider-bars .ui-state-default, 
-.slider-container .slider-bars .ui-widget-content .ui-state-default, 
+.slider-container .slider-bars .ui-state-default,
+.slider-container .slider-bars .ui-widget-content .ui-state-default,
 .slider-container .slider-bars .ui-widget-header .ui-state-default,
 .slider-container .slider-bars .ui-widget-header {
 	background: rgba(183,202,77,1);
