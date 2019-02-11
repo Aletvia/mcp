@@ -20,78 +20,78 @@
 
 </head>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
-        <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
-        <script src="<?= base_url() ?>assets/chart/chart.js"></script>
-        <script src="<?= base_url() ?>assets/js/main.js"></script>
-        <script>
-        function confirm(){
-          var p = document.getElementById("em").value
-          var p2 = document.getElementById("pw").value
-          var form = document.getElementById("form-sign")
-          var frm=$( "#form-sign" );
-          var datos = frm.serialize();
-          datos = datos.replace("%40", "@");
-          $.ajax({
-            url:'<?= base_url() ?>index.php/Welcome/enviar',
-            type : 'POST',
-            data : datos,
-            success: function(comp){
-			console.log("1");
-              if(comp!='Aprobado'){
-                alert(comp);
-              }else{
-                form.submit();
-              }
-            }
-          });
-        }
-        function validar() {
-          var p = document.getElementById("p").value
-          var p2 = document.getElementById("pr").value
-          var form = document.getElementById("regform")
-          var frm=$( "#regform" );
-          var datos = frm.serialize();
-          datos = datos.replace("%40", "@");
-          var ch = document.getElementById("acept_t_p")
-          if (p != p2){
-            alert("Las contraseñas son diferentes.")
-            return false
-          }else {
-            var nMay = 0, nMin = 0, nNum = 0
-            var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            var t2 = "abcdefghijklmnopqrstuvwxyz"
-            var t3 = "0123456789"
-            for (i=0;i<p.length;i++) {
-              if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
-              if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
-              if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
-            }
-            if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
-            {
-              if(ch.checked){
-              $.ajax({
-                url:'<?= base_url() ?>index.php/Welcome/reg',
-                type : 'POST',
-                data : datos,
-                success: function(comp){
-                    alert(comp);
-                    if(comp="Su registro se ha realizado con éxito.")
-                      $('#Register').modal('hide');
-                }
-              });
-              }else{
-                alert("Debe aceptar los Términos y Políticas");
-                return;
-              }
-            }
-            else
-            { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
+<script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
+<script src="<?= base_url() ?>assets/chart/chart.js"></script>
+<script src="<?= base_url() ?>assets/js/main.js"></script>
+<script>
+function confirm(){
+  var p = document.getElementById("em").value
+  var p2 = document.getElementById("pw").value
+  var form = document.getElementById("form-sign")
+  var frm=$( "#form-sign" );
+  var datos = frm.serialize();
+  datos = datos.replace("%40", "@");
+  $.ajax({
+    url:'<?= base_url() ?>index.php/Welcome/enviar',
+    type : 'POST',
+    data : datos,
+    success: function(comp){
+      console.log("1");
+      if(comp!='Aprobado'){
+        alert(comp);
+      }else{
+        form.submit();
+      }
+    }
+  });
+}
+function validar() {
+  var p = document.getElementById("p").value
+  var p2 = document.getElementById("pr").value
+  var form = document.getElementById("regform")
+  var frm=$( "#regform" );
+  var datos = frm.serialize();
+  datos = datos.replace("%40", "@");
+  var ch = document.getElementById("acept_t_p")
+  if (p != p2){
+    alert("Las contraseñas son diferentes.")
+    return false
+  }else {
+    var nMay = 0, nMin = 0, nNum = 0
+    var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    var t2 = "abcdefghijklmnopqrstuvwxyz"
+    var t3 = "0123456789"
+    for (i=0;i<p.length;i++) {
+      if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
+      if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
+      if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
+    }
+    if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
+    {
+      if(ch.checked){
+        $.ajax({
+          url:'<?= base_url() ?>index.php/Welcome/reg',
+          type : 'POST',
+          data : datos,
+          success: function(comp){
+            alert(comp);
+            if(comp="Su registro se ha realizado con éxito.")
+            $('#Register').modal('hide');
           }
-        }
-        </script>
+        });
+      }else{
+        alert("Debe aceptar los Términos y Políticas");
+        return;
+      }
+    }
+    else
+    { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
+  }
+}
+</script>
 
 <body>
   <!-- Fixed navbar -->
@@ -127,10 +127,9 @@
               <h3>Compara Ahora</h3>
               <div class="row" id="personalloan_0_form">
                 <div class="step amount col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--MONTO------>
-                  <label class="fl_l_m_10"> Monto </label><div class="slider_cont">
-                    <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="minus_arrow">-</a>
+                  <label class="fl_l_m_10"> Monto </label>
+                  <div class="slider_cont">
                     <span id="demo" class="fl_l_m_15 amount_display">10,000 $</span>
-                    <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="plus_arrow">+</a>
                   </div>
                   <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
                   data-name="param_amount" data-display="amount_display" data-default-value="10000"
@@ -143,25 +142,23 @@
               </span>
             </div>
 
-            <div class="""slidecontainer" style="margin-top:20px" >
+            <div class="""slidecontainer" style="margin-top:10px" >
               <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             </div>
           </div><!--MONTO------>
           <script>
           var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value;
+          var output = document.getElementById("demo");
+          output.innerHTML = slider.value;
 
-  slider.oninput = function() {
-    output.innerHTML = this.value;
-  }
+          slider.oninput = function() {
+            output.innerHTML = this.value;
+          }
           </script>
           <div class="step stepPeriod col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--PLAZO------>
             <label class="fl_l_m_10">Plazo </label>
             <div class="slider_cont">
-              <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="minus_arrow">-</a>
               <span class="fl_l_m_15 period_display">1 Año</span>
-              <a href="https://financer.com/mx/prestamos/prestamos-personales/" class="plus_arrow">+</a>
             </div>
             <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
             data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
@@ -173,302 +170,351 @@
         </div><!--PLAZO------>
       </div>
     </div>
+
+      <div class="slider-form">
+        <div class="row" id="personalloan_0_form">
+          <div class="step amount col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--MONTO------>
+            <label class="fl_l_m_10"> Préstamo </label><div class="slider_cont">
+              <span id="demo" class="fl_l_m_15 amount_display">10,000 $</span>
+            </div>
+            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+            data-name="param_amount" data-display="amount_display" data-default-value="10000"
+            style="opacity: 1;">
+            <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+            style="width: 36.7347%;">
+          </div>
+          <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+          style="left: 36.7347%;">
+        </span>
+      </div>
+
+    </div><!--MONTO------>
+    <div class="step stepPeriod col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--PLAZO------>
+      <label class="fl_l_m_10">Interés </label>
+      <div class="slider_cont">
+        <span class="fl_l_m_15 period_display">1 Año</span>
+      </div>
+      <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+      data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
+      <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
+      </div>
+      <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
+      </span>
+    </div>
+    </div><!--PLAZO------>
+
+    <div class="step stepPeriod col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--PLAZO------>
+      <label class="fl_l_m_10">Total </label>
+      <div class="slider_cont">
+        <span class="fl_l_m_15 period_display">1 Año</span>
+      </div>
+      <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+      data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
+      <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
+      </div>
+      <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
+      </span>
+    </div>
+    </div><!--PLAZO------>
+    </div>
+    </div>
   </div>
+</div>
+</div>
+</div>
+<!-- row -->
+</div>
+<!-- container -->
+</div>
+<!-- headerwrap -->
+
+<div style="background: #56ab2f;color:white;padding-top: 7px;padding-bottom: 0px;" 	>
+  <div class="centered">
+    <p>Horario de atención telefónica 00:00 a 00:00 horas de Lunes a Viernes.</p>
+  </div>
+  <!-- row -->
+  <!-- container -->
+</div>
+
+
+<div class="container w">
+  <div class="row centered">
+    <br><br>
+    <div class="col-lg-4">
+      <i class="fa fa-heart"></i>
+      <h4>PASO 1</h4>
+      <p>
+        Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
+      </p>
+    </div>
+    <!-- col-lg-4 -->
+
+    <div class="col-lg-4">
+      <i class="fa fa-laptop"></i>
+      <h4>PASO 2</h4>
+
+      <p>
+        Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
+      </p>
+    </div>
+    <!-- col-lg-4 -->
+
+    <div class="col-lg-4">
+      <i class="fa fa-trophy"></i>
+      <h4>PASO 3</h4>
+
+      <p>
+        Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
+      </p>
+    </div>
+    <!-- col-lg-4 -->
+  </div>
+  <!-- row -->
+  <br>
+  <br>
+</div>
+<!-- container -->
+
+
+<div id="r">
+  <div class="container">
+    <div class="row centered">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h4>Requisitos para pedir un préstamo.</h4>
+        <p><i class="fa fa-check"></i>
+          &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
+          <i class="fa fa-check"></i>
+          &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
+          <i class="fa fa-check"></i>
+          &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
+          <i class="fa fa-check"></i>
+          &nbspDescripción del requisito, descripción del requisito, descripción del requisito.</p>
         </div>
       </div>
       <!-- row -->
     </div>
     <!-- container -->
   </div>
-  <!-- headerwrap -->
-
-  <div style="background: #56ab2f;color:white;padding-top: 7px;padding-bottom: 0px;" 	>
-    <div class="centered">
-      <p>Horario de atención telefónica 00:00 a 00:00 horas de Lunes a Viernes.</p>
-    </div>
-    <!-- row -->
-    <!-- container -->
-  </div>
-
-
-  <div class="container w">
-    <div class="row centered">
+  <!-- FEATURE SECTION -->
+  <div class="container wb">
+    <div class="row">
       <br><br>
-      <div class="col-lg-4">
-        <i class="fa fa-heart"></i>
-        <h4>PASO 1</h4>
-        <p>
-          Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
-        </p>
-      </div>
-      <!-- col-lg-4 -->
+      <div class="col-lg-5 col-lg-offset-1">
+        <h4>Servicios especializados</h4>
+        <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
+          when the brand can truly flex its muscles.</p>
+          <p><br/><br/></p>
+        </div>
+        <div class="col-lg-5">
+          <h4>Beneficios a cuenta habientes</h4>
+          <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
+            when the brand can truly flex its muscles.</p>
+            <p><br/><br/></p>
+          </div>
+          <div class="col-lg-10 col-lg-offset-1">
+            <h4>Preguntas frecuentes</h4>
+            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-      <div class="col-lg-4">
-        <i class="fa fa-laptop"></i>
-        <h4>PASO 2</h4>
+            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-        <p>
-          Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
-        </p>
-      </div>
-      <!-- col-lg-4 -->
+            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-      <div class="col-lg-4">
-        <i class="fa fa-trophy"></i>
-        <h4>PASO 3</h4>
+            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-        <p>
-          Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
-        </p>
-      </div>
-      <!-- col-lg-4 -->
-    </div>
-    <!-- row -->
-    <br>
-    <br>
-  </div>
-  <!-- container -->
+            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-
-  <div id="r">
-    <div class="container">
-      <div class="row centered">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h4>Requisitos para pedir un préstamo.</h4>
-          <p><i class="fa fa-check"></i>
-            &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
-            <i class="fa fa-check"></i>
-            &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
-            <i class="fa fa-check"></i>
-            &nbspDescripción del requisito, descripción del requisito, descripción del requisito.<br>
-            <i class="fa fa-check"></i>
-            &nbspDescripción del requisito, descripción del requisito, descripción del requisito.</p>
           </div>
         </div>
         <!-- row -->
       </div>
       <!-- container -->
-    </div>
-    <!-- FEATURE SECTION -->
-    <div class="container wb">
-      <div class="row">
-        <br><br>
-        <div class="col-lg-5 col-lg-offset-1">
-          <h4>Servicios especializados</h4>
-          <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
-            when the brand can truly flex its muscles.</p>
-            <p><br/><br/></p>
-          </div>
-          <div class="col-lg-5">
-            <h4>Beneficios a cuenta habientes</h4>
-            <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
-              when the brand can truly flex its muscles.</p>
-              <p><br/><br/></p>
+
+      <div id="dg">
+        <div class="container">
+          <div class="row centered">
+            <h4 style="color:white">Descarga nuestra aplicación</h4>
+            <p style="color:white">Disponible para iOS y Android solo para cuenta habientes digitales de microprestamos123.com</p>
+            <br>
+            <div class="col-lg-4">
+              <div class="tilt">
+                <a href="#"><img src="<?= base_url() ?>assets/css/img/p01.png" alt=""></a>
+              </div>
             </div>
-            <div class="col-lg-10 col-lg-offset-1">
-              <h4>Preguntas frecuentes</h4>
-              <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-              <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-              <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-              <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <div class="col-lg-4">
+              <div class="tilt">
+                <a href="#"><img src="<?= base_url() ?>assets/css/img/p03.png" alt=""></a>
+              </div>
+            </div>
 
-              <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-              <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
-
-              <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-              <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
-
-              <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-              <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
-
+            <div class="col-lg-4">
+              <div class="tilt">
+                <a href="#"><img src="<?= base_url() ?>assets/css/img/p02.png" alt=""></a>
+              </div>
             </div>
           </div>
           <!-- row -->
         </div>
         <!-- container -->
+      </div>
+      <!-- DG -->
 
-        <div id="dg">
-          <div class="container">
-            <div class="row centered">
-              <h4 style="color:white">Descarga nuestra aplicación</h4>
-              <p style="color:white">Disponible para iOS y Android solo para cuenta habientes digitales de microprestamos123.com</p>
-              <br>
-              <div class="col-lg-4">
-                <div class="tilt">
-                  <a href="#"><img src="<?= base_url() ?>assets/css/img/p01.png" alt=""></a>
-                </div>
-              </div>
+      <div id="lg">
+        <div class="container">
+          <div class="row centered">
+            <div class="col-lg-3 col-lg-offset-3">
+              <img src="<?= base_url() ?>assets/css/img/logo_circulo.png" alt="">
+            </div>
+            <div class="col-lg-3">
+              <img src="<?= base_url() ?>assets/css/img/logo_buro.png" alt="">
+            </div>
+          </div>
+          <!-- row -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- dg -->
 
-              <div class="col-lg-4">
-                <div class="tilt">
-                  <a href="#"><img src="<?= base_url() ?>assets/css/img/p03.png" alt=""></a>
-                </div>
-              </div>
+      <!-- PORTFOLIO SECTION -->
 
-              <div class="col-lg-4">
-                <div class="tilt">
-                  <a href="#"><img src="<?= base_url() ?>assets/css/img/p02.png" alt=""></a>
-                </div>
+      <!-- FOOTER -->
+      <div id="f">
+        <div class="container">
+          <div class="row centered">
+            <a onclick="window.open('https://www.youtube.com/channel/UCyoo7W_cJYXIUKF1gPj5Ajw','_blank');"><i class="fa fa-youtube"></i></a>
+            <a onclick="window.open('https://www.instagram.com/microprestamos123/?hl=es-la','_blank');"><i class="fa fa-instagram"></i></a>
+            <a onclick="window.open('https://www.facebook.com/microprestamo123/?modal=admin_todo_tour','_blank');"><i class="fa fa-facebook"></i></a>
+          </div>
+          <!-- row -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- Footer -->
+
+      <!-- MODAL FOR CONTACT -->
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel" style="color:white">Inicia Sesión</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row centered">
+
+                <form id="form-sign" class="contact-form php-mail-form" action="<?= base_url() ?>index.php/Welcome/entrar" method="POST">
+
+                  <div class="form-group">
+                    <label for="contact-email">Correo electrónico</label>
+                    <input type="email" name="em" class="form-control" id="em" placeholder="" data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-subject">Contraseña</label>
+                    <input type="password" name="pw" class="form-control" id="pw" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                    <div class="validate"></div>
+                  </div>
+
+                  <div class="loading"></div>
+                  <div class="error-message">La información es incorrecta</div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <div class="form-send">
+                    <button onclick="confirm()"  type="button" class="btn btn-large">Entrar</button>
+                  </div>
+
+                </form>
               </div>
             </div>
-            <!-- row -->
           </div>
-          <!-- container -->
+          <!-- /.modal-content -->
         </div>
-        <!-- DG -->
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- REGISTER FOR CONTACT -->
+      <!-- Register -->
+      <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel" style="color:white">¡Regístrate!</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row centered">
 
-        <div id="lg">
-          <div class="container">
-            <div class="row centered">
-              <div class="col-lg-3 col-lg-offset-3">
-                <img src="<?= base_url() ?>assets/css/img/logo_circulo.png" alt="">
-              </div>
-              <div class="col-lg-3">
-                <img src="<?= base_url() ?>assets/css/img/logo_buro.png" alt="">
+                <form id="regform" class="contact-form php-mail-form" method="POST">
+
+                  <div class="form-group">
+                    <label for="contact-email">Nombre</label>
+                    <input type="text" name="n" id="n" class="form-control" >
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-subject">CURP</label>
+                    <input type="text" name="c" id="c"
+                    pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$"
+                    class="form-control" >
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Correo electrónico</label>
+                    <input type="email" name="email" id="email" class="form-control" >
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-subject">Contraseña</label>
+                    <input type="password" name="p" id="p" class="form-control" >
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-subject">Contraseña</label>
+                    <input type="password" name="pr" id="pr" class="form-control" >
+                    <div class="validate"></div>
+                  </div>
+                  <div class="input-group" style="display: flex;justify-content: center;">
+                    <input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1">
+                    <label for="checkbox">Acepto<a href="#">Términos de servicio</a> y <a href="#">Políticas de privacidad</a></label>
+                  </div>
+
+                  <div class="loading"></div>
+                  <div class="error-message">La información es incorrecta.</div>
+                  <div class="sent-message">Entrando</div>
+
+                  <div class="form-send">
+                    <button onclick="validar()"  type="button" class="btn btn-success">Enviar</button>
+                  </div>
+
+                </form>
               </div>
             </div>
-            <!-- row -->
           </div>
-          <!-- container -->
+          <!-- /.Register-content -->
         </div>
-        <!-- dg -->
+        <!-- /.Register-dialog -->
+      </div>
+      <!-- /.Register -->
 
-        <!-- PORTFOLIO SECTION -->
-
-        <!-- FOOTER -->
-        <div id="f">
-          <div class="container">
-            <div class="row centered">
-              <a onclick="window.open('https://www.youtube.com/channel/UCyoo7W_cJYXIUKF1gPj5Ajw','_blank');"><i class="fa fa-youtube"></i></a>
-              <a onclick="window.open('https://www.instagram.com/microprestamos123/?hl=es-la','_blank');"><i class="fa fa-instagram"></i></a>
-              <a onclick="window.open('https://www.facebook.com/microprestamo123/?modal=admin_todo_tour','_blank');"><i class="fa fa-facebook"></i></a>
-            </div>
-            <!-- row -->
+      <div id="copyrights">
+        <div class="container">
+          <div class="credits">
+            Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
+            Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
+            Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
+            Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
+            Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
           </div>
-          <!-- container -->
+          <p><br>
+            &copy; Copyrights <strong>Microprestamos123</strong>. Todos los derechos reservados.
+          </p>
         </div>
-        <!-- Footer -->
-
-        <!-- MODAL FOR CONTACT -->
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel" style="color:white">Inicia Sesión</h4>
-              </div>
-              <div class="modal-body">
-                <div class="row centered">
-
-                  <form id="form-sign" class="contact-form php-mail-form" action="<?= base_url() ?>index.php/Welcome/entrar" method="POST">
-
-                    <div class="form-group">
-                      <label for="contact-email">Correo electrónico</label>
-                      <input type="email" name="em" class="form-control" id="em" placeholder="" data-rule="email" data-msg="Please enter a valid email">
-                      <div class="validate"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="contact-subject">Contraseña</label>
-                      <input type="password" name="pw" class="form-control" id="pw" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
-                      <div class="validate"></div>
-                    </div>
-
-                    <div class="loading"></div>
-                    <div class="error-message">La información es incorrecta</div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                    <div class="form-send">
-                      <button onclick="confirm()"  type="button" class="btn btn-large">Entrar</button>
-                    </div>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-        <!-- REGISTER FOR CONTACT -->
-        <!-- Register -->
-        <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" style="color:white" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel" style="color:white">¡Regístrate!</h4>
-              </div>
-              <div class="modal-body">
-                <div class="row centered">
-
-                  <form id="regform" class="contact-form php-mail-form" method="POST">
-
-                    <div class="form-group">
-                      <label for="contact-email">Nombre</label>
-                      <input type="text" name="n" id="n" class="form-control" >
-                      <div class="validate"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="contact-subject">CURP</label>
-                      <input type="text" name="c" id="c"
-                      pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$"
-                      class="form-control" >
-                      <div class="validate"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="contact-email">Correo electrónico</label>
-                      <input type="email" name="email" id="email" class="form-control" >
-                      <div class="validate"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="contact-subject">Contraseña</label>
-                      <input type="password" name="p" id="p" class="form-control" >
-                      <div class="validate"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="contact-subject">Contraseña</label>
-                      <input type="password" name="pr" id="pr" class="form-control" >
-                      <div class="validate"></div>
-                    </div>
-                    <div class="input-group" style="display: flex;justify-content: center;">
-                      <input id="acept_t_p" type="checkbox" required name="acept_t_p" value="1">
-                      <label for="checkbox">Acepto<a href="#">Términos de servicio</a> y <a href="#">Políticas de privacidad</a></label>
-                    </div>
-
-                    <div class="loading"></div>
-                    <div class="error-message">La información es incorrecta.</div>
-                    <div class="sent-message">Entrando</div>
-
-                    <div class="form-send">
-                      <button onclick="validar()"  type="button" class="btn btn-success">Enviar</button>
-                    </div>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- /.Register-content -->
-          </div>
-          <!-- /.Register-dialog -->
-        </div>
-        <!-- /.Register -->
-
-        <div id="copyrights">
-          <div class="container">
-            <div class="credits">
-              Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
-              Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
-              Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
-              Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
-              Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
-            </div>
-            <p><br>
-              &copy; Copyrights <strong>Microprestamos123</strong>. Todos los derechos reservados.
-            </p>
-          </div>
-        </div>
-      </body>
-      </html>
+      </div>
+    </body>
+    </html>
