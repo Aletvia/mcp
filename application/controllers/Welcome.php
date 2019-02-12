@@ -37,8 +37,9 @@ class Welcome extends CI_Controller {
 			if($count==0){
 				$dat['correo'] = $correo;
 				$dat['tipo'] = "Cliente";
-				$dat['status'] = "activo";
-				$dat['nombre_completo'] = $this->input->post('n');
+				$dat['status'] = "inactivo";
+				$nombre=$this->input->post('n');
+				$dat['nombre_completo'] = $nombre;
 				$dat['fecha_registro'] = date("Y-m-d");
 				$pass = $this->input->post('p');
 				$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
@@ -50,6 +51,39 @@ class Welcome extends CI_Controller {
 				$id= $this->db->insert_id();
 				$dato['usuarios_id_usuarios'] = $id;
 				$this->consultas_model->insert_r('clientes',$dato);
+
+
+				//Enviar mensaje
+				$this->load->library('email');
+				$this->email->from('junkokimiko@gmail.com','Microprestamos123');
+				$this->email->to($correo);
+				$this->email->cc('aletvialecona@gmail.com');
+				//$this->email->bcc('aletvialecona@gmail.com');
+				$this->email->set_mailtype("html");
+				$this->email->subject('Validación de correo para Microprestamos123');
+				$this->email->message('<table style="height: 154px; width: 100%;">
+				<tbody>
+				<tr style="height: 43px;">
+				<td style="width: 72px; height: 43px;">&nbsp;</td>
+				<td style="width: 440px; height: 43px;"><a title="Microprestamos123" href="https://microprestamos123.com" target="_blank" rel="noopener"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://microprestamos123.com/assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="182" height="37" /></a></td>
+				<td style="width: 68px; height: 43px;">&nbsp;</td>
+				</tr>
+				<tr style="height: 64px;">
+				<td style="width: 72px; height: 64px;">&nbsp;</td>
+				<td style="width: 440px; height: 64px;">
+				<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola $nombre</span>:</h2>
+				<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
+				<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c="$correo target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
+				</td>
+				<td style="width: 68px; height: 64px;">&nbsp;</td>
+				</tr>
+				</tbody>
+				</table>');
+
+				if($this->email->send())
+				$mj="Email sent successfully.";
+				else
+				$mj="Error in sending Email.";
 				$data['mj'] = "Su registro se ha realizado con éxito.";
 			}else{
 				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
@@ -74,7 +108,8 @@ class Welcome extends CI_Controller {
 				$dat['correo'] = $correo;
 				$dat['tipo'] = "Cliente";
 				$dat['status'] = "inactivo";
-				$dat['nombre_completo'] = $this->input->post('n');
+				$nombre=$this->input->post('n');
+				$dat['nombre_completo'] = $nombre;
 				$dat['fecha_registro'] = date("Y-m-d");
 				$pass = $this->input->post('p');
 				$dat['contrasenia'] = openssl_encrypt($pass,'AES-128-ECB',$this->keycrypt);
@@ -104,9 +139,9 @@ class Welcome extends CI_Controller {
 				<tr style="height: 64px;">
 				<td style="width: 72px; height: 64px;">&nbsp;</td>
 				<td style="width: 440px; height: 64px;">
-				<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola Aletvia</span>:</h2>
+				<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola $nombre</span>:</h2>
 				<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
-				<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c=" target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
+				<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c="$correo target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
 				</td>
 				<td style="width: 68px; height: 64px;">&nbsp;</td>
 				</tr>

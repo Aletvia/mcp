@@ -26,72 +26,6 @@
 <script src="<?= base_url() ?>assets/php-mail-form/validate.js"></script>
 <script src="<?= base_url() ?>assets/chart/chart.js"></script>
 <script src="<?= base_url() ?>assets/js/main.js"></script>
-<script>
-function confirm(){
-  var p = document.getElementById("em").value
-  var p2 = document.getElementById("pw").value
-  var form = document.getElementById("form-sign")
-  var frm=$( "#form-sign" );
-  var datos = frm.serialize();
-  datos = datos.replace("%40", "@");
-  $.ajax({
-    url:'<?= base_url() ?>index.php/Welcome/enviar',
-    type : 'POST',
-    data : datos,
-    success: function(comp){
-      console.log("1");
-      if(comp!='Aprobado'){
-        alert(comp);
-      }else{
-        form.submit();
-      }
-    }
-  });
-}
-function validar() {
-  var p = document.getElementById("p").value
-  var p2 = document.getElementById("pr").value
-  var form = document.getElementById("regform")
-  var frm=$( "#regform" );
-  var datos = frm.serialize();
-  datos = datos.replace("%40", "@");
-  var ch = document.getElementById("acept_t_p")
-  if (p != p2){
-    alert("Las contraseñas son diferentes.")
-    return false
-  }else {
-    var nMay = 0, nMin = 0, nNum = 0
-    var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    var t2 = "abcdefghijklmnopqrstuvwxyz"
-    var t3 = "0123456789"
-    for (i=0;i<p.length;i++) {
-      if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
-      if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
-      if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
-    }
-    if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
-    {
-      if(ch.checked){
-        $.ajax({
-          url:'<?= base_url() ?>index.php/Welcome/reg',
-          type : 'POST',
-          data : datos,
-          success: function(comp){
-            alert(comp);
-            if(comp="Su registro se ha realizado con éxito.")
-            $('#Register').modal('hide');
-          }
-        });
-      }else{
-        alert("Debe aceptar los Términos y Políticas");
-        return;
-      }
-    }
-    else
-    { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
-  }
-}
-</script>
 
 <body>
   <!-- Fixed navbar -->
@@ -121,110 +55,89 @@ function validar() {
   <div id="headerwrap">
     <div class="container">
       <div class="row centered">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-6 " style="margin-top:35px" >
           <div class="fl_l w_70 slider_personalloan">
             <div class="slider-form">
-              <h3>Compara Ahora</h3>
+              <h3>Solicita tu préstamo</h3>
               <div class="row" id="personalloan_0_form">
                 <div class="step amount col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--MONTO------>
                   <label class="fl_l_m_10"> Monto </label>
                   <div class="slider_cont">
-                    <span id="demo" class="fl_l_m_15 amount_display">10,000 $</span>
+                    <span id="txt_monto" class="fl_l_m_16 amount_display">10000 $</span>
                   </div>
-                  <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                  data-name="param_amount" data-display="amount_display" data-default-value="10000"
-                  style="opacity: 1;">
-                  <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                  style="width: 36.7347%;">
-                </div>
-                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
-                style="left: 36.7347%;">
-              </span>
+                  <div class="""slidecontainer" style="margin-top:10px" >
+                    <input type="range" min="1000" max="2000" value="1500" class="slider" id="monto">
+                  </div>
+                </div><!--MONTO------>
+                <div class="step stepPeriod col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--PLAZO------>
+                  <label class="fl_l_m_10">Plazo </label>
+                  <div class="slider_cont">
+                    <span id="txt_tiempo" class="fl_l_m_16 period_display">15 días</span>
+                  </div>
+                  <div class="""slidecontainer" style="margin-top:10px" >
+                    <input type="range" min="1" max="30" value="15" class="slider" id="tiempo">
+                  </div>
+                </div><!--PLAZO------>
+              </div>
             </div>
-
-            <div class="""slidecontainer" style="margin-top:10px" >
-              <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            </div>
-          </div><!--MONTO------>
-          <script>
-          var slider = document.getElementById("myRange");
-          var output = document.getElementById("demo");
-          output.innerHTML = slider.value;
-
-          slider.oninput = function() {
-            output.innerHTML = this.value;
-          }
-          </script>
-          <div class="step stepPeriod col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--PLAZO------>
-            <label class="fl_l_m_10">Plazo </label>
-            <div class="slider_cont">
-              <span class="fl_l_m_15 period_display">1 Año</span>
-            </div>
-            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-            data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
-            <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
-            </div>
-            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
-            </span>
-          </div>
-        </div><!--PLAZO------>
+            <!---CALCULOS------>
+            <div class="slider-form " style="margin-top:30px" >
+              <div class="row centered" id="personalloan_0_form">
+                <div class=" col-lg-3 col-md-3 col-sm-12 col-xs-12"><!--MONTO------>
+                  <div class="fl_l_m_15">
+                    <label class="fl_l_m_10"> Préstamo </label>
+                    <div class="slider_cont">
+                      <span id="txt_prestamo" class=" amount_display">$10000.00</span>
+                    </div>
+                  </div>
+                </div><!--MONTO------>
+                <div class=" col-lg-1 col-md-1 col-sm-12 col-xs-12"><!--+------>
+                  <div class="fl_l_m_14">
+                    <label class="fl_l_m_10">&nbsp</label>
+                    <div class="slider_cont">
+                      <span id="txt_prestamo" class=" amount_display"><b>+</b></span>
+                    </div>
+                  </div>
+                </div><!--+------>
+                <div class=" col-lg-3 col-md-3 col-sm-12 col-xs-12"><!--PLAZO------>
+                  <div class="fl_l_m_15">
+                    <label class="fl_l_m_10">Interés </label>
+                    <div class="slider_cont">
+                      <span id="txt_interes" class=" period_display">$207.08</span>
+                    </div>
+                  </div>
+                </div><!--PLAZO------>
+                <div class=" col-lg-1 col-md-1 col-sm-12 col-xs-12"><!--=------>
+                  <div class="fl_l_m_14">
+                    <label class="fl_l_m_10">&nbsp</label>
+                    <div class="slider_cont">
+                      <span id="txt_prestamo" class=" amount_display"><b>=</b></span>
+                    </div>
+                  </div>
+                </div><!--=------>
+                <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--PLAZO------>
+                  <div class="fl_l_m_15">
+                    <label class="fl_l_m_10">Total </label>
+                    <div class="slider_cont">
+                      <span id="txt_total" class=" period_display">$1207.08</span>
+                    </div>
+                  </div>
+                </div><!--PLAZO------>
+              </div><!--ROW----->
+              <div class="row" style="margin-top:30px" >
+                <button onclick="enviar_solicitud()" class="btn btn-success d-inline float-right" style="color:white;font-weight:bold">&nbsp&nbsp&nbspENVÍA TU SOLICITUD&nbsp&nbsp&nbsp</button>
+              </div>
+              <div class="row" style="margin-top:20px" >
+                <span id="txt_total" class=" period_display">Tasa fija anual: <b>428.4%</b></span>
+              </div>
+            </div><!--slider-form-->
+          </div><!--slider_personalloan------->
+        </div><!--col-lg-6 --------->
       </div>
     </div>
-
-      <div class="slider-form">
-        <div class="row" id="personalloan_0_form">
-          <div class="step amount col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--MONTO------>
-            <label class="fl_l_m_10"> Préstamo </label><div class="slider_cont">
-              <span id="demo" class="fl_l_m_15 amount_display">10,000 $</span>
-            </div>
-            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-            data-name="param_amount" data-display="amount_display" data-default-value="10000"
-            style="opacity: 1;">
-            <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-            style="width: 36.7347%;">
-          </div>
-          <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
-          style="left: 36.7347%;">
-        </span>
-      </div>
-
-    </div><!--MONTO------>
-    <div class="step stepPeriod col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--PLAZO------>
-      <label class="fl_l_m_10">Interés </label>
-      <div class="slider_cont">
-        <span class="fl_l_m_15 period_display">1 Año</span>
-      </div>
-      <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-      data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
-      <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
-      </div>
-      <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
-      </span>
-    </div>
-    </div><!--PLAZO------>
-
-    <div class="step stepPeriod col-lg-4 col-md-4 col-sm-12 col-xs-12"><!--PLAZO------>
-      <label class="fl_l_m_10">Total </label>
-      <div class="slider_cont">
-        <span class="fl_l_m_15 period_display">1 Año</span>
-      </div>
-      <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-      data-name="param_period" data-display="period_display" data-default-value="360" style="opacity: 1;">
-      <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 50%;">
-      </div>
-      <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;">
-      </span>
-    </div>
-    </div><!--PLAZO------>
-    </div>
-    </div>
+    <!-- row -->
   </div>
-</div>
-</div>
-</div>
-<!-- row -->
-</div>
-<!-- container -->
+  <!-- container -->
 </div>
 <!-- headerwrap -->
 
@@ -243,7 +156,7 @@ function validar() {
     <div class="col-lg-4">
       <i class="fa fa-heart"></i>
       <h4>PASO 1</h4>
-      <p>
+      <p class="j">
         Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
       </p>
     </div>
@@ -252,8 +165,7 @@ function validar() {
     <div class="col-lg-4">
       <i class="fa fa-laptop"></i>
       <h4>PASO 2</h4>
-
-      <p>
+      <p class="j">
         Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
       </p>
     </div>
@@ -262,8 +174,7 @@ function validar() {
     <div class="col-lg-4">
       <i class="fa fa-trophy"></i>
       <h4>PASO 3</h4>
-
-      <p>
+      <p class="j">
         Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.Descripción breve del paso.
       </p>
     </div>
@@ -301,32 +212,32 @@ function validar() {
       <br><br>
       <div class="col-lg-5 col-lg-offset-1">
         <h4>Servicios especializados</h4>
-        <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
+        <p class="j">By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
           when the brand can truly flex its muscles.</p>
           <p><br/><br/></p>
         </div>
         <div class="col-lg-5">
           <h4>Beneficios a cuenta habientes</h4>
-          <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
+          <p class="j">By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
             when the brand can truly flex its muscles.</p>
             <p><br/><br/></p>
           </div>
           <div class="col-lg-10 col-lg-offset-1">
             <h4>Preguntas frecuentes</h4>
-            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <h4 class="j">Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p class="j">Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <h4 class="j">Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p class="j">Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <h4 class="j">Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p class="j">Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <h4 class="j">Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p class="j">Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
-            <h4>Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
-            <p>Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
+            <h4 class="j">Redacción de pregunta, redacción de pregunta, redacción de pregunta, redacción de pregunta.</h4>
+            <p class="j">Respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta, respuesta a pregunta.</p>
 
           </div>
         </div>
@@ -504,7 +415,7 @@ function validar() {
 
       <div id="copyrights">
         <div class="container">
-          <div class="credits">
+          <div class="credits j">
             Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
             Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
             Leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal, leyenda legal.
@@ -516,5 +427,122 @@ function validar() {
           </p>
         </div>
       </div>
+
+      <form id="act" method="post">
+        <input value=""  id="interes" name="interes" type="hidden" >
+        <input value="1"  id="time" name="time" type="hidden" >
+        <input value="1500"  id="rode" name="rode" type="hidden" >
+      </form>
+      <script>
+      var i = document.getElementById("interes");
+      var t = document.getElementById("time");
+      var r = document.getElementById("rode");
+      var slider = document.getElementById("monto");
+      var output = document.getElementById("txt_monto");
+      var i1 = document.getElementById("txt_interes");
+      var tt = document.getElementById("txt_total");
+      var output_p = document.getElementById("txt_prestamo");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function() {
+        r.value=  this.value;
+        output.innerHTML = "$"+this.value+".00";
+        output_p.innerHTML = "$"+this.value+".00";
+        calc();
+      }
+      var slider_t = document.getElementById("tiempo");
+      var output_t = document.getElementById("txt_tiempo");
+      output.innerHTML = slider.value;
+
+      slider_t.oninput = function() {
+        t.value= this.value;
+        output_t.innerHTML = this.value+" días";
+        calc();
+      }
+
+      function calc() {
+        $.ajax({
+          url:'<?= base_url() ?>index.php/Welcome/int',
+          type : 'POST',
+          data : { 'r' : r.value,'tm':t.value },
+          success: function(rres){
+            var arr = rres.split(",");
+            i1.innerHTML="$"+arr[0];
+            i.value="$"+arr[0];
+            tt.innerHTML="$"+arr[1];
+          }
+        });
+      }
+      function enviar_solicitud() {
+        var form = document.getElementById("act");
+        form.action = "<?= base_url() ?>index.php/Welcome/enviar_solicitud"
+        form.submit()
+      }
+      function confirm(){
+        var p = document.getElementById("em").value
+        var p2 = document.getElementById("pw").value
+        var form = document.getElementById("form-sign")
+        var frm=$( "#form-sign" );
+        var datos = frm.serialize();
+        datos = datos.replace("%40", "@");
+        $.ajax({
+          url:'<?= base_url() ?>index.php/Welcome/enviar',
+          type : 'POST',
+          data : datos,
+          success: function(comp){
+            console.log("1");
+            if(comp!='Aprobado'){
+              alert(comp);
+            }else{
+              form.submit();
+            }
+          }
+        });
+      }
+      function validar() {
+        var p = document.getElementById("p").value
+        var p2 = document.getElementById("pr").value
+        var form = document.getElementById("regform")
+        var frm=$( "#regform" );
+        var datos = frm.serialize();
+        datos = datos.replace("%40", "@");
+        var ch = document.getElementById("acept_t_p")
+        if (p != p2){
+          alert("Las contraseñas son diferentes.")
+          return false
+        }else {
+          var nMay = 0, nMin = 0, nNum = 0
+          var t1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+          var t2 = "abcdefghijklmnopqrstuvwxyz"
+          var t3 = "0123456789"
+          for (i=0;i<p.length;i++) {
+            if ( t1.indexOf(p.charAt(i)) != -1 ) {nMay++}
+            if ( t2.indexOf(p.charAt(i)) != -1 ) {nMin++}
+            if ( t3.indexOf(p.charAt(i)) != -1 ) {nNum++}
+          }
+          if ( nMay>0 && nMin>0 && nNum>0 && p.length>7)
+          {
+            if(ch.checked){
+              $.ajax({
+                url:'<?= base_url() ?>index.php/Welcome/reg',
+                type : 'POST',
+                data : datos,
+                success: function(comp){
+                  alert(comp);
+                  if(comp="Su registro se ha realizado con éxito.")
+                  $('#Register').modal('hide');
+                }
+              });
+            }else{
+              alert("Debe aceptar los Términos y Políticas");
+              return;
+            }
+          }
+          else
+          { alert("Su password debe contener minimo 8 caracteres con mayúsculas, minúscula y números."); form.p.focus(); return; }
+        }
+      }
+      </script>
+
     </body>
     </html>
