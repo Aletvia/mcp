@@ -294,4 +294,16 @@ class Welcome extends CI_Controller {
 		header('Content-Type: application/x-json; charset=utf-8');
 		echo(json_encode($data['mj']));
 	}
+	public function informacion_solicitud()
+	{
+		$id=$this->input->post('us');
+		$data['rode']=$this->input->post('rode');
+		$data['interes']=$this->input->post('interes');
+		$data['time']=$this->input->post('time');
+			$data['cli'] = $this->consultas_model->get_c($id);
+			$data['estados'] = $this->consultas_model->get_e();
+			$data['municipios'] = $this->consultas_model->get_m($data['cli'][0]->id_estado);
+			$this->load->view('cliente/header');
+			$this->load->view('cliente/agregar_solicitud_inicio',$data);
+	}
 }

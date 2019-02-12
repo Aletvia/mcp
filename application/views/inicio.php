@@ -428,11 +428,13 @@
         </div>
       </div>
 
-      <form id="act" method="post">
-        <input value=""  id="interes" name="interes" type="hidden" >
-        <input value="1"  id="time" name="time" type="hidden" >
+      <form id="act" action="<?= base_url() ?>index.php/Welcome/informacion_solicitud" method="post">
+        <input value="207.08"  id="interes" name="interes" type="hidden" >
+        <input value="15"  id="time" name="time" type="hidden" >
         <input value="1500"  id="rode" name="rode" type="hidden" >
+        <input value=""  id="us" name="us" type="hidden" >
       </form>
+        <input value=""  id="sol" name="sol" type="hidden" >
       <script>
       var i = document.getElementById("interes");
       var t = document.getElementById("time");
@@ -468,15 +470,14 @@
           success: function(rres){
             var arr = rres.split(",");
             i1.innerHTML="$"+arr[0];
-            i.value="$"+arr[0];
+            i.value=arr[0];
             tt.innerHTML="$"+arr[1];
           }
         });
       }
       function enviar_solicitud() {
-        var form = document.getElementById("act");
-        form.action = "<?= base_url() ?>index.php/Welcome/enviar_solicitud"
-        form.submit()
+        document.getElementById("sol").value=1;
+        $('#Register').modal('show');
       }
       function confirm(){
         var p = document.getElementById("em").value
@@ -494,7 +495,12 @@
             if(comp!='Aprobado'){
               alert(comp);
             }else{
-              form.submit();
+              if(document.getElementById("sol").value==1)
+              {
+                //terminar solicitud
+              }else{
+                form.submit();
+              }
             }
           }
         });
@@ -528,9 +534,15 @@
                 type : 'POST',
                 data : datos,
                 success: function(comp){
-                  alert(comp);
-                  if(comp="Su registro se ha realizado con éxito.")
-                  $('#Register').modal('hide');
+
+                    if(document.getElementById("sol").value==1)
+                    {
+                      //terminar solicitud
+                    }else{
+                      alert(comp);
+                      if(comp="Su registro se ha realizado con éxito.")
+                      $('#Register').modal('hide');
+                    }
                 }
               });
             }else{
