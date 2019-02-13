@@ -401,8 +401,9 @@
 
                   <div class="form-send">
                     <button onclick="validar()"  type="button" class="btn btn-success">Enviar</button>
+                    <br>
+                    <b style="font-size: 15px;">¿Ya tienes una cuenta?<button type="button" class="btn btn-link" onclick="cambiar()">Inicia sesión</button></b>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -444,6 +445,7 @@
       var i1 = document.getElementById("txt_interes");
       var tt = document.getElementById("txt_total");
       var output_p = document.getElementById("txt_prestamo");
+      var form1 = document.getElementById("act")
       output.innerHTML = slider.value;
 
       slider.oninput = function() {
@@ -475,6 +477,10 @@
           }
         });
       }
+      function cambiar() {
+        $('#Register').modal('hide');
+        $('#myModal').modal('show');
+      }
       function enviar_solicitud() {
         document.getElementById("sol").value=1;
         $('#Register').modal('show');
@@ -491,13 +497,14 @@
           type : 'POST',
           data : datos,
           success: function(comp){
-            console.log("1");
+            var arr = comp.split(",");
             if(comp!='Aprobado'){
-              alert(comp);
+              alert(arr[0]);
             }else{
               if(document.getElementById("sol").value==1)
               {
                 //terminar solicitud
+                form.submit();
               }else{
                 form.submit();
               }
@@ -534,12 +541,13 @@
                 type : 'POST',
                 data : datos,
                 success: function(comp){
-
+                  var arr = comp.split(",");
                     if(document.getElementById("sol").value==1)
                     {
                       //terminar solicitud
+                      form.submit();
                     }else{
-                      alert(comp);
+                      alert(arr[0]);
                       if(comp="Su registro se ha realizado con éxito.")
                       $('#Register').modal('hide');
                     }

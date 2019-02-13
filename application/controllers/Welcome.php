@@ -152,7 +152,7 @@ class Welcome extends CI_Controller {
 				$mj="Email sent successfully.";
 				else
 				$mj="Error in sending Email.";
-				$data['mj'] = "Su registro se ha realizado con éxito.";
+				$data['mj'] = "Su registro se ha realizado con éxito.,".$id;
 
 			}else{
 				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
@@ -288,7 +288,7 @@ class Welcome extends CI_Controller {
 			//$this->session->set_userdata($datos);
 			$data['mj'] ="Aprobado";
 		}else{
-			$data['mj'] ="Los datos ingresados son incorrectos. ";
+			$data['mj'] ="Los datos ingresados son incorrectos. ,".$data['usr'][0]->id_usuarios;
 			//redirect('Welcome/inicio',$data);
 		}
 		header('Content-Type: application/x-json; charset=utf-8');
