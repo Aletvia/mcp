@@ -120,39 +120,41 @@ class Welcome extends CI_Controller {
 				$dato['usuarios_id_usuarios'] = $id;
 				$dato['municipios_id_municipio'] = 1;
 				$this->consultas_model->insert_r('clientes',$dato);
-
-				//Enviar mensaje
-				$this->load->library('email');
-				$this->email->from('junkokimiko@gmail.com','Microprestamos123');
-				$this->email->to($correo);
-				$this->email->cc('aletvialecona@gmail.com');
-				//$this->email->bcc('aletvialecona@gmail.com');
-				$this->email->set_mailtype("html");
-				$this->email->subject('Validación de correo para Microprestamos123');
-				$this->email->message('<table style="height: 154px; width: 100%;">
-				<tbody>
-				<tr style="height: 43px;">
-				<td style="width: 72px; height: 43px;">&nbsp;</td>
-				<td style="width: 440px; height: 43px;"><a title="Microprestamos123" href="https://microprestamos123.com" target="_blank" rel="noopener"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://microprestamos123.com/assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="182" height="37" /></a></td>
-				<td style="width: 68px; height: 43px;">&nbsp;</td>
-				</tr>
-				<tr style="height: 64px;">
-				<td style="width: 72px; height: 64px;">&nbsp;</td>
-				<td style="width: 440px; height: 64px;">
-				<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola $nombre</span>:</h2>
-				<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
-				<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c="$correo target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
-				</td>
-				<td style="width: 68px; height: 64px;">&nbsp;</td>
-				</tr>
-				</tbody>
-				</table>');
-
-				if($this->email->send())
-				$mj="Email sent successfully.";
-				else
-				$mj="Error in sending Email.";
 				$data['mj'] = "Su registro se ha realizado con éxito.,".$id;
+				if(strpos(base_url(), 'localhost') !== false){
+					echo "correo";
+					//Enviar mensaje
+					$this->load->library('email');
+					$this->email->from('junkokimiko@gmail.com','Microprestamos123');
+					$this->email->to($correo);
+					$this->email->cc('aletvialecona@gmail.com');
+					//$this->email->bcc('aletvialecona@gmail.com');
+					$this->email->set_mailtype("html");
+					$this->email->subject('Validación de correo para Microprestamos123');
+					$this->email->message('<table style="height: 154px; width: 100%;">
+					<tbody>
+					<tr style="height: 43px;">
+					<td style="width: 72px; height: 43px;">&nbsp;</td>
+					<td style="width: 440px; height: 43px;"><a title="Microprestamos123" href="https://microprestamos123.com" target="_blank" rel="noopener"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://microprestamos123.com/assets/css/img/apple-touch-icon.png" alt="Microprestamos123" width="182" height="37" /></a></td>
+					<td style="width: 68px; height: 43px;">&nbsp;</td>
+					</tr>
+					<tr style="height: 64px;">
+					<td style="width: 72px; height: 64px;">&nbsp;</td>
+					<td style="width: 440px; height: 64px;">
+					<h2 style="color: #2e6c80;"><span style="color: #008000;">Hola $nombre</span>:</h2>
+					<p>Necesitamos validar tu correo, para hacerlo debes dar clic en en siguiente bot&oacute;n.&nbsp;</p>
+					<p style="text-align: center;"><a href="https://microprestamos123.com/index.php/Welcome/validar_correo?c="$correo target="_blank" rel="noopener"><span style="background-color: #008000; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">Validar correo</span></a></p>
+					</td>
+					<td style="width: 68px; height: 64px;">&nbsp;</td>
+					</tr>
+					</tbody>
+					</table>');
+
+					if($this->email->send())
+					$mj="Email sent successfully.";
+					else
+					$mj="Error in sending Email.";
+				}
 
 			}else{
 				$data['mj'] ="Ya contamos con un registro con el correo ingresado. ";
@@ -214,12 +216,12 @@ class Welcome extends CI_Controller {
 	public function validar_correo()
 	{
 		$correo=$this->input->get('c');
-		$count = $this->consultas_model->consulta_count_where("usuarios",$correo,"correo");
-		if($count==0){
-			$data['mj'] = "Aprobado";
-		}else{
+		$data['usr'] = $this->consultas_model->consulta_get_where("usuarios",$correo,"correo");
+		$c = count($data['usr']);
+		if($c==1){
 			$dat['status'] = "activo";
-			$this->consultas_model->update_r('usuarios',$count->id_usuarios,$dat,'id_usuarios');
+			$dat['nombre_completo'] = $data['usr'][0]->nombre_completo;
+			$this->consultas_model->update_r('usuarios',$data['usr'][0]->id_usuarios,$dat,'id_usuarios');
 		}
 		$this->load->view('validar_correo');
 	}
@@ -286,9 +288,9 @@ class Welcome extends CI_Controller {
 			$this->session->set_userdata('id',$data['usr'][0]->id_usuarios);
 			$this->session->set_userdata('logueado',true);
 			//$this->session->set_userdata($datos);
-			$data['mj'] ="Aprobado";
+			$data['mj'] ="Aprobado,".$data['usr'][0]->id_usuarios;
 		}else{
-			$data['mj'] ="Los datos ingresados son incorrectos. ,".$data['usr'][0]->id_usuarios;
+			$data['mj'] ="Los datos ingresados son incorrectos. ,";
 			//redirect('Welcome/inicio',$data);
 		}
 		header('Content-Type: application/x-json; charset=utf-8');
@@ -297,13 +299,15 @@ class Welcome extends CI_Controller {
 	public function informacion_solicitud()
 	{
 		$id=$this->input->post('us');
+			$dat['status'] = "activo";
+			$this->consultas_model->update_r('usuarios',$id,$dat,'id_usuarios');
 		$data['rode']=$this->input->post('rode');
 		$data['interes']=$this->input->post('interes');
 		$data['time']=$this->input->post('time');
-			$data['cli'] = $this->consultas_model->get_c($id);
-			$data['estados'] = $this->consultas_model->get_e();
-			$data['municipios'] = $this->consultas_model->get_m($data['cli'][0]->id_estado);
-			$this->load->view('cliente/header');
-			$this->load->view('cliente/agregar_solicitud_inicio',$data);
+		$data['cli'] = $this->consultas_model->get_c($id);
+		$data['estados'] = $this->consultas_model->get_e();
+		$data['municipios'] = $this->consultas_model->get_m($data['cli'][0]->id_estado);
+		$this->load->view('header');
+		$this->load->view('cliente/agregar_solicitud_inicio',$data);
 	}
 }

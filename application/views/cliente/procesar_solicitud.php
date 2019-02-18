@@ -115,6 +115,7 @@
 						<?php }?>
 					</select>
 					<input type="hidden" id="b" name="b" value="<?= $u->fecha_nacimiento?>">
+					<input type="hidden" id="years_t" name="years_t" value="<?= $anios->y ?>">
 				</div>
 				<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<span class="input-group-prepend">

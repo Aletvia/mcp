@@ -72,7 +72,6 @@ class Clientes extends CI_Controller {
 			$dat['tipo'] = "Cliente";
 			$dat['status'] = "activo";
 			$dat['nombre_completo'] = $this->input->post('n');
-			$dat['fecha_registro'] = $c->fecha_registro;
 			$dat['id_usuarios'] = $c->id_usuarios;
 			$pass = $this->input->post('p');
 			//if($pass==""){
@@ -103,11 +102,20 @@ class Clientes extends CI_Controller {
 		$dats['lab_salario_mensual'] = $this->input->post('salary');
 		if($this->input->post('work')=="true")
 		$dats['trabaja'] = 1;
-		$dats['lab_ocupacion'] = $this->input->post('occupation');
+		$ocuacion = $this->input->post('occupation');
+		if($ocuacion=='Otro'){
+			$dats['lab_ocupacion'] = $this->input->post('occupation_1');
+		}else{
+			$dats['lab_ocupacion'] = $this->input->post('occupation');
+		}
 		$dats['nivel_estudios'] = $this->input->post('study_l');
 		$dats['lab_nombre_empresa'] = $this->input->post('company');
 		$dats['lab_industria'] = $this->input->post('job');
-		$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		if($this->input->post('experience')==""){
+			$dats['lab_anios_experiencia'] = 0;
+		}else{
+			$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		}
 		if($this->input->post('pay_bank')=="true")
 		$dats['lab_pagos_x_banco'] = 1;
 		$dats['lab_descripcion_empleo'] = $this->input->post('description_w');
@@ -173,7 +181,6 @@ public function agregar_s()
 		$dat['tipo'] = "Cliente";
 		$dat['status'] = "activo";
 		$dat['nombre_completo'] = $this->input->post('n');
-		$dat['fecha_registro'] = $c->fecha_registro;
 		$dat['id_usuarios'] = $c->id_usuarios;
 		$pass = $this->input->post('p');
 		$dat['contrasenia'] = $c->contrasenia;
@@ -187,14 +194,12 @@ public function agregar_s()
 		$dats['curp'] = $this->input->post('c');
 		$dats['genero'] = $this->input->post('gender');
 		$dats['fecha_nacimiento'] = $this->input->post('b');
-		$cumpleanos = new DateTime($this->input->post('b'));
-		$hoy = new DateTime();
-		$anios = $hoy->diff($cumpleanos);
-		if($anios>=50)
-		$aprobada=0;
+		$cumpleanos =$this->input->post('years_t');
+		if($cumpleanos>=50)
+			$aprobada=0;
 		$dats['nacimiento_estado'] = $this->input->post('state_b');
 		if($this->input->post('nationality')=="Extranjero viviendo en México")
-		$aprobada=0;
+			$aprobada=0;
 		$dats['nacionalidad'] = $this->input->post('nationality');
 		$dats['anios_domicilio'] = $this->input->post('home_y');
 		$dats['calle'] = $this->input->post('street');
@@ -217,7 +222,12 @@ public function agregar_s()
 			$dats['trabaja'] = 0;
 			$aprobada=0;
 		}
-		$dats['lab_ocupacion'] = $this->input->post('occupation');
+		$ocuacion = $this->input->post('occupation');
+		if($ocuacion=='Otro'){
+			$dats['lab_ocupacion'] = $this->input->post('occupation_1');
+		}else{
+			$dats['lab_ocupacion'] = $this->input->post('occupation');
+		}
 		$dats['nivel_estudios'] = $this->input->post('study_l');
 		if($this->input->post('study_l')=="Primaria" ||
 		$this->input->post('study_l')=="Secundaria" ||
@@ -225,7 +235,11 @@ public function agregar_s()
 		$aprobada=0;
 		$dats['lab_nombre_empresa'] = $this->input->post('company');
 		$dats['lab_industria'] = $this->input->post('job');
-		$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		if($this->input->post('experience')==""){
+			$dats['lab_anios_experiencia'] = 0;
+		}else{
+			$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		}
 		if($this->input->post('pay_bank')=="true")
 		$dats['lab_pagos_x_banco'] = 1;
 		$dats['lab_descripcion_empleo'] = $this->input->post('description_w');
@@ -275,6 +289,123 @@ public function agregar_s()
 		redirect('Clientes/solicitudes');
 	}
 }
+public function agregar_si()
+{
+		$e=$this->input->post('e');
+		$c = $this->consultas_model->consulta_get_where("usuarios",$this->input->post('us'),"id_usuarios");
+		$dat['correo'] = $e;
+		$dat['tipo'] = "Cliente";
+		$dat['status'] = "activo";
+		$dat['nombre_completo'] = $this->input->post('n');
+		$pass = $this->input->post('p');
+		$this->consultas_model->update_r('usuarios',$this->input->post('us'),$dat,'id_usuarios');
+
+		$aprobada=1;
+		////////////////////CLIENTE
+		$dats['usuarios_id_usuarios'] = $this->input->post('us');
+		$dats['id_cliente'] = $this->input->post('cl');
+		$dats['	municipios_id_municipio'] = $this->input->post('m');
+		$dats['curp'] = $this->input->post('c');
+		$dats['genero'] = $this->input->post('gender');
+		$dats['fecha_nacimiento'] = $this->input->post('b');
+		$cumpleanos =$this->input->post('years_t');
+		if($cumpleanos>=50)
+			$aprobada=0;
+		$dats['nacimiento_estado'] = $this->input->post('state_b');
+		if($this->input->post('nationality')=="Extranjero viviendo en México")
+			$aprobada=0;
+		$dats['nacionalidad'] = $this->input->post('nationality');
+		$dats['anios_domicilio'] = $this->input->post('home_y');
+		$dats['calle'] = $this->input->post('street');
+		$dats['no_interior'] = $this->input->post('inside_n');
+		$dats['no_exterior'] = $this->input->post('outside_n');
+		$dats['colonia'] = $this->input->post('colony');
+		$dats['telefono1'] = $this->input->post('phone1');
+		$dats['telefono2'] = $this->input->post('phone2');
+		$dats['dependientes'] = $this->input->post('dependents');
+		if($this->input->post('dependents')=="2 niños" ||
+		$this->input->post('dependents')=="4 o + niños" ||
+		$this->input->post('dependents')=="3 niños")
+		$aprobada=0;
+		$dats['lab_salario_mensual'] = $this->input->post('salary');
+		if($this->input->post('salary')<=6000)
+		$aprobada=0;
+		if($this->input->post('work')=="true"){
+			$dats['trabaja'] = 1;
+		}else{
+			$dats['trabaja'] = 0;
+			$aprobada=0;
+		}
+		$ocuacion = $this->input->post('occupation');
+		if($ocuacion=='Otro'){
+			$dats['lab_ocupacion'] = $this->input->post('occupation_1');
+		}else{
+			$dats['lab_ocupacion'] = $this->input->post('occupation');
+		}
+		$dats['nivel_estudios'] = $this->input->post('study_l');
+		if($this->input->post('study_l')=="Primaria" ||
+		$this->input->post('study_l')=="Secundaria" ||
+		$this->input->post('study_l')=="Preparatoria o Bachillerato")
+		$aprobada=0;
+		$dats['lab_nombre_empresa'] = $this->input->post('company');
+		$dats['lab_industria'] = $this->input->post('job');
+		if($this->input->post('experience')==""){
+			$dats['lab_anios_experiencia'] = 0;
+		}else{
+			$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		}
+		if($this->input->post('pay_bank')=="true")
+		$dats['lab_pagos_x_banco'] = 1;
+		$dats['lab_descripcion_empleo'] = $this->input->post('description_w');
+		$dats['pregunta_1'] = $this->input->post('question_1');
+		if($this->input->post('question_1')=="Como fluya el día")
+		$aprobada=0;
+		$dats['pregunta_2'] = $this->input->post('question_2');
+		if($this->input->post('question_2')=="Negro")
+		$aprobada=0;
+		$dats['pregunta_3'] = $this->input->post('question_3');
+		if($this->input->post('question_3')=="Ninguno")
+		$aprobada=0;
+		$dats['pregunta_4'] = $this->input->post('question_4');
+		if($this->input->post('credit_cd')=="true")
+		$dats['his_credito_auto'] = 1;
+		if($this->input->post('credit_cr')=="true")
+		$dats['his_credito_auto'] = 1;
+		if($this->input->post('credit_ph')=="true")
+		$dats['his_credito_tel'] = 1;
+		$dats['his_cal_his_cred'] = $this->input->post('history_q');
+		$dats['his_desc_cal'] = $this->input->post('desc_h');
+
+		$this->consultas_model->update_r('clientes',$this->input->post('cl'),$dats,'id_cliente');
+
+
+		////////////////////SOLICITUD
+
+		$datt['beneficios'] = $this->input->post('benefits');
+		$datt['ocasion'] = $this->input->post('cause');
+		if($this->input->post('cause')=="Deuda")
+		$aprobada=0;
+		$datt['monto'] = $this->input->post('rode');
+		$datt['interes'] = $this->input->post('interes');
+		$datt['fecha_solicitud'] = date("Y-m-d");
+		$datt['tiempo'] = $this->input->post('time');
+		$datt['desc_uso'] = $this->input->post('use');
+		if($aprobada==0){
+			$datt['status'] = "Pre-solicitud rechazada";
+		}else{
+			$datt['status'] = "Pre-solicitud aprobada";
+		}
+		$datt['check_cl_consulta_credito'] = 1;
+		$datt['clientes_id_cliente'] = $this->input->post('cl');
+		$datt['clientes_usuarios_id_usuarios'] = $this->input->post('us');
+
+		$id= $this->consultas_model->insert_r('solicitudes',$datt);
+		$this->session->sess_destroy();
+		// null the session (just in case):
+		$this->session->set_userdata(array('nombre' => '', 'correo' => '', 'tipo' => '', 'id' => '', 'logueado' => false));
+
+		$this->load->view('solicitud_enviada');
+}
 public function editar_s()
 {
 	$this->verificar_sesion();
@@ -287,7 +418,6 @@ public function editar_s()
 		$dat['tipo'] = "Cliente";
 		$dat['status'] = "activo";
 		$dat['nombre_completo'] = $this->input->post('n');
-		$dat['fecha_registro'] = $c->fecha_registro;
 		$dat['id_usuarios'] = $c->id_usuarios;
 		$pass = $this->input->post('p');
 		$dat['contrasenia'] = $c->contrasenia;
@@ -301,12 +431,9 @@ public function editar_s()
 		$dats['curp'] = $this->input->post('c');
 		$dats['genero'] = $this->input->post('gender');
 		$dats['fecha_nacimiento'] = $this->input->post('b');
-		$cumpleanos = new DateTime($this->input->post('b'));
-		$hoy = new DateTime();
-		$diff = $hoy->diff($cumpleanos);
-		$anios = $diff->format("%a");
-		//if($anios>=50)
-		//$aprobada=0;
+		$cumpleanos =$this->input->post('years_t');
+		if($cumpleanos>=50)
+			$aprobada=0;
 		$dats['nacimiento_estado'] = $this->input->post('state_b');
 		if($this->input->post('nationality')=="Extranjero viviendo en México")
 		$aprobada=0;
@@ -332,7 +459,12 @@ public function editar_s()
 			$dats['trabaja'] = 0;
 			$aprobada=0;
 		}
-		$dats['lab_ocupacion'] = $this->input->post('occupation');
+		$ocuacion = $this->input->post('occupation');
+		if($ocuacion=='Otro'){
+			$dats['lab_ocupacion'] = $this->input->post('occupation_1');
+		}else{
+			$dats['lab_ocupacion'] = $this->input->post('occupation');
+		}
 		$dats['nivel_estudios'] = $this->input->post('study_l');
 		if($this->input->post('study_l')=="Primaria" ||
 		$this->input->post('study_l')=="Secundaria" ||
@@ -340,7 +472,11 @@ public function editar_s()
 		$aprobada=0;
 		$dats['lab_nombre_empresa'] = $this->input->post('company');
 		$dats['lab_industria'] = $this->input->post('job');
-		$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		if($this->input->post('experience')==""){
+			$dats['lab_anios_experiencia'] = 0;
+		}else{
+			$dats['lab_anios_experiencia'] = $this->input->post('experience');
+		}
 		if($this->input->post('pay_bank')=="true")
 		$dats['lab_pagos_x_banco'] = 1;
 		$dats['lab_descripcion_empleo'] = $this->input->post('description_w');

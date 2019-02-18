@@ -20,7 +20,7 @@ class Consultas_model extends CI_Model
     if($query->num_rows() > 0 )
     {
       //veamos que sólo retornamos una fila con row(), no result()
-      return $query->row();
+      return $query->result();
     }
   }
   public function consulta_count_where($table,$id,$name)

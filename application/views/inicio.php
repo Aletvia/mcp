@@ -63,7 +63,7 @@
                 <div class="step amount col-lg-6 col-md-6 col-sm-12 col-xs-12"><!--MONTO------>
                   <label class="fl_l_m_10"> Monto </label>
                   <div class="slider_cont">
-                    <span id="txt_monto" class="fl_l_m_16 amount_display">10000 $</span>
+                    <span id="txt_monto" class="fl_l_m_16 amount_display">$1500.00</span>
                   </div>
                   <div class="""slidecontainer" style="margin-top:10px" >
                     <input type="range" min="1000" max="2000" value="1500" class="slider" id="monto">
@@ -87,7 +87,7 @@
                   <div class="fl_l_m_15">
                     <label class="fl_l_m_10"> Préstamo </label>
                     <div class="slider_cont">
-                      <span id="txt_prestamo" class=" amount_display">$10000.00</span>
+                      <span id="txt_prestamo" class=" amount_display">$1500.00</span>
                     </div>
                   </div>
                 </div><!--MONTO------>
@@ -435,7 +435,7 @@
         <input value="1500"  id="rode" name="rode" type="hidden" >
         <input value=""  id="us" name="us" type="hidden" >
       </form>
-        <input value=""  id="sol" name="sol" type="hidden" >
+      <input value=""  id="sol" name="sol" type="hidden" >
       <script>
       var i = document.getElementById("interes");
       var t = document.getElementById("time");
@@ -497,14 +497,16 @@
           type : 'POST',
           data : datos,
           success: function(comp){
+            console.log("respuesta: "+comp);
             var arr = comp.split(",");
-            if(comp!='Aprobado'){
+            if(arr[0]!='Aprobado'){
               alert(arr[0]);
             }else{
               if(document.getElementById("sol").value==1)
               {
                 //terminar solicitud
-                form.submit();
+                document.getElementById("us").value=arr[1];
+                form1.submit();
               }else{
                 form.submit();
               }
@@ -542,15 +544,18 @@
                 data : datos,
                 success: function(comp){
                   var arr = comp.split(",");
+                  console.log("respuesta: "+comp)
+                  alert(arr[0]);
+                  if(arr[0]=="Su registro se ha realizado con éxito."){
                     if(document.getElementById("sol").value==1)
                     {
                       //terminar solicitud
-                      form.submit();
+                      document.getElementById("us").value=arr[1];
+                      form1.submit();
                     }else{
-                      alert(arr[0]);
-                      if(comp="Su registro se ha realizado con éxito.")
                       $('#Register').modal('hide');
                     }
+                  }
                 }
               });
             }else{

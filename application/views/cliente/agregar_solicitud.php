@@ -126,6 +126,7 @@
 					<?php }?>
 				</select>
 				<input type="hidden" id="b" name="b" value="<?= $u->fecha_nacimiento?>">
+				<input type="hidden" id="years_t" name="years_t" value="<?= $anios->y ?>">
 			</div>
 			<div style="margin-bottom: 15px" class="input-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<span class="input-group-prepend">
@@ -547,7 +548,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 							<label style="text-align: center;" class="col-lg-12 center col-md-12 col-sm-12 col-xs-12">
 								Interés generado
@@ -755,7 +756,7 @@ function municipios() {
 	});
 }
 
-function editar() {
+function editar(){
 	var a = document.getElementById("benefits").value
 	var b = document.getElementById("rode").value
 	var c = document.getElementById("time").value
@@ -764,11 +765,71 @@ function editar() {
 	if(a=="" || b=="" || c=="" || d=="" || e==""){
 		alert("Corrobore que todos los campos de la pestaña Solicitud  estén completos");
 	}else{
-		if(b>2000){
-			alert("El monto no puede sobrepasar los 2000.00 MXN")
+		var cu = document.getElementById("c").value
+		var gender = document.getElementById("gender").value
+		var state_b = document.getElementById("state_b").value
+		var nationality = document.getElementById("nationality").value
+		var years_t = document.getElementById("years_t").value
+		if(cu=="" || gender=="" || state_b=="" || nationality=="" || years_t==0){
+			alert("Corrobore que todos los campos de la pestaña Personal estén completos");
 		}else{
-			var form = document.getElementById("act");
-			form.submit()
+			var home_y = document.getElementById("home_y").value
+			var street = document.getElementById("street").value
+			var colony = document.getElementById("colony").value
+			var m = document.getElementById("m").value
+			var years_t = document.getElementById("years_t").value
+			var e1 = document.getElementById("e").value
+			var phone1 = document.getElementById("phone1").value
+			var phone2 = document.getElementById("phone2").value
+			if(home_y=="" || street=="" || colony=="" || m=="" || years_t=="" || e1=="" || phone1=="" || phone2==""){
+				alert("Corrobore que todos los campos de la pestaña Contacto estén completos");
+			}else{
+				var dependents = document.getElementById("dependents").value
+				var salary = document.getElementById("salary").value
+				var occupation = document.getElementById("occupation").value
+				var study_l = document.getElementById("study_l").value
+				if(dependents=="" || salary=="" || occupation=="" || study_l==""){
+					alert("Corrobore que los campos de la pestaña Laboral estén completos");
+				}else{
+					var occupation_1 = document.getElementById("occupation_1").value
+					if(occupation=="Otro" && occupation_1==""){
+						alert("Debe especificar su ocupación.");
+					}else{
+						var company = document.getElementById("company").value
+						var industry = document.getElementById("industry").value
+						var job = document.getElementById("job").value
+						var experience = document.getElementById("experience").value
+						var description_w = document.getElementById("description_w").value
+						var work = document.getElementById("work").value
+						if(work.checked){
+							if(company=="" || industry=="" || job=="" || experience=="" || description_w==""){
+								alert("Debe completar los datos de la empresa.");
+							}
+						}else{
+							var question_1 = document.getElementById("question_1").value
+							var question_2 = document.getElementById("question_2").value
+							var question_3 = document.getElementById("question_3").value
+							var question_4 = document.getElementById("question_4").value
+							if(question_1=="" || question_2=="" || question_3=="" || question_4==""){
+								alert("Corrobore que los campos de la pestaña Adicional estén completos");
+							}else{
+								var history_q = document.getElementById("history_q").value
+								var desc_h = document.getElementById("desc_h").value
+								if(history_q=="" || desc_h=="" || history_q>10 ){
+									alert("Corrobore que los campos de la pestaña Hisorial estén completos. La califiación no puede ser mayor a 10.");
+								}else{
+									if(b>2000){
+										alert("El monto no puede sobrepasar los 2000.00 MXN");
+									}else{
+										var form = document.getElementById("act");
+										form.submit()
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -799,6 +860,7 @@ function calcular() {
 		edad=edad+1;
 	}
 	document.getElementById("age").value=edad;
+	document.getElementById("years_t").value=edad;
 	document.getElementById("b").value=y+"/"+m+"/"+d;
 }
 function confirmar_c(){
